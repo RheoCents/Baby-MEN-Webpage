@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Eater</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        a.home-link {
+            display: block;
+            text-align: left;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+        a.home-link:hover {
+            text-decoration: underline;
+        }
+        input {
+            margin: 10px;
+            padding: 5px;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-link">&lt; Home Page</a>
+    <h1>Word Eater</h1>
+    <p>This is a program where a random number of characters from your word will disappear!</p>
+    <label for="wordInput">Enter a word: </label>
+    <input type="text" id="wordInput" placeholder="Type your word here" />
+    <button onclick="wordEater()">Eat the Word!</button>
+    <p id="result"></p>
+
+    <script>
+        function wordEater() {
+            const userInputWord = document.getElementById('wordInput').value;
+            if (userInputWord === "") {
+                alert("Please enter a word!");
+                return;
+            }
+
+            const randomAmountToBeEaten = Math.floor(Math.random() * userInputWord.length) + 1;
+
+            const newWord = userInputWord.slice(randomAmountToBeEaten);
+
+            document.getElementById('result').innerHTML = `
+                <strong>Your inputted word was:</strong> ${userInputWord} <br>
+                <strong>Characters eaten:</strong> ${randomAmountToBeEaten} <br>
+                <strong>New word:</strong> ${newWord}
+            `;
+        }
+    </script>
+</body>
+</html>
