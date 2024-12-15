@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
-from labexercise import linklist
+from labexercise import linklist, stack
+from labexercise.stack import infix_to_postfix
 from templates import *
 
 app = Flask(__name__)
@@ -15,9 +16,22 @@ submitted_inputs_list = []
 def index():
     return render_template('upload.html')
 
+# Route for Works
+@app.route('/works')
+def work():
+    return render_template('works.html')
+
 @app.route('/work1')
 def work1():
-    return render_template('work1.html')
+    return render_template('linkedlist.html')  
+
+@app.route('/work2')
+def work2():
+    return render_template('convert.html')  
+
+@app.route('/work3')
+def work3():
+    return render_template('word-eater.html')  
 
 
 # Route for linked list page
@@ -72,6 +86,24 @@ def remove_at_end():
         'linkedlist.html',
         linked_list_items=linked_list.list_LinkedList(),
         submitted_inputs=submitted_inputs_list
+    )
+
+@app.route('/work2', methods=['GET', 'POST'])
+def convert_expression():
+    postfix_expression = None
+    infix_expression = None
+    steps_list = []
+
+    if request.method == 'POST':
+        infix_expression = request.form['expression']  
+        if infix_expression:
+            postfix_expression, steps_list = infix_to_postfix(infix_expression)
+
+    return render_template(
+        'convert.html',
+        infix_expression=infix_expression,
+        postfix_expression=postfix_expression,
+        steps=steps_list
     )
 
 if __name__ == "__main__":

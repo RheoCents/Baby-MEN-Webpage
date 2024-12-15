@@ -9,30 +9,45 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
+            position: relative; /* Enable positioning context for the link */
         }
+
         a.home-link {
-            display: block;
-            text-align: left;
-            margin-bottom: 20px;
+            position: absolute; /* Fixed to the top left corner */
+            top: 1px;
+            left: 1px;
             text-decoration: none;
             color: #007BFF;
             font-weight: bold;
+            padding: 5px 10px; /* Reduced padding */
+            border: 1px solid #007BFF;
+            border-radius: 4px;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
+
+        /* Hover effect for visual feedback */
         a.home-link:hover {
             text-decoration: underline;
+            color: #ffffff;
+            background-color: #E94E77;
+            border-color: white;
         }
+
         input {
             margin: 10px;
             padding: 5px;
         }
+
         button {
-            padding: 5px 10px;
+            padding: 6px 12px;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <a href="/" class="home-link">&lt; Home Page</a>
+    <!-- Positioned 'Go Back to Works Page' -->
+    <a href="/works" class="home-link">&lt; Back to Works</a>
+    
     <h1>Word Eater</h1>
     <p>This is a program where a random number of characters from your word will disappear!</p>
     <label for="wordInput">Enter a word: </label>
@@ -49,10 +64,10 @@
             }
 
             const randomAmountToBeEaten = Math.floor(Math.random() * userInputWord.length) + 1;
-
+            
             const newWord = userInputWord.slice(randomAmountToBeEaten);
 
-            document.getElementById('result').innerHTML = `
+            document.getElementById('result').innerHTML = ` 
                 <strong>Your inputted word was:</strong> ${userInputWord} <br>
                 <strong>Characters eaten:</strong> ${randomAmountToBeEaten} <br>
                 <strong>New word:</strong> ${newWord}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative; 
+        }
+
+        .home-link {
+            position: absolute; 
+            top: 10px;
+            left: 10px;
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            padding: 8px 12px; 
+            border: 1px solid #007BFF;
+            border-radius: 4px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .home-link:hover {
+            text-decoration: underline;
+            color: #ffffff;
+            background-color: #E94E77;
+            border-color: #E94E77;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 350px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #E94E77;
+            background-color: white;
+            border: 2px solid #E94E77; /* Adds a red outline */
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-container button:hover {
+            color: white;
+            background-color:#E94E77;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-link">&lt; Back to Home Page</a>
+    
+    <div class="container">
+        <h1>Works Hub</h1>
+        <div class="button-container">
+            <button onclick="redirectToWork1()">Go to Linked List</button>
+        </div>
+        <div class="button-container">
+            <button onclick="redirectToWork2()">Go to Stack: Infix => Postfix</button>
+        </div>
+        <div class="button-container">
+            <button onclick="redirectToWork3()">Go to Word Eater</button>
+        </div>
+        <div class="button-container">
+            <button onclick="redirectToWork4()">Go to Work 4</button>
+        </div>
+        <div class="button-container">
+            <button onclick="redirectToWork5()">Go to Work 5</button>
+        </div>
+    </div>
+
+    <script>
+        function redirectToWork1() {
+            window.location.href = "/work1";
+        }
+
+        function redirectToWork2() {
+            window.location.href = "/work2";
+        }
+
+        function redirectToWork3() {
+            window.location.href = "/work3";
+        }
+
+        function redirectToWork4() {
+            window.location.href = "/work4";
+        }
+
+        function redirectToWork5() {
+            window.location.href = "/work5";
+        }
+    </script>
+</body>
+</html>
