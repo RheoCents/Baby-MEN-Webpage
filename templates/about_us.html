@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - The Baby MEN</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Beaufort:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; 
+            color: #4A90E2; 
+        }
+        header {
+            background-color: #ffffff; 
+            color: #E94E77;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff; 
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4A90E2; 
+        }
+        p {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+        .team {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; 
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .team-member {
+            background-color: #f4f4f4; 
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            color: #E94E77; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .team-member:hover {
+            background-color: #E94E77; 
+            color: white;
+            cursor: pointer;
+        }
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            border: 5px solid #E94E77;
+        }
+        .team-member h3 {
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: inherit; 
+        }
+        .team-member p {
+            font-size: 0.9em;
+            color: inherit; 
+        }
+        .leader {
+            grid-column: span 3; 
+            background-color: #f4f4f4; 
+            color: #E94E77; 
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ffffff; 
+            color: #E94E77;
+            margin-top: 20px;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-link a {
+            color: #E94E77; 
+            text-decoration: none;
+            border: 2px solid #E94E77; 
+            border-radius: 10px;
+            padding: 15px 30px;
+            display: inline-block;
+            font-size: 1.2em; 
+            transition: all 0.3s ease;
+        }
+        .back-link a:hover {
+            background-color: #E94E77;
+            color: white; 
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><font color=#E94E77>About Us - The Baby MEN</font></h1>
+    </header>
+    <div class="container">
+        <section>
+            <h1>Who Are We?</h1>
+            <p><h3>The Baby MEN are a close-knit group of friends united by shared interests in learning, playing games, and staying updated on the latest news. From exploring new ideas to enjoying each other's company, we thrive on the simple joys of connection and curiosity.</h3></p>
+            <p><h3>Our mission is to bring positivity, humor, and genuine connection to everyone we meet. Whether through our unique projects or everyday interactions, we aim to inspire and uplift.</h3></p><br>
+        </section>
+        <section>
+            <h1>Our Values</h1>
+            <ul>
+                <li><h3>Friendship: We value trust, support, and the bonds that bring us together.</h3></li>
+                <li><h3>Learning: We encourage growth and discovery in everything we do.</h3></li>
+                <li><h3>Fun: We believe in enjoying life, sharing laughter, and creating lasting memories.<br><br><br><br></h3></li>
+            </ul>
+        </section>
+        <section>
+            <h1><center>Meet The Baby MEN</center></h1>
+            <div class="team">
+                <a href="/babyboyleader" class="team-member leader">
+                    <img src="{{ url_for('static', filename='images/Galdiano.png') }}"" alt="Leader">
+                    <h3>Marco Gabriel Galdiano</h3>
+                    <p>Leader - Cero (0)</p>
+                </a>
+                <a href="/babyboy1" class="team-member">
+                    <img src="{{ url_for('static', filename='images/Braganza.png') }}" alt="Baby MEN 1">
+                    <h3>Joshua Braganza</h3>
+                    <p>Baby MEN - Primera (1)</p>
+                </a>
+                <a href="/babyboy2" class="team-member">
+                    <img src="{{ url_for('static', filename='images/Calangian.png') }}"" alt="Baby MEN 2">
+                    <h3>Emmanuel Calangian</h3>
+                    <p>Baby MEN - Segunda (2)</p>
+                </a>
+                <a href="/babyboy3" class="team-member">
+                    <img src="{{ url_for('static', filename='images/Centina.jpg') }}"" alt="Baby MEN 3">
+                    <h3>Jan Raphael Centina</h3>
+                    <p>Baby MEN - Tres (3)</p>
+                </a>
+                <a href="/babyboy4" class="team-member">
+                    <img src="{{ url_for('static', filename='images/De Vera.jpg') }}" alt="Baby MEN 4">
+                    <h3>Jay De Vera</h3>
+                    <p>Baby MEN - Quatro (4)</p>
+                </a>
+                <a href="/babyboy5" class="team-member">
+                    <img src="{{ url_for('static', filename='images/Plale.jpg') }}"" alt="Baby MEN 5">
+                    <h3>John Michael Plale</h3>
+                    <p>Baby MEN - Quinto (5)</p>
+                </a>
+                <a href="/babyboy6" class="team-member">
+                    <img src="{{ url_for('static', filename='images/Valencia.png') }}"" alt="Baby MEN 6">
+                    <h3>Zuriel Elijah Valencia</h3>
+                    <p>Baby MEN - Sexta (6)</p>
+                </a>
+            </div>
+        </section><br><br><br>
+        <div class="back-link">
+            <a href="/">Back to Main Website</a>
+        </div>
+    </div>
+</body>
+</html>

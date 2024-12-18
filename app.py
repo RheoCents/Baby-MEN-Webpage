@@ -13,7 +13,7 @@ submitted_inputs_list = []
 
 # Route for homepage
 @app.route('/')
-def index():
+def index():    
     return render_template('upload.html')
 
 # Route for Works
@@ -31,8 +31,40 @@ def work2():
 
 @app.route('/work3')
 def work3():
-    return render_template('word-eater.html')  
+    return render_template('word-eater.html') 
 
+# about us page and specific info
+@app.route('/aboutus')
+def aboutus():    
+    return render_template('about_us.html') 
+
+@app.route('/babyboyleader')
+def leader():    
+    return render_template('babyboy_leader.html') 
+
+@app.route('/babyboy1')
+def mem1():    
+    return render_template('babyboy_1.html') 
+
+@app.route('/babyboy2')
+def mem2():    
+    return render_template('babyboy_2.html') 
+
+@app.route('/babyboy3')
+def mem3():    
+    return render_template('babyboy_3.html') 
+
+@app.route('/babyboy4')
+def mem4():    
+    return render_template('babyboy_4.html') 
+
+@app.route('/babyboy5')
+def mem5():    
+    return render_template('babyboy_5.html') 
+
+@app.route('/babyboy6')
+def mem6():    
+    return render_template('babyboy_6.html')
 
 # Route for linked list page
 @app.route('/linkedlist')
