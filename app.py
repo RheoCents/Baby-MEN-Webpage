@@ -4,19 +4,13 @@ from labexercise.stack import infix_to_postfix
 from templates import *
 
 app = Flask(__name__)
-
-# Create a global LinkedList instance
 linked_list = linklist.LinkedList()
-
-# Global list to track submitted string/number inputs
 submitted_inputs_list = []
 
-# Route for homepage
 @app.route('/')
 def index():    
     return render_template('upload.html')
 
-# Route for Works
 @app.route('/works')
 def work():
     return render_template('works.html')
@@ -29,11 +23,18 @@ def work1():
 def work2():
     return render_template('convert.html')  
 
-@app.route('/work3')
-def work3():
+@app.route('/work6')
+def work6():
     return render_template('word-eater.html') 
 
-# about us page and specific info
+@app.route('/work4')
+def work4():
+    return render_template('lrtpath.html')
+
+@app.route('/contactus')
+def contactus():
+    return render_template('contact.html')
+
 @app.route('/aboutus')
 def aboutus():    
     return render_template('about_us.html') 
@@ -66,7 +67,6 @@ def mem5():
 def mem6():    
     return render_template('babyboy_6.html')
 
-# Route for linked list page
 @app.route('/linkedlist')
 def linkedlist_page():
     return render_template(
@@ -75,13 +75,12 @@ def linkedlist_page():
         submitted_inputs=submitted_inputs_list
     )
 
-# Route to add a node to the linked list
 @app.route('/add1', methods=['POST'])
 def insert_end():
     data = request.form.get('data', '')
     if data:
-        linked_list.insert_at_end(data)  # Add the data to the end of the linked list
-        submitted_inputs_list.append(data)  # Track the submitted inputs
+        linked_list.insert_at_end(data) 
+        submitted_inputs_list.append(data) 
     return render_template(
         'linkedlist.html',
         linked_list_items=linked_list.list_LinkedList(),
@@ -92,15 +91,14 @@ def insert_end():
 def insert_beginning():
     data = request.form.get('data', '')
     if data:
-        linked_list.insert_at_beginning(data)  # Add the data to the end of the linked list
-        submitted_inputs_list.append(data)  # Track the submitted inputs
+        linked_list.insert_at_beginning(data) 
+        submitted_inputs_list.append(data) 
     return render_template(
         'linkedlist.html',
         linked_list_items=linked_list.list_LinkedList(),
         submitted_inputs=submitted_inputs_list
     )
 
-# Route to remove a node from the beginning
 @app.route('/remove_at_beginning', methods=['POST'])
 def remove_at_beginning():
     linked_list.remove_at_beginning()
@@ -110,7 +108,6 @@ def remove_at_beginning():
         submitted_inputs=submitted_inputs_list
     )
 
-# Route to remove a node from the end
 @app.route('/remove_at_end', methods=['POST'])
 def remove_at_end():
     linked_list.remove_at_end()

@@ -10,43 +10,72 @@
         @import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
         body {
             background: #242424; 
+            height: 100%;
+            overflow: hidden;
         }
-
+        
         .hero {
-            background-position: center;
-            color: white;
             display: flex;
-            padding:40px 100px;
-            gap: 100px;
+            justify-content: space-between;
+            flex-direction: row;
         }
 
         .heading{
-            margin-top: 65px;
             max-width: 600x; 
             flex-direction: column; 
             display: flex;
             justify-content: flex-start;
-            line-height: 0.8;
+            line-height: 1;
+            margin-left: 50px;
+            margin-top: 80px;
         }
 
         .heading h1{
-            font-size: 90px;
-            margin: 0;
-            font-family: 'Leckerli One'
-        }
-
-        .heading h2, .heading h3{
-            font-size: 200px;
+            font-size: 120px;
             margin: 0;
             font-family: 'Poppins';
-            color: #00bf63;
+            color: white;
+        }
+
+        .heading h2{
+            font-size: 30px;
+            margin: 0;
+            font-family: 'Work Sans';
+            color: white;
+        }
+
+        .circle-cont {
+            position: absolute;
+            height: 800px;
+            width: 800px;
+            background-color: white;
+            border-radius: 50%;
+            bottom: -150px;
+            right: -150px;
+            display: flex; 
+            overflow: hidden;
+        }
+        .circle{
+            height: 730px;
+            width: 750px;
+            background-color: #00bf63;
+            border-radius: 50%;
+            align-items: center;
+            display: flex; 
+            justify-content: center; 
+        }
+
+        .pup-img {
+            width: 700px; 
+            height: 700px;
         }
 
         .logo-img {
-            padding: 10px;
-            width: 550px; 
-            height: 450px;  
-            display: block;
+            width: 45px; 
+            height: 30px;
+            vertical-align: middle; 
+            margin-bottom: 2px;
+            margin-right: 50px;
         }
 
         nav {
@@ -100,23 +129,29 @@
     <div>
         <nav>
             <ul>
-                <li><a href = "/" class = "hlght">HOME</a></li>
+                <li><a href = "/">HOME</a></li>
                 <li><a href = "/works">LIBRARY</a></li>
-                <li><a href = "/contactus">CONTACT US</a></li>
+                <li><a href = "/contactus" class = "hlght">CONTACT US</a></li>
             </ul>
             <div>
                 <a href = "/aboutus">ABOUT US</a>
+                <img class = "logo-img"src="{{ url_for('static', filename='images/Logo1.png') }}"">
             </div>
         </nav>
     </div>
     <div class = "hero">
         <div class = "heading">
-            <h1>Welcome to</h1>
-            <h2>BABY</h2>
-            <h3>MEN</h3>
+            <h1>CONTACT</h1>
+            <h2>ADDRESS</h2>
+            <h2>CONTAC NUMBER</h2>
+            <h2>BABY MEN</h2>
+            <h2>EMAIL GENERAL</h2>
         </div>
-        <img class = "logo-img"src="{{ url_for('static', filename='images/Logo.png') }}"">
+        <div class = "circle-cont">
+            <div class = "circle">
+                <img class = "pup-img"src="{{ url_for('static', filename='images/pup.png') }}"">
+            </div>
+        </div>
     </div>
-
 </body>
 </html>

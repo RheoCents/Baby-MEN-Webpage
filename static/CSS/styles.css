@@ -1,0 +1,278 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
+body {
+    background: #242424;
+    overflow: hidden;
+}
+
+.hero {
+    color: white;
+    padding: 20px 40px;
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.left-content {
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-content {
+    position: relative;
+    list-style: none;
+    display: flex;
+    flex-direction: column; 
+}
+
+.heading{
+    max-width: 600x; 
+    flex-direction: column; 
+    display: flex;
+    justify-content: flex-start;
+    line-height: 1;
+    margin-right: 200px;
+}
+
+.heading h1{
+    font-size: 160px;
+    margin: 0;
+    font-family: 'Poppins';
+    color: #00bf63;
+}
+
+.heading h2, .heading h3{
+    font-size: 40px;
+    margin: 0;
+    font-family: 'Work Sans';
+    color: white;
+}
+
+.hero ul li {
+    list-style: none;
+    line-height: 7;
+    margin-right: 70px;
+}
+
+.hero ul li a{
+    border: 2px solid transparent;
+}
+
+nav {
+    background: #545454;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    font-family: 'Work Sans';
+    font-weight: bold;
+    padding: 0 10px; /* Remove top and bottom padding */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100%; /* Full width */
+    z-index: 1000;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 10px;
+}
+
+nav ul li a {
+    color: #ffffff; 
+}
+
+a {
+    text-decoration: none;
+    color: #fdfdfd; 
+    border: 2px solid transparent; 
+    border-radius: 20px;
+    padding: 5px 15px;
+    transition: all 0.3s ease;
+    display: inline-block; 
+}
+
+a:hover {
+    background-color: white; 
+    color:  #00bf63; 
+}
+
+a.hlght{
+    background-color: #00bf63; 
+    color: white;
+}
+
+.logo-img {
+    width: 45px; 
+    height: 30px;
+    vertical-align: middle; 
+    margin-bottom: 2px; 
+    margin-right: 50px;
+}
+
+.container {
+    width: 300px;
+    align-items: center;
+    border: solid transparent;
+    border-radius: 8px;
+    position: relative;
+    background-color: solid transparent;
+}
+  
+.content {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+}
+  
+.item {
+    margin-top: 5px;
+    margin-left: 27px;
+    font-family: 'Poppins';
+    font-size: 60px;
+    line-height: 0.75;
+    border: 2px solid transparent;
+    font-weight: bold;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start; /* Align content to the left */
+    align-items: center;
+}
+  
+.item a {
+    text-decoration: none;
+    color: #545454; 
+    transition: all 0.3s ease;
+    font-weight: bold;
+    flex-direction: column;
+}
+  
+.item a:hover {
+    color: white;
+    background-color: transparent;
+}
+  
+.arrow {
+    width: 100%;
+    background-color: #242424;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 30px;
+}
+  
+.arrow:disabled {
+    color: #a8a8a8;
+    cursor: not-allowed;
+}
+  
+.item .message {
+    position: absolute; 
+    top: 333px;
+    right: 550px;
+    background-color: solid transparent;
+    color: white;
+    text-align: left;
+    font-size: 20px;
+    white-space: nowrap; 
+    overflow: hidden;
+    visibility: hidden; 
+} 
+
+.item:hover .message{
+    visibility: visible;
+    opacity: 1;
+}
+
+.item:hover a {
+    color: white;
+}
+  
+.item .circle-display {
+    position: absolute;
+    top: 493px; 
+    left: 61%; 
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; 
+    background-color: white;
+    visibility: hidden; 
+    opacity: 0; 
+    transition: visibility 0.5s ease;
+}
+  
+.item:hover .circle-display {
+    display: block;
+    height: 50px;
+    opacity: 1;
+}
+  
+  /* General shape container for positioning */
+.shape-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.3s, opacity 0.3s;
+}
+  
+.item:hover .shape-container {
+    opacity: 1;
+    visibility: visible;
+}
+  
+  /* Common styles for all shapes */
+.shape {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.5s ease;
+}
+  
+.shape.circle, .circle2, .circle3, .circle4 {
+    border-radius: 50%;
+    background-color: white;
+}
+  
+@keyframes scale-left {
+    0% {
+        transform: scaleX(1); /* Original size */
+    }
+    100% {
+        transform: scaleX(20); /* Expand to 120% width */
+    }
+  }
+  
+  
+  /* Apply animations to shapes */
+.shape.circle {
+    position: absolute; 
+    top: 325px;
+    right: 450px;
+}
+
+.shape.circle2 {
+    position: absolute; 
+    top: 100px;
+    right: 260px;
+}
+
+.shape.circle3 {
+    position: absolute; 
+    top: 213px;
+    right: 260px;
+}
+
+.shape.circle4 {
+    position: absolute; 
+    top: 325px;
+    right: 260px;
+}
+  

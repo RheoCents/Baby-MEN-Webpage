@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRT Path</title>
+    <link rel="stylesheet" href="../static/CSS/customdropd.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
+        body {
+            background: #242424;
+            overflow: hidden;
+            background-image: url('static/images/TrainBlueprint.png');
+            background-size: cover;
+            background-size: 760px 760px; /* Control the image size */
+            background-repeat: no-repeat;
+            background-position: 440px 0.1px;
+        }
+
+        .hero {
+            color: white;
+            padding: 10px 40px;
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .left-content {
+            max-width: 90%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-content {
+            list-style: none;
+            display: flex;
+            flex-direction: column; 
+        }
+
+        nav {
+            background: #545454;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; 
+            font-family: 'Work Sans';
+            font-weight: bold;
+            padding: 0 10px; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 60px;
+            width: 100%; 
+            z-index: 1000;
+        }
+
+        nav ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 10px;
+        }
+
+        nav ul li a {
+            color: #ffffff; 
+        }
+
+        a {
+            text-decoration: none;
+            color: #fdfdfd; 
+            border: 2px solid transparent; 
+            border-radius: 20px;
+            padding: 5px 15px;
+            transition: all 0.3s ease;
+            display: inline-block; 
+        }
+
+        a:hover {
+            background-color: white; 
+            color:  #00bf63; 
+        }
+
+        a.hlght{
+            background-color: #00bf63; 
+            color: white;
+        }
+
+        .logo-img {
+            width: 45px; 
+            height: 30px;
+            vertical-align: middle; 
+            margin-bottom: 2px; 
+            margin-right: 50px;
+        }
+
+        .heading{
+            max-width: 600x; 
+            flex-direction: column; 
+            display: flex;
+            justify-content: flex-start;
+            line-height: 1;
+            margin-right: 200px;
+        }
+        .heading h1{
+            font-size: 60px;
+            font-family: 'Poppins';
+            color: white;
+        }
+
+        .heading h2{
+            font-size: 30px;
+            margin-top: -25px;
+            font-family: 'Work Sans';
+            color: white;
+        }
+
+        .square {
+            height: 330px;
+            width: 400px;
+            border-radius: 10%;
+            background-color: #555;
+            display: flex;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+        .in-square {
+            height: 300px;
+            width: 350px;
+            border-radius: 10%;
+            background-color: #474646;
+            flex-direction: column;
+            align-items: center;
+            display: flex;
+        }
+
+        .in-square h1{
+            font-size: 30px;
+            font-family: 'Work Sans';
+            line-height:0.4;
+            color: white;
+        }
+
+        .in-square h2{
+            font-size: 20px;
+            font-family: 'Work Sans';
+            line-height:0.4;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <nav>
+            <ul>
+                <li><a href = "/">HOME</a></li>
+                <li><a href = "/works" >LIBRARY</a></li>
+                <li><a href = "/contactus">CONTACT US</a></li>
+            </ul>
+            <div>
+                <a href = "/aboutus">ABOUT US</a>
+                <img class = "logo-img"src="{{ url_for('static', filename='images/Logo1.png') }}"">
+            </div>
+        </nav>
+    </div>
+    <div class = "hero">
+        <div class = "left-content">
+            <div class = "heading">
+                <h1>LRT PATH</h1>
+                <h2>HOW TO USE</h2>
+            </div>
+            <div class="container">
+                <h1>Starting</h1>
+                <div class="select-box">  
+                    <div class="input-container">
+                        <input type="text" class="selected selected1" placeholder="Select Station" />
+                        <i class="fa-solid fa-arrow-down" id="arrow1"></i>
+                    </div>
+                    <ul class="options-container options-container1">
+                        <li class="option option1">Antipolo</li>
+                        <li class="option option1">Marikina</li>
+                        <li class="option option1">Santolan</li>
+                        <li class="option option1">Katipunan</li>
+                        <li class="option option1">
+                        <i class="fa-solid fa-file-code"></i> TypeScript
+                        </li>
+                        <li class="option option1">Anonas</li>
+                        <li class="option option1"></i> Cubao</li>
+                        <li class="option option1">Betty Go Belmoonte</li>
+                        <li class="option option1">Gilmore</li>
+                        <li class="option option1">J ruiz</li>
+                        <li class="option option1">V mapa</li>
+                        <li class="option option1">Legarda</li>
+                        <li class="option option1">Recto</li>
+                  </ul>
+                <h1>Ending</h1>
+                <div class="select-box">  
+                    <div class="input-container">
+                        <input type="text" class="selected selected2" placeholder="Select Station" />
+                        <i class="fa-solid fa-arrow-down" id="arrow2"></i>
+                    </div>
+                    <ul class="options-container options-container2">
+                        <li class="option option2">Antipolo</li>
+                        <li class="option option2">Marikina</li>
+                        <li class="option option2">Santolan</li>
+                        <li class="option option2">Katipunan</li>
+                        <li class="option option2">
+                        <li class="option option2">Anonas</li>
+                        <li class="option option2"></i> Cubao</li>
+                        <li class="option option2">Betty Go Belmoonte</li>
+                        <li class="option option2">Gilmore</li>
+                        <li class="option option2">J ruiz</li>
+                        <li class="option option2">V mapa</li>
+                        <li class="option option2">Legarda</li>
+                        <li class="option option2">Recto</li>
+                  </ul>
+                </div>
+              </div>
+              <script src="static/js/dropdownjs.js"></script>
+        </div>
+        <div class = "right-content">
+            <h2>
+                <a href = "/works">Library</a>
+            </h2>
+            <div class = "square">
+                <div class = "in-square">
+                    <h1>Distance</h1>
+                    <h2>Shortest to Longest</h2>
+                    <script src = ""></script>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
