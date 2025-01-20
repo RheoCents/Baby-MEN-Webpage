@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request
-from labexercise import linklist, stack
+from flask import Flask, request, jsonify, render_template
+from labexercise import linklist
+from labexercise.GraphFunctions import Graph
 from labexercise.stack import infix_to_postfix
 from templates import *
 
 app = Flask(__name__)
+g = Graph()
 linked_list = linklist.LinkedList()
 submitted_inputs_list = []
 
@@ -134,6 +136,14 @@ def convert_expression():
         postfix_expression=postfix_expression,
         steps=steps_list
     )
+
+@app.route('/find-path', methods=['POST'])
+def find_path():
+    data = request.get_json()
+    start = data['start']
+    end = data['end']
+    paths = g.find_paths(start, end)
+    return jsonify(paths)
 
 if __name__ == "__main__":
     app.run(debug=True)

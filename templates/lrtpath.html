@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LRT Path</title>
     <link rel="stylesheet" href="../static/CSS/customdropd.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap");
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
         @import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
         body {
             background: #242424;
-            overflow: hidden;
+            overflow: auto;
             background-image: url('static/images/TrainBlueprint.png');
             background-size: cover;
             background-size: 760px 760px; /* Control the image size */
@@ -158,19 +159,19 @@
     <div>
         <nav>
             <ul>
-                <li><a href = "/">HOME</a></li>
-                <li><a href = "/works" >LIBRARY</a></li>
-                <li><a href = "/contactus">CONTACT US</a></li>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/works">LIBRARY</a></li>
+                <li><a href="/contactus">CONTACT US</a></li>
             </ul>
             <div>
-                <a href = "/aboutus">ABOUT US</a>
-                <img class = "logo-img"src="{{ url_for('static', filename='images/Logo1.png') }}"">
+                <a href="/aboutus">ABOUT US</a>
+                <img class="logo-img" src="{{ url_for('static', filename='images/Logo1.png') }}">
             </div>
         </nav>
     </div>
-    <div class = "hero">
-        <div class = "left-content">
-            <div class = "heading">
+    <div class="hero">
+        <div class="left-content">
+            <div class="heading">
                 <h1>LRT PATH</h1>
                 <h2>HOW TO USE</h2>
             </div>
@@ -178,7 +179,7 @@
                 <h1>Starting</h1>
                 <div class="select-box">  
                     <div class="input-container">
-                        <input type="text" class="selected selected1" placeholder="Select Station" />
+                        <input type="text" id="start" class="selected selected1" placeholder="Select Station" />
                         <i class="fa-solid fa-arrow-down" id="arrow1"></i>
                     </div>
                     <ul class="options-container options-container1">
@@ -186,22 +187,20 @@
                         <li class="option option1">Marikina</li>
                         <li class="option option1">Santolan</li>
                         <li class="option option1">Katipunan</li>
-                        <li class="option option1">
-                        <i class="fa-solid fa-file-code"></i> TypeScript
-                        </li>
                         <li class="option option1">Anonas</li>
-                        <li class="option option1"></i> Cubao</li>
-                        <li class="option option1">Betty Go Belmoonte</li>
+                        <li class="option option1">Cubao</li>
+                        <li class="option option1">Betty Go Belmonte</li>
                         <li class="option option1">Gilmore</li>
-                        <li class="option option1">J ruiz</li>
-                        <li class="option option1">V mapa</li>
+                        <li class="option option1">J Ruiz</li>
+                        <li class="option option1">V Mapa</li>
                         <li class="option option1">Legarda</li>
                         <li class="option option1">Recto</li>
-                  </ul>
+                    </ul>
+                </div>
                 <h1>Ending</h1>
                 <div class="select-box">  
                     <div class="input-container">
-                        <input type="text" class="selected selected2" placeholder="Select Station" />
+                        <input type="text" id="end" class="selected selected2" placeholder="Select Station" />
                         <i class="fa-solid fa-arrow-down" id="arrow2"></i>
                     </div>
                     <ul class="options-container options-container2">
@@ -209,34 +208,30 @@
                         <li class="option option2">Marikina</li>
                         <li class="option option2">Santolan</li>
                         <li class="option option2">Katipunan</li>
-                        <li class="option option2">
                         <li class="option option2">Anonas</li>
-                        <li class="option option2"></i> Cubao</li>
-                        <li class="option option2">Betty Go Belmoonte</li>
+                        <li class="option option2">Cubao</li>
+                        <li class="option option2">Betty Go Belmonte</li>
                         <li class="option option2">Gilmore</li>
-                        <li class="option option2">J ruiz</li>
-                        <li class="option option2">V mapa</li>
+                        <li class="option option2">J Ruiz</li>
+                        <li class="option option2">V Mapa</li>
                         <li class="option option2">Legarda</li>
                         <li class="option option2">Recto</li>
-                  </ul>
+                    </ul>
+                    <h2>
+                        <a><button onclick="findPath()">Find Path</button></a>
+                    </h2>
                 </div>
-              </div>
-              <script src="static/js/dropdownjs.js"></script>
+            </div>
+            <script src="static/js/dropdownjs.js"></script>
         </div>
-        <div class = "right-content">
+        <div class="right-content">
             <h2>
-                <a href = "/works">Library</a>
+                <a href="/works">Library</a>
             </h2>
-            <div class = "square">
-                <div class = "in-square">
+            <div class="square">
+                <div class="in-square">
                     <h1>Distance</h1>
                     <h2>Shortest to Longest</h2>
-                    <script src = ""></script>
+                        <div id="result"></div>
                     
-                </div>
-
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+            

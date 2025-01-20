@@ -11,13 +11,8 @@ const arrow2 = document.querySelector("#arrow2");
 function toggleDropdown(selected, optionsContainer, arrow) {
     selected.style.backgroundColor = "var(--dark)";
     optionsContainer.classList.toggle("active");
-    if (arrow.classList.contains("fa-arrow-down")) {
-        arrow.classList.remove("fa-arrow-down");
-        arrow.classList.add("fa-arrow-up");
-    } else {
-        arrow.classList.remove("fa-arrow-up");
-        arrow.classList.add("fa-arrow-down");
-    }
+    arrow.classList.toggle("fa-arrow-down");
+    arrow.classList.toggle("fa-arrow-up");
 }
 
 // Event listeners for the first dropdown
@@ -57,3 +52,39 @@ optionsList2.forEach(item => {
         arrow2.classList.add("fa-arrow-down");
     };
 });
+
+// Function to find the path
+async function findPath() {
+    const start = document.getElementById('start').value;
+    const end = document.getElementById('end').value;
+
+    try {
+        const response = await fetch('/find-path', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ start, end })
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const paths = await response.json();
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = '';
+
+        if (paths.length > 0) {
+            paths.forEach((path, index) => {
+                const p = document.createElement('p');
+                p.textContent = `Path ${index + 1}: ${path.join(' -> ')}`;
+                resultDiv.appendChild(p);
+            });
+        } else {
+            resultDiv.textContent = 'No path found.';
+        }
+    } catch (error) {
+        console.error('Error fetching paths:', error);
+        const resultDiv = document.getElementById('result');
+        resultDiv.textContent = 'An error occurred while finding the path.';
+    }
+}

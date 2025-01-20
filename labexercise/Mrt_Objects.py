@@ -1,4 +1,4 @@
-from GraphFunctions import Graph, draw_graph
+from GraphFunctions import Graph
 
 # Create the graph
 g = Graph()
@@ -57,4 +57,4 @@ g.add_edge("Taft Avenue", "EDSA")
 g.add_edge("Doroteo Jose", "Recto")
 
 # Draw the graph
-draw_graph(g)
+g.find_paths({},{})
