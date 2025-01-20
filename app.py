@@ -77,13 +77,17 @@ def work1():
 def work2():
     return render_template('convert.html')  
 
-@app.route('/work6')
-def work6():
-    return render_template('word-eater.html') 
+@app.route('/work3')
+def work3():
+    return render_template('queue.html') 
 
 @app.route('/work4')
 def work4():
     return render_template('lrtpath.html')
+
+@app.route('/work6')
+def work6():
+    return render_template('word-eater.html') 
 
 @app.route('/contactus')
 def contactus():
@@ -123,6 +127,35 @@ def mem6():
 
 @app.route('/linkedlist')
 def linkedlist_page():
+    return render_template(
+        'linkedlist.html',
+        linked_list_items=linked_list.list_LinkedList(),
+        submitted_inputs=submitted_inputs_list
+    )
+
+@app.route('/add_remove', methods=['POST'])
+def add_remove():
+    data = request.form.get('data', '')
+    action = request.form.get('action')
+
+
+    if data:
+      if action == 'add_start':
+        linked_list.insert_at_beginning(data)
+        submitted_inputs_list.append(data)
+      elif action == 'add_end':
+        linked_list.insert_at_end(data)
+        submitted_inputs_list.append(data)
+      elif action == 'remove_start':
+        linked_list.remove_at_beginning()
+      elif action == 'remove_end':
+        linked_list.remove_at_end()
+    else:
+        if action == 'remove_start':
+            linked_list.remove_at_beginning()
+        elif action == 'remove_end':
+            linked_list.remove_at_end()
+        
     return render_template(
         'linkedlist.html',
         linked_list_items=linked_list.list_LinkedList(),
