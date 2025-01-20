@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/queue.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Agrandir:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body{
+      height: 100vh;
+      background-image: url("{{ url_for('static', filename='background/background.png') }}");
+      background-size: cover; 
+      background-position: center; 
+      background-repeat: no-repeat; 
+      padding-top: 100px;
+    }
+  </style>
+  <title>Queue</title>
+  
+</head>
+<body>
+  <nav>
+      <ul>
+          <li><a href = "/">HOME</a></li>
+          <li><a href = "/works"  class = "hlght">LIBRARY</a></li>
+          <li><a href = #>CONTACT US</a></li>
+      </ul>
+      <div class="about-us-container">
+          <a href = "/aboutus">ABOUT US</a>
+          <img class="logo" src="{{ url_for('static', filename='background/Logo1.png') }}">
+      </div>
+  </nav>
+
+  <main>
+    <div class="left-main">
+      <div class="queue">QUEUE</div>
+    </div>
+
+    <div class="right-main">
+
+      <div class="queue-section">
+        <div class="queue-containers"></div>
+        <div class="queue-containers"></div>
+        <div class="queue-containers"></div>
+        <div class="queue-containers"></div>
+        <div class="queue-containers"></div>
+        <div class="queue-containers"></div>
+      </div>
+
+      <!-- <div class="button-input-section">
+        <input type="text">
+
+        <div class="buttons-only">
+          <div class="add-buttons">
+            <button class="add"></button>
+            <button class="add"></button>
+          </div>
+          <div class="delete-buttons">
+            <button class="delete"></button>
+            <button class="delete"></button>
+          </div>
+        </div>
+      </div> -->
+      
+      <form class="input-section">
+        <div class="input-container" style="display: flex;">
+          <input name="data" type="text" style="flex: 1;" placeholder="KINDLY INPUT YOUR TEXT">
+        </div>
+        <div class="buttons-container">
+          <div class="add-container">
+            <button class="add">
+              <div class="inside-buttons">
+                <p class="sign">+</p>
+                <p>ADD AT <br> START</p>
+              </div>
+            </button>
+  
+            <button class="add">
+              <div class="inside-buttons">
+                <p class="sign">+</p>
+                <p>ADD AT <br> END</p>
+              </div>
+            </button>
+              
+          </div>
+          <div class="delete-container">
+            <button class="delete">
+              <div class="inside-buttons">
+                <p class="sign">-</p>
+                <p>REMOVE <br> START</p>
+              </div>
+            </button>
+  
+            <button class="delete">
+              <div class="inside-buttons">
+                <p class="sign">-</p>
+                <p>REMOVE <br> END</p>
+              </div>
+            </button>
+          </div>
+        </div>
+        
+      </form>
+
+    </div>
+  </main>
+
+</body>
+</html>

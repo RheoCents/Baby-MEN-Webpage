@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/stack.css')}}">
+  <style>
+    body{
+      height: 100vh;
+      background-image: url("{{ url_for('static', filename='background/background.png') }}");
+      background-size: cover; 
+      background-position: center; 
+      background-repeat: no-repeat; 
+      padding-top: 100px;
+    }
+  </style>
+</head>
+<body>
+  
+  <div>
+    <nav>
+        <ul>
+            <li><a href = "/">HOME</a></li>
+            <li><a href = "/works"  class = "hlght">LIBRARY</a></li>
+            <li><a href = #>CONTACT US</a></li>
+        </ul>
+        <div class="about-us-container">
+            <a href = "/aboutus">ABOUT US</a>
+            <img class="logo" src="{{ url_for('static', filename='background/Logo1.png') }}">
+        </div>
+    </nav>
+  </div>
+
+  <main>
+    <div class="left-main">
+      <p class="title">STACK</p>
+    </div>
+
+    <div class="right-main">
+      <div class="steps-section">
+        <div class="steps-container"></div>
+        <div class="steps-container"></div>
+        <div class="steps-container"></div>
+        <div class="steps-container"></div>
+        <div class="steps-container"></div>
+        <div class="steps-container"></div>
+        <div class="steps-container"></div>
+        <div class="steps-container"></div>
+        <div class="steps-container"></div>
+      </div>
+
+      <div class="input-section">
+        <input class="input-text" type="text" placeholder="KINDLY INPUT YOUR TEXT">
+        <button class="infix-postfix">INFIX TO POSTFIX</button>
+        <button class="postfix-infix">POSTFIX TO INFIX</button>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>

@@ -3,195 +3,339 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
   <link rel="stylesheet" href="style.css">
-  <title>Linked List</title>
   <style>
-    body {
-        margin: 0;
-        padding: 20px;
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        flex-direction: column;
-    }
+  @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
+  @import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
+  body {
+    height: 100vh;
+    background-image: url("{{ url_for('static', filename='background/background.png') }}");
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    padding-top: 50px;
+  }
 
-    .home-link {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        text-decoration: none;
-        color: #007BFF;
-        font-weight: bold;
-        padding: 5px 10px;
-        border: 1px solid #007BFF;
-        border-radius: 4px;
-        transition: background-color 0.2s ease, color 0.2s ease;
-    }
+  main{
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    margin: 50px;
+  }
 
-    .home-link:hover {
-        text-decoration: underline;
-        color: #ffffff;
-        background-color: #E94E77;
-        border-color: white;
-    }
+  .left-main{
+    height: 445px;
+    /* border: 1px solid lightpink;
+    background-color: lightpink; */
+    border-right-color: white;
+    border-right-width: 3px;
+    border-right-style: solid;
+  }
+  .right-main{
+    /* background-color: lightblue; */
+    margin: 0;
+    padding: 0;
+  }
 
-    .main-container {
-        display: flex;
-        gap: 50px;
-        justify-content: center;
-        align-items: center;
-    }
+  .nodes-container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 13px;
+    height: 300px;
+    justify-content: space-between;
+    margin-left: 35px;
+    overflow-y: auto;
+    /* padding-top: 30px; */
+  }
+  .node{
+    margin: 0;
+    border-radius: 50px;
+    padding: 3px;
+    background-color: #00bf63;
+    height: 80px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins';
+    font-weight: bold;
+    color: white;
+    font-size: 17px;
+  }
 
-    .linkedList-container {
-        display: flex;
-        flex-direction: column;
-    }
+  .input-section{
+    margin: 10px 50px;
+    padding-right: 15px;
+    padding-left: 0;
+  }
+  .input-container{
+    margin-bottom: 12px;
+  }
+  input{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+    border: 0 solid transparent;
+  }
 
-    .large-box {
-        width: 300px;
-        height: 400px;
-        border: 2px solid #4a90e2;
-        border-radius: 10px;
-        padding: 20px;
-    }
+  input::placeholder{
+    text-align: center;
+    font-family: 'Poppins';
+    font-weight: bold;
+  }
+  .buttons-container{
+    display: flex;
+    justify-content: space-between;
+  }
+  .add{
+    background-color: #00bf63;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: bold;
+    font-size: 14px;
+    border: 0 solid transparent;
+    border-radius: 18px;
+    padding: 1px 10px;
+    transition: background-color 0.3s;
+  }
+  .delete{
+    background-color: red;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: bold;
+    font-size: 14px;
+    border: 0 solid transparent;
+    border-radius: 18px;
+    padding: 1px 10px;
+    transition: background-color 0.3s;
+  }
+  .add:hover{
+    background-color: white;
+    color: #00bf63;
+  }
+  .delete:hover{
+    background-color: white;
+    color: red;
+    
+  }
+  .linked-list{
+    font-size: 60px;
+    font-family: 'Glacial Indifference';
+    font-weight: bold;
+    color: white;
+    margin-bottom: 25px;
+    margin-left: 30px;
+  }
 
-    .right-container {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
+  .history-section{
+    background-color: white;
+    position: relative;
+    width: 200px;
+    height: 255px;
+    margin: 20px 70px;
+    padding-top: 10px;
+    border-radius: 40px;
+  }
+  .history-text{
+    height: 30px;
+    width: 120px;
+    background-color: #00bf63;
+    position: absolute;
+    color: white;
+    top: -15px;
+    left: 40px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .p-history{
+    text-align: center;
+    font-family:'Work Sans';
+    font-weight: bold;
+  }
+  .inside-buttons{
+    display: grid;
+    grid-template-columns: 10px 1fr;
+    column-gap: 5px;
+    margin: 3px;
+    /* padding: 0; */
+    align-items: center;
+  }
+  .inside-buttons p{
+    margin: 0;
+    line-height: 15px;
+  }
 
-    .history-container {
-        display: flex;
-        flex-direction: column;
-    }
+  .heading{
+      margin-top: 65px;
+      max-width: 600x; 
+      flex-direction: column; 
+      display: flex;
+      justify-content: flex-start;
+      line-height: 0.8;
+  }
 
-    .small-box {
-        width: 370px; 
-        height: 225px;
-        border: 2px solid #4a90e2;
-        border-radius: 10px;
-        padding: 20px;
-    }
+  .heading h1{
+      font-size: 90px;
+      margin: 0;
+      font-family: 'Leckerli One'
+  }
 
-    .buttons-container {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+  .heading h2, .heading h3{
+      font-size: 200px;
+      margin: 0;
+      font-family: 'Poppins';
+      color: #00bf63;
+  }
 
-    .input-group {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+  .logo-img {
+      padding: 10px;
+      width: 550px; 
+      height: 450px;  
+      display: block;
+  }
 
-    .input-field {
-        border: 2px solid #4a90e2;
-        border-radius: 10px;
-        padding: 10px;
-        width: 238px; 
-    }
+  nav {
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    font-family: 'Work Sans';
+    font-weight: bold;
+    background-color: #545454;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+  }
 
-    .button {
-        border: 2px solid #e94e77;
-        border-radius: 10px;
-        padding: 10px;
-        background-color: white;
-        cursor: pointer;
-        width: 150px;
-        transition: background-color 0.2s;
-    }
-    .button:hover{
-        background-color: #e94e77;
-        color: white;
-    }
+  nav ul li {
+      display: inline-block;
+      list-style: none;
+      margin: 10px;
+      
+  }
 
-    .button-group {
-        display: flex;
-        gap: 10px;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
+  nav ul li a {
+      color: #ffffff; 
+  }
+  a {
+      text-decoration: none;
+      color: #fdfdfd; 
+      border: 2px solid transparent; 
+      border-radius: 20px;
+      padding: 5px 15px;
+      transition: all 0.3s ease;
+      display: inline-block; 
+  }
+  a:hover {
+      background-color: white; 
+      color:  #00bf63; 
+  }
 
-    .button-below {
-        border: 2px solid #e94e77;
-        border-radius: 10px;
-        padding: 10px;
-        background-color: white;
-        cursor: pointer;
-        height: 50px;
-        width: 204px;
-        transition: background-color 0.2s;
-    }
-
-    .button-below:hover{
-        background-color: #e94e77;
-        color: white;
-    }
-
+  a.hlght{
+      background-color: #00bf63; 
+      color: white;
+  }
+  .about-us-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+    column-gap: 10px;
+  }
+  .logo{
+    height: 22px;
+  }
   </style>
 </head>
+
+
 <body>
 
-  <a href="/works" class="home-link">&lt; Back to Works</a>
-  
-  <div class="main-container">
-    <div class="linkedList-container">
-      <div class="large-box">
-        <ul id="linkedList">
-          {% for item in linked_list_items %}
-              <li>{{ item }}</li>
-          {% endfor %}
+<div>
+    <nav>
+        <ul>
+            <li><a href = "/">HOME</a></li>
+            <li><a href = "/works"  class = "hlght">LIBRARY</a></li>
+            <li><a href = #>CONTACT US</a></li>
         </ul>
-      </div>
-    </div>
+        <div class="about-us-container">
+            <a href = "/aboutus">ABOUT US</a>
+            <img src="{{ url_for('static', filename='background/Logo1.png') }}" class="logo">
+        </div>
+    </nav>
+</div>
 
-    <div class="right-container">
-      <div class="history-container">
-        <div class="small-box">
-          <h4>Submitted Input History:</h4>
-          <ul id="submittedInputs">
-          {% for input_item in submitted_inputs %}
-              <li>{{ input_item }}</li>
-          {% endfor %}
-          </ul>
-        </div>
-      </div>
+<main>
 
-      <div class="buttons-container">
-        <div class="input-group">
-          <form action="/add1" method="POST">
-            <input type="text" name="data" class="input-field" placeholder="Input text here...">
-            <button type="submit" class="button">Insert at End</button>
-          </form>
-        </div>
-        <div class="input-group">
-          <form action="/add2" method="POST">
-            <input type="text" name="data" class="input-field" placeholder="Input text here...">
-            <button type="submit" class="button">Insert at Beginning</button>
-          </form>
-        </div>
+  <div class="left-main">
+    <div class="linked-list">LINKED<br> LIST</div>
+    <div class="history-section">
+      <div class="history-text"><p class="p-history">HISTORY</p></div>
+      <ul class="submittedInputs">
+        {% for input_item in submitted_inputs %}
+          <li>{{ input_item }}</li>
+        {% endfor %}
+      </ul>
       
-        <div class="button-group">
-          <form action="/remove_at_beginning" method="POST" style="display:inline;">
-            <button type="submit" class="button-below">Remove at Beginning</button>
-          </form>
-          <form action="/remove_at_end" method="POST" style="display:inline;">
-              <button type="submit" class="button-below">Remove at End</button>
-          </form>
+    </div>
+  </div>
+
+  <div class="right-main">
+    <div class="nodes-container">
+      {% for item in linked_list_items %}
+        <div class="node">{{item}}</div>
+      {% endfor %}
+    </div>
+
+    <form class="input-section" method="POST" action="/add_remove">
+      <div class="input-container" style="display: flex;">
+        <input name="data" type="text" style="flex: 1;" placeholder="KINDLY INPUT YOUR TEXT">
+      </div>
+      <div class="buttons-container">
+        <div class="add-container">
+          <button type="submit" name="action" value="add_start" class="add">
+            <div class="inside-buttons">
+              <p class="sign">+</p>
+              <p>ADD AT <br> START</p>
+            </div>
+          </button>
+
+          <button name="action" value="add_end" class="add">
+            <div class="inside-buttons">
+              <p class="sign">+</p>
+              <p>ADD AT <br> END</p>
+            </div>
+          </button>
+            
+        </div>
+        <div class="delete-container">
+          <button name="action" value="remove_start" class="delete">
+            <div class="inside-buttons">
+              <p class="sign">-</p>
+              <p>REMOVE <br> START</p>
+            </div>
+          </button>
+
+          <button name="action" value="remove_end" class="delete">
+            <div class="inside-buttons">
+              <p class="sign">-</p>
+              <p>REMOVE <br> END</p>
+            </div>
+          </button>
         </div>
       </div>
-
-    </div>
-    <div></div>
-
+      
+    </form>
   </div>
+
+</main>
 
 </body>
 </html>
