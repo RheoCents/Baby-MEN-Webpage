@@ -139,7 +139,7 @@ a.hlght{
     font-weight: bold;
     text-align: left;
     display: flex;
-    justify-content: flex-start; /* Align content to the left */
+    justify-content: flex-start; 
     align-items: center;
 }
   
@@ -213,7 +213,6 @@ a.hlght{
     opacity: 1;
 }
   
-  /* General shape container for positioning */
 .shape-container {
     display: flex;
     justify-content: center;
@@ -229,7 +228,6 @@ a.hlght{
     visibility: visible;
 }
   
-  /* Common styles for all shapes */
 .shape {
     width: 30px;
     height: 30px;
@@ -240,18 +238,6 @@ a.hlght{
     border-radius: 50%;
     background-color: white;
 }
-  
-@keyframes scale-left {
-    0% {
-        transform: scaleX(1); /* Original size */
-    }
-    100% {
-        transform: scaleX(20); /* Expand to 120% width */
-    }
-  }
-  
-  
-  /* Apply animations to shapes */
 .shape.circle {
     position: absolute; 
     top: 325px;

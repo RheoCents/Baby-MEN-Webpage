@@ -72,7 +72,8 @@ async function findPath() {
         if (paths.length > 0) {
             paths.forEach((path, index) => {
                 const p = document.createElement('p');
-                p.textContent = `Path ${index + 1}: ${path.join(' -> ')}`;
+                p.innerHTML = `<span style="color: green;">Path ${index + 1}</span>: ${path.join(' -> ')}`;
+                p.style.fontSize = '12px';
                 resultDiv.appendChild(p); // Display each path
             });
         } else {
