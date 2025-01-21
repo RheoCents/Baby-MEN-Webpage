@@ -9,6 +9,22 @@ let posY = 0; // Current vertical position
 let isDragging = false; // Track dragging state
 let startX, startY; // Mouse starting position
 
+// Function to center the image based on its current size
+const centerImage = () => {
+    const initialWidth = img.offsetWidth;
+    const initialHeight = img.offsetHeight;
+    posX = (container.offsetWidth - initialWidth) / 2;
+    posY = (container.offsetHeight - initialHeight) / 2;
+    img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+};
+
+// Function to center the image if scale is 1
+const centerImageIfScaleOne = () => {
+    if (scale === 1) {
+        centerImage();
+    }
+};
+
 // Ensure the image starts at a size that fits the container
 const fitImageToContainer = () => {
     const containerRatio = container.offsetWidth / container.offsetHeight;
@@ -23,20 +39,18 @@ const fitImageToContainer = () => {
     }
 
     // Center the image initially
-    centerImage();
-};
-
-// Center the image based on its current size
-const centerImage = () => {
-    const initialWidth = img.offsetWidth;
-    const initialHeight = img.offsetHeight;
-    posX = (container.offsetWidth - initialWidth) / 2;
-    posY = (container.offsetHeight - initialHeight) / 2;
-    img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+    centerImageIfScaleOne();
 };
 
 // Call the fit function when the image loads
 img.onload = fitImageToContainer;
+
+// Center the image if it is already loaded
+if (img.complete) {
+    fitImageToContainer();
+} else {
+    img.onload = fitImageToContainer; // Ensure it fits when it loads
+}
 
 // Mouse down event to start dragging
 img.addEventListener('mousedown', (e) => {
@@ -70,14 +84,26 @@ container.addEventListener('wheel', (e) => {
     const zoomFactor = e.deltaY > 0 ? -0.1 : 0.1;
     scale = Math.min(maxScale, Math.max(minScale, scale + zoomFactor)); // Constrain scale
     img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+    
+    // Center the image if scale is 1 after zooming
+    centerImageIfScaleOne();
 });
 
 // Adjust image fit on window resize
 window.addEventListener('resize', () => {
     fitImageToContainer();
-    centerImage(); // Re-center the image on resize
+    centerImageIfScaleOne(); // Re-center the image on resize if scale is 1
 });
 
+// Prevent the default drag behavior
 img.addEventListener('dragstart', (e) => {
     e.preventDefault();
+});
+
+// Reset the image state on page unload
+window.addEventListener('beforeunload', () => {
+    scale = 1; // Reset scale
+    posX = 0; // Reset position X
+    posY = 0; // Reset position Y
+    img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`; // Reset transform
 });

@@ -37,6 +37,11 @@ g.add_edge("Santolan", "Marikina")
 g.add_edge("Marikina", "Antipolo")
 
 # LRT 1
+g.add_edge("Dr. Santos", "Ninoy Aquino")
+g.add_edge("Ninoy Aquino", "PITX")
+g.add_edge("PITX", "MIA")
+g.add_edge("MIA", "Redemptorist")
+g.add_edge("Redemptorist", "Baclaran")
 g.add_edge("Baclaran", "EDSA")
 g.add_edge("EDSA", "Libertad")
 g.add_edge("Libertad", "Gil Puyat")
@@ -56,6 +61,7 @@ g.add_edge("R. Papa", "5th Avenue")
 g.add_edge("5th Avenue", "Monumento")
 g.add_edge("Monumento", "Balintawak")
 g.add_edge("Balintawak", "Roosevelt")
+
 
 #Connecting Terminals
 g.add_edge("Taft Avenue", "EDSA")

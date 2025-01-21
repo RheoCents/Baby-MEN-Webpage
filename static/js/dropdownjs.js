@@ -77,7 +77,7 @@ async function findPath() {
                 const p2 = document.createElement('p');
                 const p = document.createElement('p'); // Use <p> instead of <p2>
                 
-                p2.innerHTML = `<span style="color: #28bf68;">Path ${index + 1} (Stations: ${path.length})</span>:`;
+                p2.innerHTML = `<span style="color: #28bf68;">Path ${index + 1} (Stations: ${path.length}):</span>`;
                 p.innerHTML = `<span> ${path.join(' -> ')}</span>`;
                 
                 p2.style.fontSize = '20px';
