@@ -70,12 +70,25 @@ async function findPath() {
         resultDiv.innerHTML = ''; // Clear previous results
 
         if (paths.length > 0) {
+            // Sort paths by length (number of stops)
+            paths.sort((a, b) => a.length - b.length);
+
             paths.forEach((path, index) => {
-                const p = document.createElement('p');
-                p.innerHTML = `<span style="color: green;">Path ${index + 1}</span>: ${path.join(' -> ')}`;
+                const p2 = document.createElement('p');
+                const p = document.createElement('p'); // Use <p> instead of <p2>
+                
+                p2.innerHTML = `<span style="color: #28bf68;">Path ${index + 1} (Stations: ${path.length})</span>:`;
+                p.innerHTML = `<span> ${path.join(' -> ')}</span>`;
+                
+                p2.style.fontSize = '20px';
+                p2.style.marginBottom = '-15px';
+                p2.style.marginTop = '15px';
                 p.style.fontSize = '12px';
-                resultDiv.appendChild(p); // Display each path
+            
+                resultDiv.appendChild(p2);
+                resultDiv.appendChild(p); 
             });
+
         } else {
             resultDiv.textContent = 'No path found.'; // Handle case with no paths
         }

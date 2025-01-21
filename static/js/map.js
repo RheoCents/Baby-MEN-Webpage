@@ -11,23 +11,28 @@ let startX, startY; // Mouse starting position
 
 // Ensure the image starts at a size that fits the container
 const fitImageToContainer = () => {
-const containerRatio = container.offsetWidth / container.offsetHeight;
-const imageRatio = img.naturalWidth / img.naturalHeight;
+    const containerRatio = container.offsetWidth / container.offsetHeight;
+    const imageRatio = img.naturalWidth / img.naturalHeight;
 
-if (imageRatio > containerRatio) {
-img.style.width = "100%";
-img.style.height = "auto";
-} else {
-img.style.width = "auto";
-img.style.height = "100%";
-}
+    if (imageRatio > containerRatio) {
+        img.style.width = "100%";
+        img.style.height = "auto";
+    } else {
+        img.style.width = "auto";
+        img.style.height = "100%";
+    }
 
-// Center the image initially
-const initialWidth = img.offsetWidth;
-const initialHeight = img.offsetHeight;
-posX = (map-content.offsetWidth - initialWidth) / 2;
-posY = (container.offsetHeight - initialHeight) / 2;
-img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+    // Center the image initially
+    centerImage();
+};
+
+// Center the image based on its current size
+const centerImage = () => {
+    const initialWidth = img.offsetWidth;
+    const initialHeight = img.offsetHeight;
+    posX = (container.offsetWidth - initialWidth) / 2;
+    posY = (container.offsetHeight - initialHeight) / 2;
+    img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
 };
 
 // Call the fit function when the image loads
@@ -36,13 +41,14 @@ img.onload = fitImageToContainer;
 // Mouse down event to start dragging
 img.addEventListener('mousedown', (e) => {
     isDragging = true;
-    startX = e.clientX - posX;
+    startX = e.clientX - posX; // Store the offset from the current position
     startY = e.clientY - posY;
 });
 
 // Mouse move event to drag the image
 img.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
+    // Calculate the new position based on the mouse movement
     posX = e.clientX - startX;
     posY = e.clientY - startY;
     img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
@@ -67,12 +73,11 @@ container.addEventListener('wheel', (e) => {
 });
 
 // Adjust image fit on window resize
-window.addEventListener('resize', fitImageToContainer);
+window.addEventListener('resize', () => {
+    fitImageToContainer();
+    centerImage(); // Re-center the image on resize
+});
 
-// Mouse wheel event to zoom in and out
-container.addEventListener('wheel', (e) => {
+img.addEventListener('dragstart', (e) => {
     e.preventDefault();
-    const zoomFactor = e.deltaY > 0 ? -0.1 : 0.1;
-    scale = Math.max(1, scale + zoomFactor); // Minimum zoom level is 1
-    img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
 });
