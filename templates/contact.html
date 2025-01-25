@@ -8,9 +8,13 @@
         @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap");
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
         @import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
-        body {
-            background: #242424; 
-            height: 100%;
+        body{
+            height: 100vh;
+            background-image: url("{{ url_for('static', filename='background/background.png') }}");
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            padding-top: 100px;
             overflow: hidden;
         }
         

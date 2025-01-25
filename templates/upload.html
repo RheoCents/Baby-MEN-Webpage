@@ -9,20 +9,27 @@
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
         @import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
         body {
-            background: #242424; 
+            background: #242424;
+            height: 100vh;
+            background-image: url("{{ url_for('static', filename='background/homebackground.png') }}");
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            padding-top: 50px; 
+            overflow: hidden
         }
 
         .hero {
             background-position: center;
             color: white;
             display: flex;
-            padding:40px 100px;
+            padding:90px 40px;
             gap: 100px;
         }
 
         .heading{
             margin-top: 65px;
-            max-width: 600x; 
+            max-width: 400x; 
             flex-direction: column; 
             display: flex;
             justify-content: flex-start;
@@ -36,7 +43,7 @@
         }
 
         .heading h2, .heading h3{
-            font-size: 200px;
+            font-size: 190px;
             margin: 0;
             font-family: 'Poppins';
             color: #00bf63;
@@ -56,12 +63,12 @@
             justify-content: space-between; 
             font-family: 'Work Sans';
             font-weight: bold;
-            padding: 0 10px; /* Remove top and bottom padding */
+            padding: 0 1px; 
             position: fixed;
             top: 0;
             left: 0;
             height: 60px;
-            width: 100%; /* Full width */
+            width: 100%; 
             z-index: 1000;
         }
 
@@ -113,7 +120,7 @@
         <div class = "heading">
             <h1>Welcome to</h1>
             <h2>BABY</h2>
-            <h3>MEN</h3>
+            <h3>MATRIX</h3>
         </div>
         <img class = "logo-img"src="{{ url_for('static', filename='images/Logo.png') }}"">
     </div>

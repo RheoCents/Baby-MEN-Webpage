@@ -13,6 +13,11 @@
         body {
             background: #242424;
             overflow: hidden;
+            height: 100vh;
+            background-image: url("{{ url_for('static', filename='background/background.png') }}");
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
         }
 
         .hero {
