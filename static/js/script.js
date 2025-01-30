@@ -23,6 +23,13 @@ const items = [
         message: "A graph is a collection of nodes and edges.",
         shapes: ["circle1","circle5"]
     },
+
+    {
+        label: "LRT PATH",
+        link: "/work4",
+        message: "A graph is a collection of nodes and edges.",
+        shapes: ["circle1","circle9"]
+    },
     {
         label: "SORT",
         link: "/work5",
@@ -33,13 +40,13 @@ const items = [
         label: "SEARCH",
         link: "/work6",
         message: "ehm! What the sigma",
-        shapes: ["circle1","circle6"]
+        shapes: ["circle1","circle7"]
     },
     {
         label: "WORD EATER",
         link: "/work7",
         message: "WAKA-WAKA.exe",
-        shapes: ["circle1", "circle7"]
+        shapes: ["circle1", "circle8"]
     }
   ];
   

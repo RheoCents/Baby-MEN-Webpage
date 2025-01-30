@@ -234,7 +234,7 @@ a.hlght{
     transition: transform 0.5s ease;
 }
   
-.shape.circle1, .circle2, .circle3, .circle4, .circle5, .circle6, .circle7{
+.shape.circle1, .circle2, .circle3, .circle4, .circle5, .circle6, .circle7, .circle8, .circle9 {
     border-radius: 50%;
     background-color: white;
 }
@@ -271,7 +271,17 @@ a.hlght{
 
 .shape.circle7 {
     position: relative; 
-    transform: translateX(-256px);
+    transform: translateX(-296px);
+}
+
+.shape.circle8 {
+    position: relative; 
+    transform: translateX(-296px);
+}
+
+.shape.circle9 {
+    position: relative; 
+    transform: translateX(-295px);
 }
 
   
