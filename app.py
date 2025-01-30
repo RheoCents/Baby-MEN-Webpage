@@ -33,8 +33,8 @@ g.add_edge("Gilmore", "Betty Go Belmonte")
 g.add_edge("Betty Go Belmonte", "Araneta Center - Cubao")
 g.add_edge("Araneta Center - Cubao", "Anonas")
 g.add_edge("Anonas", "Katipunan")
-g.add_edge("Katipunan", "Santolan")
-g.add_edge("Santolan", "Marikina")
+g.add_edge("Katipunan", "Santolan LRT")
+g.add_edge("Santolan LRT", "Marikina")
 g.add_edge("Marikina", "Antipolo")
 
 # LRT 1
