@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from labexercise.remove_first_n_characters_from_a_string import *
 from labexercise import linklist
+from labexercise.Sorthing import *
 from labexercise.GraphFunctions import Graph
 from labexercise.stack import infix_to_postfix
 from templates import *
@@ -135,6 +136,15 @@ def mem5():
 @app.route('/babyboy6')
 def mem6():    
     return render_template('babyboy_6.html')
+
+@app.route('/sort', methods=['POST'])
+def sort_array():
+    data = request.json.get('array', [])
+    sorter = Sortingsort()
+    for item in data:
+        sorter.add_data(item)
+    sorted_list = sorter.bubble_sort()
+    return jsonify(sorted_list)
 
 @app.route('/word_eater', methods=['GET', 'POST'])
 def word_eater():
