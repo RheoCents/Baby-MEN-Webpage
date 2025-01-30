@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+  @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
+  @import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
+  body {
+    height: 100vh;
+    background-image: url("{{ url_for('static', filename='background/background.png') }}");
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    padding-top: 50px;
+  }
+
+  main{
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    margin: 50px;
+  }
+
+  .left-main{
+    height: 445px;
+    /* border: 1px solid lightpink;
+    background-color: lightpink; */
+    border-right-color: white;
+    border-right-width: 3px;
+    border-right-style: solid;
+  }
+  .right-main{
+    /* background-color: lightblue; */
+    margin: 0;
+    padding: 0;
+  }
+
+  .nodes-container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 13px;
+    height: 300px;
+    justify-content: space-between;
+    margin-left: 35px;
+    overflow-y: auto;
+    /* padding-top: 30px; */
+  }
+  .node{
+    margin: 0;
+    border-radius: 50px;
+    padding: 3px;
+    background-color: #00bf63;
+    height: 80px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins';
+    font-weight: bold;
+    color: white;
+    font-size: 17px;
+  }
+
+  .input-section{
+    margin: 10px 50px;
+    padding-right: 15px;
+    padding-left: 0;
+  }
+  .input-container{
+    margin-bottom: 12px;
+  }
+  input{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+    border: 0 solid transparent;
+  }
+
+  input::placeholder{
+    text-align: center;
+    font-family: 'Poppins';
+    font-weight: bold;
+  }
+  .buttons-container{
+    display: flex;
+    justify-content: space-between;
+  }
+  .add{
+    background-color: #00bf63;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: bold;
+    font-size: 14px;
+    border: 0 solid transparent;
+    border-radius: 18px;
+    padding: 1px 10px;
+    transition: background-color 0.3s;
+  }
+  .delete{
+    background-color: red;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: bold;
+    font-size: 14px;
+    border: 0 solid transparent;
+    border-radius: 18px;
+    padding: 1px 10px;
+    transition: background-color 0.3s;
+  }
+  .add:hover{
+    background-color: white;
+    color: #00bf63;
+  }
+  .delete:hover{
+    background-color: white;
+    color: red;
+    
+  }
+  .linked-list{
+    font-size: 60px;
+    font-family: 'Glacial Indifference';
+    font-weight: bold;
+    color: white;
+    margin-bottom: 25px;
+    margin-left: 30px;
+  }
+
+  .inside-buttons{
+    display: grid;
+    grid-template-columns: 10px 1fr;
+    column-gap: 5px;
+    margin: 3px;
+    /* padding: 0; */
+    align-items: center;
+  }
+  .inside-buttons p{
+    margin: 0;
+    line-height: 15px;
+  }
+
+  .heading{
+      margin-top: 65px;
+      max-width: 600x; 
+      flex-direction: column; 
+      display: flex;
+      justify-content: flex-start;
+      line-height: 0.8;
+  }
+
+  .heading h1{
+      font-size: 90px;
+      margin: 0;
+      font-family: 'Leckerli One'
+  }
+
+  .heading h2, .heading h3{
+      font-size: 200px;
+      margin: 0;
+      font-family: 'Poppins';
+      color: #00bf63;
+  }
+
+  .logo-img {
+      padding: 10px;
+      width: 550px; 
+      height: 450px;  
+      display: block;
+  }
+
+  nav {
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    font-family: 'Work Sans';
+    font-weight: bold;
+    background-color: #545454;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+  }
+
+  nav ul li {
+      display: inline-block;
+      list-style: none;
+      margin: 10px;
+      
+  }
+
+  nav ul li a {
+      color: #ffffff; 
+  }
+  a {
+      text-decoration: none;
+      color: #fdfdfd; 
+      border: 2px solid transparent; 
+      border-radius: 20px;
+      padding: 5px 15px;
+      transition: all 0.3s ease;
+      display: inline-block; 
+  }
+  a:hover {
+      background-color: white; 
+      color:  #00bf63; 
+  }
+
+  a.hlght{
+      background-color: #00bf63; 
+      color: white;
+  }
+  .about-us-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+    column-gap: 10px;
+  }
+  .logo{
+    height: 22px;
+  }
+  </style>
+</head>
+
+
+<body>
+
+<div>
+    <nav>
+        <ul>
+            <li><a href = "/">HOME</a></li>
+            <li><a href = "/works"  class = "hlght">LIBRARY</a></li>
+            <li><a href = #>CONTACT US</a></li>
+        </ul>
+        <div class="about-us-container">
+            <a href = "/aboutus">ABOUT US</a>
+            <img src="{{ url_for('static', filename='background/Logo1.png') }}" class="logo">
+        </div>
+    </nav>
+</div>
+
+<main>
+
+  <div class="left-main">
+    <div class="linked-list">SEARCH<br></div>
+    </div>
+  </div>
+
+  <div class="right-main">
+  </div>
+
+</main>
+
+</body>
+</html>

@@ -91,9 +91,17 @@ def work3():
 def work4():
     return render_template('lrtpath.html')
 
+@app.route('/work5')
+def work5():
+    return render_template('sort.html')
+
 @app.route('/work6')
 def work6():
-    return render_template('word-eater.html') 
+    return render_template('search.html')
+
+@app.route('/work7')
+def work7():
+    return render_template('word_eater.html') 
 
 @app.route('/contactus')
 def contactus():

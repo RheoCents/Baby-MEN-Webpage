@@ -25,13 +25,19 @@ const items = [
     },
     {
         label: "SORT",
-        link: "/page1",
+        link: "/work5",
+        message: "ehm! What the sigma",
+        shapes: ["circle1","circle6"]
+    },
+    {
+        label: "SEARCH",
+        link: "/work6",
         message: "ehm! What the sigma",
         shapes: ["circle1","circle6"]
     },
     {
         label: "WORD EATER",
-        link: "/work6",
+        link: "/work7",
         message: "WAKA-WAKA.exe",
         shapes: ["circle1", "circle7"]
     }
