@@ -20,11 +20,21 @@
         }
 
         .hero {
+            position: relative;
             background-position: center;
             color: white;
             display: flex;
             padding:90px 40px;
-            gap: 100px;
+            justify-content: space-between;
+        }
+        .left-content {
+            max-width: 90%;
+            float: left;
+        }
+
+        .right-content {
+            position: relative;
+            display: flex;
         }
 
         .heading{
@@ -117,12 +127,17 @@
         </nav>
     </div>
     <div class = "hero">
-        <div class = "heading">
-            <h1>Welcome to</h1>
-            <h2>BABY</h2>
-            <h3>MATRIX</h3>
+        <div class = "left-content">
+            <div class = "heading">
+                <h1>Welcome to</h1>
+                <h2>BABY</h2>
+                <h3>MATRIX</h3>
+            </div>
         </div>
-        <img class = "logo-img"src="{{ url_for('static', filename='images/Logo.png') }}"">
+        <div class = "right-content">
+            <img class = "logo-img"src="{{ url_for('static', filename='images/Logo.png') }}"">
+        </div>
+        
     </div>
 
 </body>
