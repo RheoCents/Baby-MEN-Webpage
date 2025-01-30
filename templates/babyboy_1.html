@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Profile</title>
     <style>
-
+        @import url('https://fonts.googleapis.com/css2?family=Beaufort:wght@400;700&display=swap');
+        @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap");
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-
+        @import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
+        @import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
         body {
             font-family: 'Poppins';
             color: #ffffff; 
@@ -19,6 +21,59 @@
             margin: 0;
             padding: 0;
             height: 100%;
+        }
+        nav {
+            padding: 0 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; 
+            font-family: 'Work Sans';
+            font-weight: bold;
+            background-color: #545454;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+        }
+
+        nav ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 10px;
+                
+        }
+
+        nav ul li a {
+            color: #ffffff; 
+        }
+        a {
+            text-decoration: none;
+            color: #fdfdfd; 
+            border: 2px solid transparent; 
+            border-radius: 20px;
+            padding: 5px 15px;
+            transition: all 0.3s ease;
+            display: inline-block; 
+        }
+        a:hover {
+            background-color: white; 
+            color:  #00bf63; 
+        }
+
+        a.hlght{
+            background-color: #00bf63; 
+            color: white;
+        }
+        .about-us-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 50px;
+            column-gap: 10px;
+        }
+        .logo{
+            height: 22px;
         }
         header {
             font-family: 'Poppins';
@@ -188,7 +243,17 @@
         <br>
     </header>
     <main>
-        
+        <nav>
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/works" >LIBRARY</a></li>
+                <li><a href="/contactus">CONTACT US</a></li>
+            </ul>
+            <div class="about-us-container">
+                <a href="/aboutus" class="hlght">ABOUT US</a>
+                <img class="logo" src="{{ url_for('static', filename='background/Logo1.png') }}">
+            </div>
+        </nav>
         <div class="profile-container">
             <div class="team-member">
              <img src="{{ url_for('static', filename='images/Braganza.png') }}" alt="Leader">
