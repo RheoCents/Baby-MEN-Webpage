@@ -81,7 +81,7 @@ def work1():
 
 @app.route('/work2')
 def work2():
-    return render_template('convert.html')  
+    return render_template('stack.html')  
 
 @app.route('/work3')
 def work3():
@@ -230,7 +230,7 @@ def convert_expression():
             postfix_expression, steps_list = infix_to_postfix(infix_expression)
 
     return render_template(
-        'convert.html',
+        'stack.html',
         infix_expression=infix_expression,
         postfix_expression=postfix_expression,
         steps=steps_list
