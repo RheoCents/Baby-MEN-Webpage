@@ -57,8 +57,7 @@
             height: 50px;
             margin-bottom: 20px;
             margin-top: 10px;
-            background-color: #00bf63;
-            color: white;
+
             text-decoration: none;
             transition: all 0.3s ease;
             display: flex; 
@@ -69,6 +68,21 @@
             font-size: 20px; 
             font-family: 'Work Sans';
             font-weight: bold;
+        }
+
+        .button1 a{
+            background-color: #00bf63;
+            color: white;
+        }
+        
+        .button2 a{
+            background-color: red;
+            color: white;
+        }
+        
+        .button2 a:hover{
+            background-color: white;
+            color: red;
         }
 
         nav {
@@ -445,8 +459,12 @@
                             <li class="option option2">North Avenue</li>
                         </ul>
                         <div class = "button-content">
-                            <a onclick="findPath()">Find Path</a>
-                            <a onclick="resetDropdowns()">Reset</a>
+                            <div class = "button1">
+                                <a onclick="findPath()">Find Path</a>
+                            </div>
+                            <div class = "button2">
+                                <a onclick="resetDropdowns()">Reset</a>
+                            </div>
                         </div>
                     </div>
                 </div>
