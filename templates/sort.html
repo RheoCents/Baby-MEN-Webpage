@@ -194,11 +194,8 @@
             margin: 2px;
             background-color: #00bf63;
             transition: height 0.3s;
+            position: relative; /* Make position relative to place text inside */
         }
-        .sorted {
-            background-color: green;
-        }
-
         .sorted {
             background-color: green;
         }
@@ -208,6 +205,29 @@
             align-items: flex-end;
             height: 300px;
             margin-bottom: 20px;
+        }
+
+        .bar-value {
+            position: absolute;
+            bottom: 100%; /* Position above the bar */
+            left: 50%;
+            transform: translateX(-50%); /* Center the text */
+            color: white;
+            font-weight: bold;
+        }
+
+        #iterationDisplay {
+            color: white;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #history {
+            color: white;
+            margin-top: 20px;
+            font-size: 16px;
+            max-height: 200px;
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -225,72 +245,100 @@
             </div>
         </nav>
     </div>
-    <div class = "hero">
-        <div class = "left-content">
+    <div class="hero">
+        <div class="left-content">
             <button onclick="randomizeArray()">Randomize Array</button>
-            <button onclick="bubble_sort()">Start Bubble Sort</button>
-            <button onclick="bubble_sort()">Start Selection Sort</button>
-            <button onclick="bubble_sort()">Start Insertion Sort</button>
-            <button onclick="bubble_sort()">Start Quick Sort</button>
-            <button onclick="bubble_sort()">Start Merge Sort</button>
+            <button onclick="startBubbleSort()">Start Bubble Sort</button>
         </div>
-        <div class = "graph-content">
-            <h1>Bubble Sort Visualization</h1>
+        <div class="graph-content">
+            <h1>Sorting Visualization</h1>
             <div id="array"></div>
+            <div id="iterationDisplay"></div> <!-- Display for current iteration -->
         </div>
-        <script src="/labexercise/Sorthing.py"></script>
         <div class="right-content">
             <h2>
-                <a href="/works"; style = "margin-bottom: 60px;">Library</a>
+                <a href="/works"; style="margin-bottom: 60px;">Library</a>
             </h2>
             <div class="card">
                 <div class="bg">
                     <h1>Sorting Steps:</h1>
                     <div id="result" style="line-height: 3"></div>
+                        <div id="history"></div> <!-- Display for history of iterations -->
                 </div>
                 <div class="blob"></div>
-              </div>
+            </div>
         </div>
-        
     </div>
     <script>
         let array = [];
         const arrayContainer = document.getElementById('array');
-    
+        const iterationDisplay = document.getElementById('iterationDisplay');
+        const historyDisplay = document.getElementById('history');
+
         function randomizeArray() {
             const numBars = Math.floor(Math.random() * 10) + 5; 
             array = Array.from({ length: numBars }, () => Math.floor(Math.random() * 10) + 1); 
             createBars();
         }
-    
+
         function createBars() {
             arrayContainer.innerHTML = '';
             array.forEach(value => {
                 const bar = document.createElement('div');
                 bar.className = 'bar';
                 bar.style.height = `${value * 30}px`; 
+
+                // Create a span to show the value
+                const barValue = document.createElement('span');
+                barValue.className = 'bar-value';
+                barValue.innerText = value; // Set the value of the bar
+
+                bar.appendChild(barValue); // Append the value to the bar
                 arrayContainer.appendChild(bar);
             });
         }
-    
-        function updateBars(sortedArray) {
-            arrayContainer.innerHTML = '';
-            sortedArray.forEach(value => {
-                const bar = document.createElement('div');
-                bar.className = 'bar sorted'; // Add sorted class for styling
-                bar.style.height = `${value * 30}px`; 
-                arrayContainer.appendChild(bar);
-            });
+
+        async function startBubbleSort() {
+            const n = array.length;
+            const bars = document.querySelectorAll('.bar');
+
+            for (let i = 0; i < n - 1; i++) {
+                for (let j = 0; j < n - i - 1; j++) {
+                    // Highlight the bars being compared
+                    bars[j].style.backgroundColor = 'red';
+                    bars[j + 1].style.backgroundColor = 'red';
+
+                    await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
+
+                    // Swap if the current element is greater than the next
+                    if (array[j] > array[j + 1]) {
+                        [array[j], array[j + 1]] = [array[j + 1], array[j]];
+                        bars[j].style.height = `${array[j] * 30}px`;
+                        bars[j + 1].style.height = `${array[j + 1] * 30}px`;
+
+                        // Update the displayed values
+                        bars[j].querySelector('.bar-value').innerText = array[j];
+                        bars[j + 1].querySelector('.bar-value').innerText = array[j + 1];
+                    }
+
+                    // Reset the color of the bars
+                    bars[j].style.backgroundColor = 'teal';
+                    bars[j + 1].style.backgroundColor = 'teal';
+                }
+                bars[n - i - 1].classList.add('sorted'); // Mark the last element as sorted
+
+                // Display the current state of the array after each outer loop iteration
+                iterationDisplay.innerText = `Iteration ${i + 1}: [${array.join(', ')}]`;
+                
+                // Append the current state to the history
+                const historyItem = document.createElement('div');
+                historyItem.innerText = `Iteration ${i + 1}: [${array.join(', ')}]`;
+                historyDisplay.appendChild(historyItem);
+            }
+            bars[0].classList.add('sorted'); // Mark the first element as sorted
         }
-    
-        function startBubbleSort() {
-            bubbleSort();
-        }
-    
+        
         randomizeArray();
     </script>
-
 </body>
 </html>
-                    
-            
