@@ -45,6 +45,32 @@
             margin-left: 20px;
         }
 
+        .button-content {
+            display: flex;
+            flex-direction: row;
+            background: transparent; 
+            gap: 10px; 
+        }
+
+        .button-content a {
+            width: 150px; 
+            height: 50px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            background-color: #00bf63;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            white-space: nowrap; 
+            border-radius: 20px; 
+            font-size: 20px; 
+            font-family: 'Work Sans';
+            font-weight: bold;
+        }
+
         nav {
             background: #545454;
             display: flex;
@@ -91,13 +117,6 @@
             color: white;
         }
 
-        h3 a {
-            background-color: #00bf63; 
-            color:  white;
-            margin-bottom: 40px;
-            margin-top: 20px;
-            margin-left: 20px;
-        }
         .logo-img {
             width: 45px; 
             height: 30px;
@@ -244,7 +263,7 @@
             position: relative;
             border-radius: 10px;
             width: 320px;
-            height: 300px;
+            height: 260px;
             background-color: #474646;
             -webkit-box-shadow: 1px 1px 12px #000;
             box-shadow: 1px 1px 12px #000;
@@ -290,7 +309,7 @@
         <nav>
             <ul>
                 <li><a href="/">HOME</a></li>
-                <li><a href="/works">LIBRARY</a></li>
+                <li><a href="/works" class="hlght">LIBRARY</a></li>
                 <li><a href="/contactus">CONTACT US</a></li>
             </ul>
             <div>
@@ -425,9 +444,10 @@
                             <li class="option option2">Quezon Avenue</li>
                             <li class="option option2">North Avenue</li>
                         </ul>
-                        <h3>
+                        <div class = "button-content">
                             <a onclick="findPath()">Find Path</a>
-                        </h3>
+                            <a onclick="resetDropdowns()">Reset</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -542,6 +562,27 @@
                 }
             }
         }
+        function resetDropdowns() {
+        const selected1 = document.getElementById('start');
+        const selected2 = document.getElementById('end');
+        
+        // Clear the selected values
+        selected1.value = '';
+        selected2.value = '';
+        
+        // Reset the placeholders
+        selected1.placeholder = 'Select Start';
+        selected2.placeholder = 'Select End';
+        
+        // Hide the options containers
+        optionsContainer1.classList.remove("active");
+        optionsContainer2.classList.remove("active");
+        
+        // Reset background colors
+        selected1.style.backgroundColor = "initial";
+        selected2.style.backgroundColor = "initial";
+    }
+        
 
         // Function to find the path
         async function findPath() {
