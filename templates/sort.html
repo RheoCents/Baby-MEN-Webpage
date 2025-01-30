@@ -228,13 +228,17 @@
     <div class = "hero">
         <div class = "left-content">
             <button onclick="randomizeArray()">Randomize Array</button>
-            <button onclick="startBubbleSort()">Start Bubble Sort</button>
+            <button onclick="bubble_sort()">Start Bubble Sort</button>
+            <button onclick="bubble_sort()">Start Selection Sort</button>
+            <button onclick="bubble_sort()">Start Insertion Sort</button>
+            <button onclick="bubble_sort()">Start Quick Sort</button>
+            <button onclick="bubble_sort()">Start Merge Sort</button>
         </div>
         <div class = "graph-content">
             <h1>Bubble Sort Visualization</h1>
             <div id="array"></div>
         </div>
-        <script src="static/js/graph.js"></script>
+        <script src="/labexercise/Sorthing.py"></script>
         <div class="right-content">
             <h2>
                 <a href="/works"; style = "margin-bottom: 60px;">Library</a>
@@ -249,6 +253,43 @@
         </div>
         
     </div>
+    <script>
+        let array = [];
+        const arrayContainer = document.getElementById('array');
+    
+        function randomizeArray() {
+            const numBars = Math.floor(Math.random() * 10) + 5; 
+            array = Array.from({ length: numBars }, () => Math.floor(Math.random() * 10) + 1); 
+            createBars();
+        }
+    
+        function createBars() {
+            arrayContainer.innerHTML = '';
+            array.forEach(value => {
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.style.height = `${value * 30}px`; 
+                arrayContainer.appendChild(bar);
+            });
+        }
+    
+        function updateBars(sortedArray) {
+            arrayContainer.innerHTML = '';
+            sortedArray.forEach(value => {
+                const bar = document.createElement('div');
+                bar.className = 'bar sorted'; // Add sorted class for styling
+                bar.style.height = `${value * 30}px`; 
+                arrayContainer.appendChild(bar);
+            });
+        }
+    
+        function startBubbleSort() {
+            bubbleSort();
+        }
+    
+        randomizeArray();
+    </script>
+
 </body>
 </html>
                     
