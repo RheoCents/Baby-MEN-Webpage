@@ -140,7 +140,7 @@ def mem6():
 @app.route('/sort', methods=['POST'])
 def sort_array():
     data = request.json.get('array', [])
-    sorter = Sortingsort()
+    sorter = SortingSort()
     for item in data:
         sorter.add_data(item)
     sorted_list = sorter.bubble_sort()

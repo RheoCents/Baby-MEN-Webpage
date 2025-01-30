@@ -6,10 +6,11 @@
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
   <style>
-  @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap");
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-  @import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
-  @import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
+    @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
+    @import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
+    
   body {
     height: 100vh;
     background-image: url("{{ url_for('static', filename='background/background.png') }}");
@@ -18,26 +19,29 @@
     background-repeat: no-repeat; 
     padding-top: 50px;
     overflow: hidden;
+    position: relative; /* Added for absolute positioning of SVG */
   }
 
-  main{
+  main {
     display: grid;
     grid-template-columns: 400px 1fr;
     margin: 50px;
   }
 
-  .left-main{
+  .left-main {
     height: 445px;
     border-right-color: white;
     border-right-width: 3px;
     border-right-style: solid;
   }
-  .right-main{
+
+  .right-main {
     margin: 0;
     padding: 0;
+    position: relative; /* Added for absolute positioning of lines */
   }
 
-  .nodes-container{
+  .nodes-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     row-gap: 13px;
@@ -45,24 +49,11 @@
     justify-content: space-between;
     margin-left: 35px;
     overflow-y: auto;
+    position: relative; /* Added for absolute positioning of lines */
+    z-index: 1; /* Ensure nodes are above the lines */
   }
 
-  .nodes-container::-webkit-scrollbar {
-    width: 8px; 
-  }
-
-  .nodes-container::-webkit-scrollbar-thumb {
-    background-color: #28bf68; 
-    border-radius: 4px; 
-  }
-
-  .nodes-container::-webkit-scrollbar-track {
-    background-color: solid transparent; 
-    border-radius: 4px;
-  }
-
-
-  .node{
+  .node {
     margin: 0;
     border-radius: 50px;
     padding: 3px;
@@ -76,6 +67,8 @@
     font-weight: bold;
     color: white;
     font-size: 17px;
+    position: relative; /* Added for absolute positioning of lines */
+    z-index: 2; /* Ensure nodes are above the lines */
   }
 
   .input-section{
@@ -322,29 +315,41 @@
       font-size: 20px;
       font-weight: bolder;
   }
+  svg {
+    position: absolute; /* Position SVG absolutely */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Prevent interaction with SVG */
+    z-index: 0; /* Ensure SVG is behind the nodes */
+  }
 
+  .line {
+    stroke: #ffffff;
+    stroke-width: 2;
+  }
+  
   </style>
 </head>
-
 
 <body>
 
 <div>
     <nav>
         <ul>
-            <li><a href = "/">HOME</a></li>
-            <li><a href = "/works"  class = "hlght">LIBRARY</a></li>
-            <li><a href = "/contactus">CONTACT US</a></li>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/works" class="hlght">LIBRARY</a></li>
+            <li><a href="/contactus">CONTACT US</a></li>
         </ul>
         <div class="about-us-container">
-            <a href = "/aboutus">ABOUT US</a>
+            <a href="/aboutus">ABOUT US</a>
             <img src="{{ url_for('static', filename='background/Logo1.png') }}" class="logo">
         </div>
     </nav>
 </div>
 
 <main>
-
   <div class="left-main">
     <div class="linked-list">LINKED LIST</div>
     <div class="history-section">
@@ -354,7 +359,6 @@
           <li>{{ input_item }}</li>
         {% endfor %}
       </ul>
-      
     </div>
     <div class="book">
       <p style="color: white;">
@@ -370,17 +374,17 @@
           <span style="color: #28bf68;">Step 3:</span>
           Click the "Find Path" button if you're done and look at the box to the right for the shortest distance.
       </p>
-  </div>
+    </div>
   </div>
 
-  <div class="right-main">
-    <div class="nodes-container">
-      {% for item in linked_list_items %}
-        <div class="node">{{item}}</div>
-      {% endfor %}
+  <div class="right-main"> 
+    <div class="nodes-container" id="nodesContainer"> 
+      {% for item in linked_list_items %} 
+        <div class="node">{{item}}</div> 
+      {% endfor %} 
     </div>
 
-    <form class="input-section" method="POST" action="/add_remove"  autocomplete="off">
+    <form class="input-section" method="POST" action="/add_remove" autocomplete="off">
       <div class="input-container" style="display: flex;">
         <input name="data" type="text" style="flex: 1;" placeholder="KINDLY INPUT YOUR TEXT">
       </div>
@@ -399,7 +403,6 @@
               <p>ADD AT <br> END</p>
             </div>
           </button>
-            
         </div>
         <div class="delete-container">
           <button name="action" value="remove_start" class="delete">
@@ -416,12 +419,44 @@
             </div>
           </button>
         </div>
-      </div>
-      
+ </div>
     </form>
   </div>
-
 </main>
+
+<svg width="100%" height="100%" style="position: absolute; top: 0; left: -8; pointer-events: none;">
+</svg>
+
+<script>
+    const nodes = document.querySelectorAll('.node');
+    const svg = document.querySelector('svg');
+
+    function drawLines() {
+        nodes.forEach((node, index) => {
+            if (index < nodes.length - 1) {
+                const nextNode = nodes[index + 1];
+                const x1 = node.getBoundingClientRect().right;
+                const y1 = node.getBoundingClientRect().top + node.offsetHeight / 2.5;
+                const x2 = nextNode.getBoundingClientRect().left;
+                const y2 = nextNode.getBoundingClientRect().top + nextNode.offsetHeight / 2.5;
+
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('class', 'line');
+                line.setAttribute('x1', x1);
+                line.setAttribute('y1', y1);
+                line.setAttribute('x2', x2);
+                line.setAttribute('y2', y2);
+                svg.appendChild(line);
+            }
+        });
+    }
+
+    window.onload = drawLines;
+    window.onresize = () => {
+        svg.innerHTML = ''; // Clear existing lines
+        drawLines(); // Redraw lines on resize
+    };
+</script>
 
 </body>
 </html>
