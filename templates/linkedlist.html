@@ -45,6 +45,22 @@
     margin-left: 35px;
     overflow-y: auto;
   }
+
+  .nodes-container::-webkit-scrollbar {
+    width: 8px; 
+  }
+
+  .nodes-container::-webkit-scrollbar-thumb {
+    background-color: #28bf68; 
+    border-radius: 4px; 
+  }
+
+  .nodes-container::-webkit-scrollbar-track {
+    background-color: solid transparent; 
+    border-radius: 4px;
+  }
+
+
   .node{
     margin: 0;
     border-radius: 50px;
@@ -133,27 +149,25 @@
     height: 255px;
     margin: 20px 70px;
     padding-top: 10px;
-    border-radius: 40px;
+    border-radius: 20px;
+    font-family:'Work Sans';
     overflow: hidden;
     overflow-y: auto;
   }
-  .history-text{
-    height: 30px;
-    width: 120px;
-    background-color: #00bf63;
-    position: absolute;
-    color: white;
-    top: -15px;
-    left: 40px;
+
+  .p-history{
     border-radius: 30px;
+    align-content: center;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .p-history{
-    text-align: center;
+    height: 30px;
+    width: 120px;
+    color: #ffffff;
+    background-color: #00bf63;
     font-family:'Work Sans';
     font-weight: bold;
+    transform: translateX(33px);
   }
 
   .history-section::-webkit-scrollbar {
@@ -289,7 +303,7 @@
   <div class="left-main">
     <div class="linked-list">LINKED<br> LIST</div>
     <div class="history-section">
-      <div class="history-text"><p class="p-history">HISTORY</p></div>
+        <p class="p-history">HISTORY</p>
       <ul class="submittedInputs">
         {% for input_item in submitted_inputs %}
           <li>{{ input_item }}</li>
@@ -306,7 +320,7 @@
       {% endfor %}
     </div>
 
-    <form class="input-section" method="POST" action="/add_remove">
+    <form class="input-section" method="POST" action="/add_remove"  autocomplete="off">
       <div class="input-container" style="display: flex;">
         <input name="data" type="text" style="flex: 1;" placeholder="KINDLY INPUT YOUR TEXT">
       </div>
