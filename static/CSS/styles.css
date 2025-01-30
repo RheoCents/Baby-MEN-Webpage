@@ -216,7 +216,6 @@ a.hlght{
   
 .shape-container {
     display: flex;
-    justify-content: center;
     gap: 10px;
     margin-top: 10px;
     opacity: 0;
@@ -247,31 +246,32 @@ a.hlght{
 
 .shape.circle2 {
     position: relative; 
-    left: -270px;
+    transform: translateX(-270px);
+
 }
 
 .shape.circle3 {
     position: relative; 
-    left: -265px;
+    transform: translateX(-263px);
 }
 
 .shape.circle4 {
     position: relative; 
-    left: -258px;
+    transform: translateX(-253px);
 }
 
 .shape.circle5 {
     position: relative; 
-    left: -268px;
+    transform: translateX(-263px);
 }
 .shape.circle6 {
     position: relative; 
-    left: -221px;
+    transform: translateX(-216px);
 }
 
 .shape.circle7 {
     position: relative; 
-    left: -265px;
+    transform: translateX(-256px);
 }
 
   
