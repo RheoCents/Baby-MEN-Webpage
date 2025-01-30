@@ -95,10 +95,6 @@ def work4():
 def work5():
     return render_template('sort.html')
 
-@app.route('/work6')
-def work6():
-    return render_template('search.html')
-
 @app.route('/work7')
 def work7():
     return render_template('word_eater.html') 
