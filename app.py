@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, render_template
+from labexercise.remove_first_n_characters_from_a_string import *
 from labexercise import linklist
 from labexercise.GraphFunctions import Graph
 from labexercise.stack import infix_to_postfix
@@ -134,6 +135,18 @@ def mem5():
 @app.route('/babyboy6')
 def mem6():    
     return render_template('babyboy_6.html')
+
+@app.route('/word_eater', methods=['GET', 'POST'])
+def word_eater():
+    result_word = ""
+    original_word = ""  # Variable to hold the original word
+    if request.method == 'POST':
+        original_word = request.form.get('input_word', '')
+        if original_word:
+            random_amount_to_be_eaten = random.randint(1, len(original_word))
+            result_word = original_word[random_amount_to_be_eaten:]
+    
+    return render_template('word_eater.html', result_word=result_word, original_word=original_word)
 
 @app.route('/linkedlist')
 def linkedlist_page():

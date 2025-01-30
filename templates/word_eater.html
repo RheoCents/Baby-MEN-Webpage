@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Word Eater</title>
   <link rel="stylesheet" href="{{url_for('static', filename='CSS/word_eater.css')}}" />
   <style>
-    body{
+    body {
       height: 100vh;
       background-image: url("{{ url_for('static', filename='background/background.png') }}");
       background-size: cover; 
@@ -21,12 +21,12 @@
   <div>
     <nav>
         <ul>
-            <li><a href = "/">HOME</a></li>
-            <li><a href = "/works"  class = "hlght">LIBRARY</a></li>
-            <li><a href = #>CONTACT US</a></li>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/works" class="hlght">LIBRARY</a></li>
+            <li><a href="#">CONTACT US</a></li>
         </ul>
         <div class="about-us-container">
-            <a href = "/aboutus">ABOUT US</a>
+            <a href="/aboutus">ABOUT US</a>
             <img class="logo" src="{{ url_for('static', filename='background/Logo1.png') }}">
         </div>
     </nav>
@@ -35,26 +35,25 @@
   <main>
     <div class="left-main">
       <p class="title">WORD <br>EATER</p>
-
       <div class="history-section">
         <div class="history-text"><p class="p-history">HISTORY</p></div>
-        
       </div>
     </div>
 
     <div class="right-main">
       <div class="word-eater-container">
-        <div class="orig-word">WORD <br>EATER</div>
+        <div class="orig-word">
+          <p class="orig-word">{{ original_word }}</p>
+        </div>
         <img src="{{ url_for('static', filename='background/arrow.png') }}" class="arrow"></img>
-        <div class="result-word">WRD <br>EAR</div>
+        <div class="result-word">{{ result_word }}</div>
       </div>
 
-      <div class="input-container">
-        <input class="input" type="text" placeholder="KINDLY INPUT YOUR TEXT">
-        <button class="button">CHOMP</button>
-      </div>
+      <form class="input-container" method="POST" action="/word_eater">
+        <input class="input" type="text" name="input_word" placeholder="KINDLY INPUT YOUR TEXT" required>
+        <button class="button" type="submit">CHOMP</button>
+      </form>
     </div>
-
   </main>
 </body>
 </html>
