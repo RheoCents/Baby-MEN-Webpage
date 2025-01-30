@@ -37,12 +37,6 @@ const items = [
         shapes: ["circle1","circle6"]
     },
     {
-        label: "SEARCH",
-        link: "/work6",
-        message: "ehm! What the sigma",
-        shapes: ["circle1","circle7"]
-    },
-    {
         label: "WORD EATER",
         link: "/work7",
         message: "WAKA-WAKA.exe",

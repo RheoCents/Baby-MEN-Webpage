@@ -94,9 +94,10 @@
         h3 a {
             background-color: #00bf63; 
             color:  white;
-            margin-bottom: 10px;
+            margin-bottom: 40px;
+            margin-top: 20px;
+            margin-left: 20px;
         }
-
         .logo-img {
             width: 45px; 
             height: 30px;
@@ -301,135 +302,133 @@
     <div class="hero">
         <div class="left-content">
             <div class="container">
-                <h1 style = "font-size: 60px;">LRT PATH</h1>
+                <h1 style="font-size: 60px;">LRT PATH</h1>
                 <h2>Starting</h2>
                 <div class="select-box">  
                     <div class="input-container">
-                        <input type="text" id="start" class="selected selected1" placeholder="Select Station" readonly/>
-                            <ul class="options-container options-container1">
-                                <li class="text-decoration">LRT 1</li>
-                                <li class="option option1">Dr. Santos</li>
-                                <li class="option option1">Ninoy Aquino</li>
-                                <li class="option option1">PITX</li>
-                                <li class="option option1">MIA</li>
-                                <li class="option option1">Redemptorist</li>
-                                <li class="option option1">Baclaran</li>
-                                <li class="option option1">EDSA</li>
-                                <li class="option option1">Libertad</li>
-                                <li class="option option1">Gil Puyat</li>
-                                <li class="option option1">Vito Cruz</li>
-                                <li class="option option1">Quirino</li>
-                                <li class="option option1">Pedro Gil</li>
-                                <li class="option option1">United Nations</li>
-                                <li class="option option1">Central Terminal</li>
-                                <li class="option option1">Carriedo</li>
-                                <li class="option option1">Doroteo Jose</li>
-                                <li class="option option1">Bambang</li>
-                                <li class="option option1">Tayuman</li>
-                                <li class="option option1">Blumentrit</li>
-                                <li class="option option1">Abad Santos</li>
-                                <li class="option option1">R. Papa</li>
-                                <li class="option option1">5th Avenue</li>
-                                <li class="option option1">Monumento</li>
-                                <li class="option option1">Balintawak</li>
-                                <li class="option option1">Roosevelt</li>
-                                <li class="text-decoration">LRT 2</li>
-                                <li class="option option1">Antipolo</li>
-                                <li class="option option1">Marikina</li>
-                                <li class="option option1">Santolan</li>
-                                <li class="option option1">Katipunan</li>
-                                <li class="option option1">Anonas</li>
-                                <li class="option option1">Araneta Center - Cubao</li>
-                                <li class="option option1">Betty Go Belmonte</li>
-                                <li class="option option1">Gilmore</li>
-                                <li class="option option1">J. Ruiz</li>
-                                <li class="option option1">V. Mapa</li>
-                                <li class="option option1">Pureza</li> 
-                                <li class="option option1">Legarda</li>
-                                <li class="option option1">Recto</li>
-                                <li class="text-decoration">MRT 3</li>
-                                <li class="option option1">Taft Avenue</li>
-                                <li class="option option1">Magallanes</li>
-                                <li class="option option1">Ayala</li>
-                                <li class="option option1">Buendia</li>
-                                <li class="option option1">Guadalupe</li>
-                                <li class="option option1">Boni</li>
-                                <li class="option option1">Shaw Boulevard</li>
-                                <li class="option option1">Ortigas</li>
-                                <li class="option option1">Santolan MRT</li>
-                                <li class="option option1">Araneta Center - Cubao</li>
-                                <li class="option option1">Kamuning</li>
-                                <li class="option option1">Quezon Avenue</li>
-                                <li class="option option1">North Avenue</li>
-                            </ul>
-                        </input>
+                        <input type="text" id="start" class="selected selected1" placeholder="Select Station" onkeyup="filterOptions('start', 'options-container1')"/>
+                        <ul class="options-container options-container1">
+                            <li class="text-decoration">LRT 1</li>
+                            <li class="option option1">Dr. Santos</li>
+                            <li class="option option1">Ninoy Aquino</li>
+                            <li class="option option1">PITX</li>
+                            <li class="option option1">MIA</li>
+                            <li class="option option1">Redemptorist</li>
+                            <li class="option option1">Baclaran</li>
+                            <li class="option option1">EDSA</li>
+                            <li class="option option1">Libertad</li>
+                            <li class="option option1">Gil Puyat</li>
+                            <li class="option option1">Vito Cruz</li>
+                            <li class="option option1">Quirino</li>
+                            <li class="option option1">Pedro Gil</li>
+                            <li class="option option1">United Nations</li>
+                            <li class="option option1">Central Terminal</li>
+                            <li class="option option1">Carriedo</li>
+                            <li class="option option1">Doroteo Jose</li>
+                            <li class="option option1">Bambang</li>
+                            <li class="option option1">Tayuman</li>
+                            <li class="option option1">Blumentrit</li>
+                            <li class="option option1">Abad Santos</li>
+                            <li class="option option1">R. Papa</li>
+                            <li class="option option1">5th Avenue</li>
+                            <li class="option option1">Monumento</li>
+                            <li class="option option1">Balintawak</li>
+                            <li class="option option1">Roosevelt</li>
+                            <li class="text-decoration">LRT 2</li>
+                            <li class="option option1">Antipolo</li>
+                            <li class="option option1">Marikina</li>
+                            <li class="option option1">Santolan</li>
+                            <li class="option option1">Katipunan</li>
+                            <li class="option option1">Anonas</li>
+                            <li class="option option1">Araneta Center - Cubao</li>
+                            <li class="option option1">Betty Go Belmonte</li>
+                            <li class="option option1">Gilmore</li>
+                            <li class="option option1">J. Ruiz</li>
+                            <li class="option option1">V. Mapa</li>
+                            <li class="option option1">Pureza</li> 
+                            <li class="option option1">Legarda</li>
+                            <li class="option option1">Recto</li>
+                            <li class="text-decoration">MRT 3</li>
+                            <li class="option option1">Taft Avenue</li>
+                            <li class="option option1">Magallanes</li>
+                            <li class="option option1">Ayala</li>
+                            <li class="option option1">Buendia</li>
+                            <li class="option option1">Guadalupe</li>
+                            <li class="option option1">Boni</li>
+                            <li class="option option1">Shaw Boulevard</li>
+                            <li class="option option1">Ortigas</li>
+                            <li class="option option1">Santolan MRT</li>
+                            <li class="option option1">Araneta Center - Cubao</li>
+                            <li class="option option1">Kamuning</li>
+                            <li class="option option1">Quezon Avenue</li>
+                            <li class="option option1">North Avenue</li>
+                        </ul>
                     </div>
                 </div>
                 <h2>Ending</h2>
                 <div class="select-box">  
                     <div class="input-container">
-                        <input type="text" id="end" class="selected selected2" placeholder="Select Station" readonly/>
-                            <ul class="options-container options-container2">
-                                <li class="text-decoration">LRT 1</li>
-                                <li class="option option2">Dr. Santos</li>
-                                <li class="option option2">Ninoy Aquino</li>
-                                <li class="option option2">PITX</li>
-                                <li class="option option2">MIA</li>
-                                <li class="option option2">Redemptorist</li>
-                                <li class="option option2">Baclaran</li>
-                                <li class="option option2">EDSA</li>
-                                <li class="option option2">Libertad</li>
-                                <li class="option option2">Gil Puyat</li>
-                                <li class="option option2">Vito Cruz</li>
-                                <li class="option option2">Quirino</li>
-                                <li class="option option2">Pedro Gil</li>
-                                <li class="option option2">United Nations</li>
-                                <li class="option option2">Central Terminal</li>
-                                <li class="option option2">Carriedo</li>
-                                <li class="option option2">Doroteo Jose</li>
-                                <li class="option option2">Bambang</li>
-                                <li class="option option2">Tayuman</li>
-                                <li class="option option2">Blumentrit</li>
-                                <li class="option option2">Abad Santos</li>
-                                <li class="option option2">R. Papa</li>
-                                <li class="option option2">5th Avenue</li>
-                                <li class="option option2">Monumento</li>
-                                <li class="option option2">Balintawak</li>
-                                <li class="option option2">Roosevelt</li>
-                                <li class="text-decoration">LRT 2</li>
-                                <li class="option option2">Antipolo</li>
-                                <li class="option option2">Marikina</li>
-                                <li class="option option2">Santolan</li>
-                                <li class="option option2">Katipunan</li>
-                                <li class="option option2">Anonas</li>
-                                <li class="option option2">Araneta Center - Cubao</li>
-                                <li class="option option2">Betty Go Belmonte</li>
-                                <li class="option option2">Gilmore</li>
-                                <li class="option option2">J. Ruiz</li>
-                                <li class="option option2">V. Mapa</li>
-                                <li class="option option2">Pureza</li> 
-                                <li class="option option2">Legarda</li>
-                                <li class="option option2">Recto</li>
-                                <li class="text-decoration">MRT 3</li>
-                                <li class="option option2">Taft Avenue</li>
-                                <li class="option option2">Magallanes</li>
-                                <li class="option option2">Ayala</li>
-                                <li class="option option2">Buendia</li>
-                                <li class="option option2">Guadalupe</li>
-                                <li class="option option2">Boni</li>
-                                <li class="option option2">Shaw Boulevard</li>
-                                <li class="option option2">Ortigas</li>
-                                <li class="option option2">Santolan MRT</li>
-                                <li class="option option2">Araneta Center - Cubao</li>
-                                <li class="option option2">Kamuning</li>
-                                <li class="option option2">Quezon Avenue</li>
-                                <li class="option option2">North Avenue</li>
+                        <input type="text" id="end" class="selected selected2" placeholder="Select Station" onkeyup="filterOptions('end', 'options-container2')"/>
+                        <ul class="options-container options-container2">
+                            <li class="text-decoration">LRT 1</li>
+                            <li class="option option2">Dr. Santos</li>
+                            <li class="option option2">Ninoy Aquino</li>
+                            <li class="option option2">PITX</li>
+                            <li class="option option2">MIA</li>
+                            <li class="option option2">Redemptorist</li>
+                            <li class="option option2">Baclaran</li>
+                            <li class="option option2">EDSA</li>
+                            <li class="option option2">Libertad</li>
+                            <li class="option option2">Gil Puyat</li>
+                            <li class="option option2">Vito Cruz</li>
+                            <li class="option option2">Quirino</li>
+                            <li class="option option2">Pedro Gil</li>
+                            <li class="option option2">United Nations</li>
+                            <li class="option option2">Central Terminal</li>
+                            <li class="option option2">Carriedo</li>
+                            <li class="option option2">Doroteo Jose</li>
+                            <li class="option option2">Bambang</li>
+                            <li class="option option2">Tayuman</li>
+                            <li class="option option2">Blumentrit</li>
+                            <li class="option option2">Abad Santos</li>
+                            <li class="option option2">R. Papa</li>
+                            <li class="option option2">5th Avenue</li>
+                            <li class="option option2">Monumento</li>
+                            <li class="option option2">Balintawak</li>
+                            <li class="option option2">Roosevelt</li>
+                            <li class="text-decoration">LRT 2</li>
+                            <li class="option option2">Antipolo</li>
+                            <li class="option option2">Marikina</li>
+                            <li class="option option2">Santolan</li>
+                            <li class="option option2">Katipunan</li>
+                            <li class="option option2">Anonas</li>
+                            <li class="option option2">Araneta Center - Cubao</li>
+                            <li class="option option2">Betty Go Belmonte</li>
+                            <li class="option option2">Gilmore</li>
+                            <li class="option option2">J. Ruiz</li>
+                            <li class="option option2">V. Mapa</li>
+                            <li class="option option2">Pureza</li> 
+                            <li class="option option2">Legarda</li>
+                            <li class="option option2">Recto</li>
+                            <li class="text-decoration">MRT 3</li>
+                            <li class="option option2">Taft Avenue</li>
+                            <li class="option option2">Magallanes</li>
+                            <li class="option option2">Ayala</li>
+                            <li class="option option2">Buendia</li>
+                            <li class="option option2">Guadalupe</li>
+                            <li class="option option2">Boni</li>
+                            <li class="option option2">Shaw Boulevard</li>
+                            <li class="option option2">Ortigas</li>
+                            <li class="option option2">Santolan MRT</li>
+                            <li class="option option2">Araneta Center - Cubao</li>
+                            <li class="option option2">Kamuning</li>
+                            <li class="option option2">Quezon Avenue</li>
+                            <li class="option option2">North Avenue</li>
                         </ul>
                         <h3>
                             <a onclick="findPath()">Find Path</a>
                         </h3>
                     </div>
-                    <script src="static/js/dropdownjs.js"></script>
                 </div>
             </div>
             <div class="book">
@@ -448,13 +447,13 @@
                 </p>
             </div>
         </div>
-        <div class = "map-content">
+        <div class="map-content">
             <img id="zoomable-image" src="{{ url_for('static', filename='images/TrainBlueprint.png') }}" alt="Zoomable Image">
         </div>
         <script src="static/js/map.js"></script>
         <div class="right-content">
             <h2>
-                <a href="/works"; style = "margin-bottom: 60px;">Library</a>
+                <a href="/works"; style="margin-bottom: 60px;">Library</a>
             </h2>
             <div class="card">
                 <div class="bg">
@@ -463,10 +462,134 @@
                     <div id="result" style="line-height: 3"></div>
                 </div>
                 <div class="blob"></div>
-              </div>
+            </div>
         </div>
     </div>
+    <script>
+        const selected1 = document.querySelector(".selected1");
+        const selected2 = document.querySelector(".selected2");
+        const optionsContainer1 = document.querySelector(".options-container1");
+        const optionsContainer2 = document.querySelector(".options-container2");
+        const optionsList1 = document.querySelectorAll(".option1");
+        const optionsList2 = document.querySelectorAll(".option2");
+
+        // Function to toggle dropdown
+        function toggleDropdown(selected, optionsContainer) {
+            selected.style.backgroundColor = "var(--dark)";
+            optionsContainer.classList.toggle("active");
+            
+            // Clear the input text when the dropdown is opened
+            if (optionsContainer.classList.contains("active")) {
+                selected.value = ""; // Clear the input text
+            }
+        }
+
+        // Event listeners for the first dropdown
+        selected1.onfocus = () => toggleDropdown(selected1, optionsContainer1);
+        selected1.onblur = () => {
+            selected1.style.backgroundColor = "initial";
+            optionsContainer1.classList.remove("active");
+        };
+
+        // Select element from the first dropdown list
+        optionsList1.forEach(item => {
+            item.onclick = () => {
+                const selected1 = document.getElementById('start');
+                selected1.value = item.innerText; // Set the input value
+                selected1.placeholder = item.innerText; // Update the placeholder
+                optionsContainer1.classList.remove("active"); // Hide options
+                filterOptions('start', 'options-container1'); // Show filtered options again
+            };
+        });
+
+        // Event listeners for the second dropdown
+        selected2.onfocus = () => toggleDropdown(selected2, optionsContainer2);
+        selected2.onblur = () => {
+            selected2.style.backgroundColor = "initial";
+            optionsContainer2.classList.remove("active");
+        };
+
+        // Select element from the second dropdown list
+        optionsList2.forEach(item => {
+            item.onclick = () => {
+                const selected2 = document.getElementById('end');
+                selected2.value = item.innerText; // Set the input value
+                selected2.placeholder = item.innerText; // Update the placeholder
+                optionsContainer2.classList.remove("active"); // Hide options
+                filterOptions('end', 'options-container2'); // Show filtered options again
+            };
+        });
+
+        // Function to filter options
+        function filterOptions(inputId, optionsContainerClass) {
+            const input = document.getElementById(inputId);
+            const filter = input.value.toLowerCase();
+            const optionsContainer = document.querySelector(`.${optionsContainerClass}`);
+            const options = optionsContainer.getElementsByTagName('li');
+
+            for (let i = 0; i < options.length; i++) {
+                const option = options[i];
+                if (option.textContent.toLowerCase().indexOf(filter) > -1) {
+                    option.style.display = "";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        }
+
+        // Function to find the path
+        async function findPath() {
+            const start = document.getElementById('start').value; // Gets the value from the start input
+            const end = document.getElementById('end').value; // Gets the value from the end input
+
+            console.log("Start:", start, "End:", end); // Log the selected start and end stations
+
+            try {
+                const response = await fetch('/work4', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ start, end }) // Sends the selected values to the server
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const paths = await response.json(); // Parse the JSON response
+                console.log("Paths received:", paths); // Log the paths received
+
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = ''; // Clear previous results
+
+                if (paths.length > 0) {
+                    // Sort paths by length (number of stops)
+                    paths.sort((a, b) => a.length - b.length);
+
+                    paths.forEach((path, index) => {
+                        const p2 = document.createElement('p');
+                        const p = document.createElement('p'); // Use <p> instead of <p2>
+                        
+                        p2.innerHTML = `<span style="color: #28bf68;">Path ${index + 1} (Stations: ${path.length}):</span>`;
+                        p.innerHTML = `<span> ${path.join(' -> ')}</span>`;
+                        
+                        p2.style.fontSize = '20px';
+                        p2.style.marginBottom = '-15px';
+                        p2.style.marginTop = '15px';
+                        p.style.fontSize = '12px';
+                    
+                        resultDiv.appendChild(p2);
+                        resultDiv.appendChild(p); 
+                    });
+
+                } else {
+                    resultDiv.textContent = 'No path found.'; // Handle case with no paths
+                }
+            } catch (error) {
+                console.error('Error fetching paths:', error); // Log any errors
+                const resultDiv = document.getElementById('result');
+                resultDiv.textContent = 'An error occurred while finding the path.'; // Display error message
+            }
+        }
+    </script>
 </body>
 </html>
-                    
-            

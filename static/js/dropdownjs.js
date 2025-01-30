@@ -25,6 +25,7 @@ optionsList1.forEach(item => {
         selected1.value = item.innerText; // Set the input value
         selected1.placeholder = item.innerText; // Update the placeholder
         optionsContainer1.classList.remove("active"); // Hide options
+        filterOptions('start', 'options-container1'); // Show filtered options again
     };
 });
 
@@ -42,6 +43,7 @@ optionsList2.forEach(item => {
         selected2.value = item.innerText; // Set the input value
         selected2.placeholder = item.innerText; // Update the placeholder
         optionsContainer2.classList.remove("active"); // Hide options
+        filterOptions('end', 'options-container2'); // Show filtered options again
     };
 });
 
