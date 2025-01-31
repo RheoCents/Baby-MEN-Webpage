@@ -25,7 +25,7 @@
     background-color: white;
     position: relative;
     width: 200px;
-    height: 255px;
+    height: 275px;
     margin: 20px 70px;
     padding-top: 10px;
     border-radius: 20px;
@@ -45,7 +45,7 @@
     background-color: #00bf63;
     font-family:'Work Sans';
     font-weight: bold;
-    transform: translateX(40px);
+    transform: translateX(20px);
   }
 
   .history-section::-webkit-scrollbar {
@@ -67,7 +67,7 @@
     position: relative;
     border-radius: 10px;
     width: 320px;
-    height: 200px;
+    height: 250px;
     background-color: #474646;
     -webkit-box-shadow: 1px 1px 12px #000;
     box-shadow: 1px 1px 12px #000;
@@ -85,7 +85,6 @@
     color: white;
     overflow: hidden;
     overflow-y: auto;
-    font-family: 'Poppins';
   }
   .book::-webkit-scrollbar {
       width: 4px; 
@@ -99,6 +98,14 @@
       background-color: solid transparent; 
       border-radius: 4px;
   }
+
+  p {
+      margin-left: 20px;
+      margin-right: 20px;
+      font-size: 20px;
+      font-weight: bolder;
+  }
+  
 
   </style>
   <title>Queue</title>
@@ -115,62 +122,57 @@
         <img class="logo-img" src="{{ url_for('static', filename='images/Logo1.png') }}">
     </div>
   </nav>
-
   <main>
     <div class="left-main">
       <div class="queue">QUEUE</div>
-    <div class="history-section">
-        <p class="p-history">HISTORY</p>
-      <ul class="submittedInputs">
-        {% for input_item in submitted_inputs %}
-          <li>{{ input_item }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="book">
-      <p style="color: white;">
+      <div class="history-section">
+          <p class="p-history">HISTORY</p>
+        <ul class="submittedInputs">
+          {% for input_item in submitted_inputs %}
+            <li>{{ input_item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="book">
+        <p>
           <span style="color: #28bf68;">QUEUE:</span>
           <br>
-          Enter three values, you can only add next to the last value you've added and remove the first one you've entered. First come First servie
-      </p>
+          Enter three values, you can only add next to the last value you've added and remove the first one you've entered. First come First serve.
+        </p>
+      </div>
     </div>
-    </div>
+      
 
     <div class="right-main">
       <div class="queue-containers">
-        {% for item in queue %}
+          {% for item in queue %}
           <div class="queue-item">{{ item }}</div>
-        {% endfor %}
+          {% endfor %}
       </div>
       <form class="input-section" method="POST" action="/enqueue">
-        <div class="input-container" style="display: flex;">
-          <input name="data" type="text" style="flex: 1;" placeholder="KINDLY INPUT YOUR TEXT" autocomplete="off">
-        </div>
-        <div class="buttons-container">
-          <div class="add-container">
-            <button type="submit" class="add">
-              <div class="inside-buttons">
-                <p class="sign">+</p>
-                <p>ADD AT <br> END</p>
-              </div>
-            </button>
+          <div class="input-container" style="display: flex;">
+              <input name="data" type="text" style="flex: 1;" placeholder="KINDLY INPUT YOUR TEXT" autocomplete="off">
           </div>
-        </div>
-      </form>
-
-      <form class="input-section" method="POST" action="/dequeue">
-        <div class="buttons-container">
-          <div class="delete-container">
-            <button type="submit" class="delete">
-              <div class="inside-buttons">
-                <p class="sign">-</p>
-                <p>REMOVE <br> START</p>
+          <div class="buttons-container" style="display: flex; justify-content: space-between; margin-top: 10px;">
+              <div class="add-container" style="flex: 1; margin-right: 300px;">
+                  <button type="submit" class="add" style="width: 100%;">
+                      <div class="inside-buttons">
+                          <p class="sign">+</p>
+                          <p>Enqueue</p>
+                      </div>
+                  </button>
               </div>
-            </button>
+              <div class="delete-container" style="flex: 1; margin-left: 300px;">
+                  <button type="submit" class="delete" style="width: 100%;">
+                      <div class="inside-buttons">
+                          <p class="sign">-</p>
+                          <p>Dequeue</p>
+                      </div>
+                  </button>
+              </div>
           </div>
-        </div>
       </form>
-    </div>
+  </div>
   </main>
 </body>
 </html>
