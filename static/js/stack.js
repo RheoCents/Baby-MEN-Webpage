@@ -8,6 +8,7 @@ function convertExpression(conversionType) {
 
     console.log("Sending expression:", expression, "Conversion type:", conversionType); // Debug log
 
+    // Optionally, show a loading indicator
     let stepsContainer = document.getElementById("steps");
     stepsContainer.innerHTML = "Loading...";  
 

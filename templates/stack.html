@@ -75,16 +75,22 @@
             let stepsContainer = document.getElementById("steps");
             stepsContainer.innerHTML = "";  // Clear previous steps
 
-            // Ensure we have steps before proceeding
             if (data.steps && Array.isArray(data.steps)) {
-                data.steps.forEach(step => {
-                    let stepDiv = document.createElement("div");
-                    stepDiv.className = "steps-container";
-                    stepDiv.textContent = step;
-                    stepsContainer.appendChild(stepDiv);
-                });
+                if (data.steps.length > 0) {
+                    // Populate the steps
+                    data.steps.forEach(step => {
+                        let stepDiv = document.createElement("div");
+                        stepDiv.className = "steps-container";
+                        stepDiv.textContent = step;
+                        stepsContainer.appendChild(stepDiv);
+                    });
+                } else {
+                    // If there are no steps, show this message
+                    stepsContainer.innerHTML = "No steps available for this expression or invalid expression.";
+                }
             } else {
-                stepsContainer.innerHTML = "No steps available or invalid expression.";
+                // If 'steps' is not an array or is missing
+                stepsContainer.innerHTML = "Unexpected response format or invalid expression.";
             }
         })
         .catch(error => {
@@ -93,7 +99,8 @@
             stepsContainer.innerHTML = "An error occurred: " + error.message;  // Show error message to user
         });
     }
-  </script>
+</script>
+
 
 </body>
 </html>
