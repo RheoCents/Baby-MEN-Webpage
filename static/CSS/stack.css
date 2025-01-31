@@ -128,6 +128,21 @@ main{
   font-weight: bold;
 
 }
+body {
+    font-family: Arial, sans-serif;
+}
+
+.steps-container {
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.result-container {
+    margin-top: 20px;
+    font-weight: bold;
+}
 .steps-container{
   background-color: #00bf63;
   height: 30px;
