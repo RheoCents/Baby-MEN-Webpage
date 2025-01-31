@@ -34,6 +34,34 @@
             flex-direction: column;
             margin-left: 20px;
             margin-right: 20px;
+            column-gap: 20px;
+            justify-content: center;
+        }
+
+        button {
+            margin-bottom: 35px;
+            margin-left: 35px;
+            background-color: #00bf63;
+            color: white;
+            border-radius: 8px;
+            font-size: 25px;
+            max-width:200px;
+            font-family: 'Work Sans';
+        }
+
+        button:hover {
+            background-color: white;
+            color: #00bf63;
+        }
+
+        .button-random {
+            color: white;
+            background-color: #ff6600;   
+        }
+
+        .button-random:hover {
+            background-color: white;
+            color: #ff6600;   
         }
 
         .right-content {
@@ -176,6 +204,28 @@
             filter: blur(12px);
             animation: blob-bounce 5s infinite ease;
         }
+
+        @keyframes blob-bounce {
+        0% {
+            transform: translate(-100%, -100%) translate3d(0, 0, 0);
+        }
+
+        25% {
+            transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+        }
+
+        50% {
+            transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+        }
+
+        75% {
+            transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+        }
+
+        100% {
+            transform: translate(-100%, -100%) translate3d(0, 0, 0);
+        }
+        }
         
         .graph-content {
             width: 700px;
@@ -226,8 +276,8 @@
             color: white;
             margin-top: 20px;
             font-size: 16px;
-            max-height: 200px;
-            overflow-y: auto;
+            max-height: 400px;
+            max-width: 250px;
         }
     </style>
 </head>
@@ -247,15 +297,15 @@
     </div>
     <div class="hero">
         <div class="left-content">
-            <button onclick="randomizeArray()">Randomize Array</button>
-            <button onclick="startBubbleSort()">Start Bubble Sort</button>
-            <button onclick="startSelectionSort()">Start Selection Sort</button>
-            <button onclick="startMergeSort()">Start Merge Sort</button>
-            <button onclick="startInsertionSort()">Start Insertion Sort</button>
-            <button onclick="startQuickSort()">Start Quick Sort</button>
+            <h1 style = "margin-bottom: 50px; font-size: 60px;">SORTING</h1>
+            <button onclick="randomizeArray()" class = "button-random">Randomize</button>
+            <button onclick="startBubbleSort()">Bubble Sort</button>
+            <button onclick="startSelectionSort()">Selection Sort</button>
+            <button onclick="startMergeSort()">Merge Sort</button>
+            <button onclick="startInsertionSort()">Insertion Sort</button>
+            <button onclick="startQuickSort()">Quick Sort</button>
         </div>
         <div class="graph-content">
-            <h1>Sorting Visualization</h1>
             <div id="array"></div>
             <div id="iterationDisplay"></div> <!-- Display for current iteration -->
         </div>

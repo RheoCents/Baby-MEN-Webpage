@@ -25,30 +25,31 @@
         }
 
         nav {
-            padding: 0 15px;
+            background: #545454;
             display: flex;
             align-items: center;
             justify-content: space-between; 
             font-family: 'Work Sans';
             font-weight: bold;
-            background-color: #545454;
+            padding: 0 10px; 
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
             height: 60px;
+            width: 100%; 
+            z-index: 1000;
         }
 
         nav ul li {
             display: inline-block;
             list-style: none;
             margin: 10px;
-                
         }
 
         nav ul li a {
             color: #ffffff; 
         }
+
         a {
             text-decoration: none;
             color: #fdfdfd; 
@@ -58,6 +59,7 @@
             transition: all 0.3s ease;
             display: inline-block; 
         }
+
         a:hover {
             background-color: white; 
             color:  #00bf63; 
@@ -68,18 +70,14 @@
             color: white;
         }
 
-        .about-us-container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .logo-img {
+            width: 45px; 
+            height: 30px;
+            vertical-align: middle; 
+            margin-bottom: 2px; 
             margin-right: 50px;
-            column-gap: 10px;
         }
 
-        .logo{
-            height: 22px;
-
-        }
         header {
             font-family: 'Poppins';
             font-size: 30px;
@@ -255,9 +253,9 @@
                 <li><a href="/works" >LIBRARY</a></li>
                 <li><a href="/contactus">CONTACT US</a></li>
             </ul>
-            <div class="about-us-container">
+            <div>
                 <a href="/aboutus" class="hlght">ABOUT US</a>
-                <img class="logo" src="{{ url_for('static', filename='background/Logo1.png') }}">
+                <img class="logo-img" src="{{ url_for('static', filename='images/Logo1.png') }}">
             </div>
         </nav>
         <div class="profile-container">

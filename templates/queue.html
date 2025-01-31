@@ -13,6 +13,7 @@
       background-position: center; 
       background-repeat: no-repeat; 
       padding-top: 100px;
+      overflow: hidden;
     }
   </style>
   <title>Queue</title>
@@ -20,15 +21,16 @@
 </head>
 <body>
   <nav>
-      <ul>
-          <li><a href = "/">HOME</a></li>
-          <li><a href = "/works"  class = "hlght">LIBRARY</a></li>
-          <li><a href = "/contactus">CONTACT US</a></li>
-      </ul>
-      <div class="about-us-container">
-          <a href = "/aboutus">ABOUT US</a>
-          <img class="logo" src="{{ url_for('static', filename='background/Logo1.png') }}">
-      </div>
+    <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/works" class="hlght">LIBRARY</a></li>
+        <li><a href="/contactus">CONTACT US</a></li>
+    </ul>
+    <div>
+        <a href="/aboutus">ABOUT US</a>
+        <img class="logo-img" src="{{ url_for('static', filename='images/Logo1.png') }}">
+    </div>
+</nav>
   </nav>
 
   <main>
