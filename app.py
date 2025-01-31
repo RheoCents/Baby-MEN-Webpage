@@ -3,7 +3,7 @@ from labexercise.remove_first_n_characters_from_a_string import *
 from labexercise import linklist
 from labexercise.Sorthing import *
 from labexercise.GraphFunctions import Graph
-from labexercise.stack import infix_to_postfix
+from labexercise.stack import *
 from templates import *
 
 app = Flask(__name__)
@@ -81,9 +81,31 @@ def work():
 def work1():
     return render_template('linkedlist.html')  
 
-@app.route('/work2')
-def work2():
-    return render_template('stack.html')  
+@app.route('/work2', methods=['GET', 'POST'])
+def convert_expression():
+    expression = None
+    converted_expression = None
+    conversion_type = None
+    steps_list = []
+
+    if request.method == 'POST':
+        expression = request.form['expression']
+        conversion_type = request.form['conversion_type']
+
+        if expression:
+            if conversion_type == "infix_to_postfix":
+                converted_expression, steps_list = infix_to_postfix(expression)
+            elif conversion_type == "postfix_to_infix":
+                converted_expression, steps_list = postfix_to_infix(expression)
+            elif conversion_type == "infix_to_prefix":
+                converted_expression, steps_list = infix_to_prefix(expression)
+
+    return render_template(
+        'stack.html',
+        infix_expression=expression if conversion_type == "infix_to_postfix" else None,
+        postfix_expression=converted_expression if conversion_type == "infix_to_postfix" else None,
+        steps=steps_list
+    )
 
 @app.route('/work3')
 def work3():
@@ -237,23 +259,6 @@ def remove_at_end():
         submitted_inputs=submitted_inputs_list
     )
 
-@app.route('/work2', methods=['GET', 'POST'])
-def convert_expression():
-    postfix_expression = None
-    infix_expression = None
-    steps_list = []
-
-    if request.method == 'POST':
-        infix_expression = request.form['expression']  
-        if infix_expression:
-            postfix_expression, steps_list = infix_to_postfix(infix_expression)
-
-    return render_template(
-        'stack.html',
-        infix_expression=infix_expression,
-        postfix_expression=postfix_expression,
-        steps=steps_list
-    )
 
 @app.route('/work4', methods=['POST'])
 def find_path():
