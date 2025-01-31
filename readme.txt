@@ -12,7 +12,7 @@ Zuriel Elijah D. Valencia
 
 Through VS Code:
 	After opening our group laboratory folder
-		Type python app.py and run the local ip address 127.0.0.1:5000
+		Type python app.py or run app.py and run the local ip address 127.0.0.1:5000
 		You may know explore
 HOME Tab:
 	0  HEADER  0
