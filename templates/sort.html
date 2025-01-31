@@ -487,6 +487,11 @@
 
             // Merge the left and right subarrays
             while (i < n1 && j < n2) {
+<<<<<<< Updated upstream
+=======
+                const bars = document.querySelectorAll('.bar');
+                
+>>>>>>> Stashed changes
                 // Highlight the bars being compared
                 bars[left + i].style.backgroundColor = 'red'; // Highlight left array bar
                 bars[mid + 1 + j].style.backgroundColor = 'red'; // Highlight right array bar
@@ -504,6 +509,13 @@
                 k++;
 
                 createBars(); // Update the visual representation
+<<<<<<< Updated upstream
+=======
+
+                // Reset the color of the bars after placing
+                bars[left + i - 1].style.backgroundColor = 'teal'; // Reset left array bar
+                bars[mid + 1 + j - 1].style.backgroundColor = 'teal'; // Reset right array bar
+>>>>>>> Stashed changes
             }
 
             // Copy remaining elements of L[] if any
