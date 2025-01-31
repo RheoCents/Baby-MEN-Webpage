@@ -504,7 +504,18 @@
             let i = 0, j = 0, k = left;
 
             while (i < n1 && j < n2) {
+<<<<<<< Updated upstream
                 highlightElements(left + i, mid + 1 + j);
+=======
+                const bars = document.querySelectorAll('.bar');
+                
+                // Highlight the bars being compared
+                bars[left + i].style.backgroundColor = 'red'; // Highlight left array bar
+                bars[mid + 1 + j].style.backgroundColor = 'red'; // Highlight right array bar
+
+                // Pause for visualization
+                await new Promise(resolve => setTimeout(resolve, 500));
+>>>>>>> Stashed changes
 
                 if (L[i] <= R[j]) {
                     arr[k] = L[i];
@@ -516,8 +527,17 @@
                     j++;
                 }
                 k++;
+<<<<<<< Updated upstream
                 createBars(); // Update the bars after each merge
                 await sleep(500); // Pause for visualization
+=======
+
+                createBars(); // Update the visual representation
+
+                // Reset the color of the bars after placing
+                bars[left + i - 1].style.backgroundColor = 'teal'; // Reset left array bar
+                bars[mid + 1 + j - 1].style.backgroundColor = 'teal'; // Reset right array bar
+>>>>>>> Stashed changes
             }
 
             while (i < n1) {
@@ -564,7 +584,7 @@
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
-
+        
         async function startMergeSort() {
             disableButtons();
             await mergeSort(array, 0, array.length - 1);
