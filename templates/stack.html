@@ -1,99 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/stack.css') }}">
-  <style>
-    body {
-      height: 100vh;
-      background-image: url("{{ url_for('static', filename='background/background.png') }}");
-      background-size: cover; 
-      background-position: center; 
-      background-repeat: no-repeat; 
-      padding-top: 50px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/stack.css') }}">
+    <style>
+        body {
+            height: 100vh;
+            background-image: url("{{ url_for('static', filename='background/background.png') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding-top: 50px;
+        }
+    </style>
 </head>
 <body>
-
-  <div>
-    <nav>
-        <ul>
-            <li><a href="/">HOME</a></li>
-            <li><a href="/works" class="hlght">LIBRARY</a></li>
-            <li><a href="/contactus">CONTACT US</a></li>
-        </ul>
-        <div class="about-us-container">
-            <a href="/aboutus">ABOUT US</a>
-            <img class="logo" src="{{ url_for('static', filename='background/Logo1.png') }}">
-        </div>
-    </nav>
-  </div>
-
-  <main>
-    <div class="left-main">
-
-      <p class="title">STACK</p>
-
-      <form method="POST" action="/work2" class="input-section">
-        <input class="input-text" id="expression" name="expression" type="text" placeholder="KINDLY INPUT YOUR TEXT" autocomplete="off" required>
-        <button name="conversion_type" value="infix_to_postfix" type="submit" class="infix-postfix">INFIX TO POSTFIX</button>
-        <button name="conversion_type" value="infix_to_prefix" type="submit" class="infix-prefix">INFIX TO PREFIX</button>
-      </form>
-
-    </div>
-
-    <div class="right-main">
-      <div class="steps-section" id="steps">
-        {% if steps %}
-            <p><strong>Steps:</strong></p>
-            {% for step in steps %}
-                <div class="steps-container">{{ step }}</div>
-            {% endfor %}
-        {% endif %}
-      </div>
-      
-      <div class="right-right-main">
-      
-        <div class="book">
-          <p style="color: white;">
-              <span style="color: #28bf68;">Step 1:</span>
-              Insert your chosen station at the upmost dropdown(Starting) as your starting point. 
-              <br> 
-              <br>
-              <span style="color: #28bf68;">Step 2:</span>
-              Insert your chosen station at the 2nd dropdown(Ending) for your end point.
-              <br>
-              <br>
-              <span style="color: #28bf68;">Step 3:</span>
-              Click the "Find Path" button if you're done and look at the box to the right for the shortest distance.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="bg" style="font-family: 'Work Sans';">
-            <h1>Stack Steps:</h1>
-            <div id="result" style="line-height: 3">
-                {% if steps %}
-                    {% for step in steps %}
-                        <p>{{ step }}</p>
-                    {% endfor %}
-                {% else %}
-                    <p>No conversion steps available.</p>
-                {% endif %}
+    <div>
+        <nav>
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/works" class="hlght">LIBRARY</a></li>
+                <li><a href="/contactus">CONTACT US</a></li>
+            </ul>
+            <div class="about-us-container">
+                <a href="/aboutus">ABOUT US</a>
+                <img class="logo" src="{{ url_for('static', filename='background/Logo1.png') }}">
             </div>
-          </div>
-        
-          <div class="blob"></div>
-        </div>
-  
-      </div>
-      
-      
+        </nav>
     </div>
-  </main>
+    <main>
+        <div class="left-main">
+            <p class="title">STACK</p>
+            <form method="POST" action="/work2" id="conversionForm" class="input-section" onsubmit="return handleConversion(event)">
+                <input class="input-text" id="expression" name="expression" type="text" placeholder="KINDLY INPUT YOUR TEXT" autocomplete="off" required>
+                <button type="submit" class="infix-postfix" name="conversion_type" value="postfix infix_to_postfix">INFIX TO POSTFIX</button>
+                <button name="conversion_type" value="infix_to_prefix" type="button" onclick="convertToPrefix()" class="infix-prefix">INFIX TO PREFIX</button>
+            </form>
+        </div>
+        <div class="right-main">
+            <div class="steps-section" id="steps">
+              {% if steps %}
+                <!-- <p><strong>Steps:</strong></p> -->
+                {% for step in steps %}
+                    <div class="steps-container">{{ step }}</div>
+                {% endfor %}
+              {% endif %}
+            </div>
+            <div class="right-right-main">
+                <div class="book">
+                    <p style="color: white;">
+                        <span style="color: #28bf68;">Step 1:</span> Insert your chosen station at the upmost dropdown(Starting) as your starting point. <br><br>
+                        <span style="color: #28bf68;">Step 2:</span> Insert your chosen station at the 2nd dropdown(Ending) for your end point. <br><br>
+                        <span style="color: #28bf68;">Step 3:</span> Click the "Find Path" button if you're done and look at the box to the right for the shortest distance.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="bg" style="font-family: 'Work Sans';">
+                        <h1>Stack Steps:</h1>
+                        <div id="result" style="line-height: 3">No conversion steps available.</div>
+                    </div>
+                    <div class="blob"></div>
+                </div>
+            </div>
+        </div>
+    </main>
 
+    <script>
+        const precedence = { '+': 1, '-': 1, '*': 2, '/': 2 };
+
+        function infixToPostfix(expression) {
+            const output = [];
+            const stack = [];
+            const steps = [];
+
+            for (let token of expression) {
+                if (/[A-Za-z0-9]/.test(token)) {
+                    output.push(token);
+                } else if (token in precedence) {
+                    while (stack.length && precedence[stack[stack.length - 1]] >= precedence[token]) {
+                        output.push(stack.pop());
+                    }
+                    stack.push(token);
+                }
+            }
+
+            while (stack.length) {
+                output.push(stack.pop());
+            }
+
+            // Prepare steps
+            steps.push(output.join(' '));
+            for (let i = 1; i <= expression.length; i++) {
+                steps.push(output.slice(0, i).join(' '));
+            }
+            return steps;
+        }
+
+        function infixToPrefix(expression) {
+            const output = [];
+            const stack = [];
+            const steps = [];
+
+            // Reverse the expression and adjust parentheses
+            expression = expression.reverse().map(token => {
+                if (token === '(') return ')';
+                if (token === ')') return '(';
+                return token;
+            });
+
+            for (let token of expression) {
+                if (/[A-Za-z0-9]/.test(token)) {
+                    output.push(token);
+                } else if (token in precedence) {
+                    while (stack.length && precedence[stack[stack.length - 1]] > precedence[token]) {
+                        output.push(stack.pop());
+                    }
+                    stack.push(token);
+                }
+            }
+
+            while (stack.length) {
+                output.push(stack.pop());
+            }
+
+            // Reverse the output to get prefix
+            output.reverse();
+
+            // Prepare steps
+            steps.push(output.join(' '));
+            for (let i = 1; i <= output.length; i++) {
+                steps.push(output.slice(0, i).join(' '));
+            }
+            return steps;
+        }
+
+        function handleConversion(event) {
+            event.preventDefault();
+            const input = document.getElementById('expression');
+            const expression = input.value.split('');
+            const steps = infixToPostfix(expression);
+
+            // Display steps
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = steps.join('<br>');
+
+            // Clear input field
+            input.value = '';
+        }
+
+        function convertToPrefix() {
+            const input = document.getElementById('expression');
+            const expression = input.value.split('');
+            const steps = infixToPrefix(expression);
+
+            // Display steps
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = steps.join('<br>');
+
+            // Clear input field
+            input.value = '';
+        }
+    </script>
 </body>
 </html>
