@@ -33,7 +33,7 @@ def precedence(op):
         return 1
     if op in ('*', '/'):
         return 2
-    if op == '^':  # Exponentiation
+    if op == '^':  
         return 3
     return 0
 
@@ -44,63 +44,42 @@ def infix_to_postfix(expression):
     steps = [] 
 
     for token in spaceless:
-        if token.isalnum():  # Operand
+        if token.isalnum(): 
             output.append(token)
+            steps.append(''.join(output))  # Record the step after adding an operand
         elif token == '(':
             ops.push(token)
         elif token == ')':
             while ops.peek() != '(':
                 popped = ops.pop()
                 output.append(popped)
-            ops.pop()  # Pop the '('
-        else:  # Operator
+            ops.pop()  
+            steps.append(''.join(output))  # Record the step after processing a closing parenthesis
+        else: 
             while (ops.peek() is not None and precedence(ops.peek()) >= precedence(token)):
                 popped = ops.pop()
                 output.append(popped)
             ops.push(token)
+            steps.append(''.join(output))  # Record the step after processing an operator
 
     while ops.peek() is not None:
         popped = ops.pop()
         output.append(popped)
-
-    # Capture the steps in the desired format
-    for item in reversed(output):  # Reverse the order to match the expected output
-        steps.append(item)
+        steps.append(''.join(output))  # Record the step after popping remaining operators
 
     return ''.join(output), steps
 
-def postfix_to_infix(expression):
-    spaceless = expression.replace(" ", "")
-    stack = Stack()
-    steps = []
-
-    for token in spaceless:
-        if token.isalnum():  # Operand
-            stack.push(token)
-        else:  # Operator
-            op2 = stack.pop()  # The second operand (right side)
-            op1 = stack.pop()  # The first operand (left side)
-            new_expr = f"{op1}{token}{op2}"
-            stack.push(new_expr)
-            steps.append(new_expr)  # Only append the current infix expression
-
-    # Return the final infix expression and the steps
-    return stack.pop(), steps
-
 def infix_to_prefix(expression):
     spaceless = expression.replace(" ", "")
-    # Reverse the expression
     reversed_expr = spaceless[::-1]
-    
-    # Replace '(' with ')' and vice versa
     reversed_expr = reversed_expr.replace('(', 'temp').replace(')', '(').replace('temp', ')')
     
     ops = Stack()
     output = []
-    steps = []
+    prefix_steps = [] 
 
     for token in reversed_expr:
-        if token.isalnum():  # Operand
+        if token.isalnum(): 
             output.append(token)
         elif token == '(':
             ops.push(token)
@@ -108,22 +87,20 @@ def infix_to_prefix(expression):
             while ops.peek() != '(':
                 popped = ops.pop()
                 output.append(popped)
-            ops.pop()  # Pop the '('
-        else:  # Operator
+            ops.pop()  
+        else:
             while (ops.peek() is not None and precedence(ops.peek()) > precedence(token)):
                 popped = ops.pop()
                 output.append(popped)
             ops.push(token)
 
+        prefix_steps.append(''.join(output[::-1]))
+
     while ops.peek() is not None:
         popped = ops.pop()
         output.append(popped)
+        prefix_steps.append(''.join(output[::-1]))  
 
-    # Reverse the output to get the prefix expression
-    prefix_expression = ''.join(output[::-1])
+    prefix_expression = ''.join(output[::-1]) 
 
-    # Capture the steps
-    for item in reversed(prefix_expression):  # Reverse to match the step format
-        steps.append(item)
-
-    return prefix_expression, steps
+    return prefix_expression, prefix_steps

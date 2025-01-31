@@ -158,6 +158,27 @@ body {
   width: 90%;
   margin-bottom: 10px;
 }
+
+.steps-container {
+  margin-bottom: 10px; /* Optional: Add some space between steps */
+  color: white; /* Ensure text is visible */
+}
+
+.steps-section::-webkit-scrollbar {
+  width: 8px; 
+}
+
+.steps-section::-webkit-scrollbar-thumb {
+  background-color: #28bf68; 
+  border-radius: 4px; 
+}
+
+.steps-section::-webkit-scrollbar-track {
+  background-color: #5c5c5c; 
+  border-radius: 4px;
+}
+
+
 .input-section{
   display: flex;
   flex-direction: column;

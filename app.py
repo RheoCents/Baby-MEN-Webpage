@@ -98,8 +98,6 @@ def convert_expression():
         if expression:
             if conversion_type == "infix_to_postfix":
                 converted_expression, steps_list = infix_to_postfix(expression)
-            elif conversion_type == "postfix_to_infix":
-                converted_expression, steps_list = postfix_to_infix(expression)
             elif conversion_type == "infix_to_prefix":
                 converted_expression, steps_list = infix_to_prefix(expression)
 
@@ -107,6 +105,7 @@ def convert_expression():
         'stack.html',
         infix_expression=expression if conversion_type == "infix_to_postfix" else None,
         postfix_expression=converted_expression if conversion_type == "infix_to_postfix" else None,
+        character=steps_list[::-1],
         steps=steps_list
     )
 
