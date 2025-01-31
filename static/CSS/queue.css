@@ -53,13 +53,20 @@ main{
   font-family:'Work Sans';
   font-weight: bold;
 }
+.containers {
+  margin-left: 20px;
+  display: flex;                /* Arrange items in a row */
+  overflow-x: auto;            /* Enable horizontal scrolling */
+  white-space: nowrap;         /* Prevent items from wrapping */
+  padding: 10px;               /* Optional: add some padding */
+}
 
 .right-main{
   flex: 1;
   /* background-color: lightblue; */
   margin-left: 50px;
   margin-right: 100px;
-  max-width: 2000px;
+  max-width: 1000px;
   margin-top: 50px;
 }
 .queue-section{
