@@ -20,88 +20,62 @@
 
   <div>
     <nav>
-      <ul>
-          <li><a href="/">HOME</a></li>
-          <li><a href="/works" class="hlght">LIBRARY</a></li>
-          <li><a href="/contactus">CONTACT US</a></li>
-      </ul>
-      <div>
-          <a href="/aboutus">ABOUT US</a>
-          <img class="logo-img" src="{{ url_for('static', filename='images/Logo1.png') }}">
-      </div>
-  </nav>
+        <ul>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/works" class="hlght">LIBRARY</a></li>
+            <li><a href="/contactus">CONTACT US</a></li>
+        </ul>
+        <div class="about-us-container">
+            <a href="/aboutus">ABOUT US</a>
+            <img class="logo" src="{{ url_for('static', filename='background/Logo1.png') }}">
+        </div>
     </nav>
   </div>
 
   <main>
     <div class="left-main">
+
       <p class="title">STACK</p>
+      
+      <div class="book">
+        <p style="color: white;">
+            <span style="color: #28bf68;">Step 1:</span>
+            Insert your chosen station at the upmost dropdown(Starting) as your starting point. 
+            <br> 
+            <br>
+            <span style="color: #28bf68;">Step 2:</span>
+            Insert your chosen station at the 2nd dropdown(Ending) for your end point.
+            <br>
+            <br>
+            <span style="color: #28bf68;">Step 3:</span>
+            Click the "Find Path" button if you're done and look at the box to the right for the shortest distance.
+        </p>
+      </div>
+
     </div>
 
     <div class="right-main">
       <div class="steps-section" id="steps">
-        <!-- Steps will be dynamically inserted here -->
-      </div>
+        {% if steps %}
+            <!-- <p><strong>Steps:</strong></p> -->
+            {% for step in steps %}
+                <div class="steps-container">{{ step }}</div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    
 
-      <div class="input-section">
-        <input class="input-text" id="expression" type="text" placeholder="KINDLY INPUT YOUR TEXT" autocomplete="off" required>
-        <button class="infix-postfix" onclick="convertExpression('infix_to_postfix')">INFIX TO POSTFIX</button>
-        <button class="postfix-infix" onclick="convertExpression('postfix_to_infix')">POSTFIX TO INFIX</button>
-        <button class="infix-prefix" onclick="convertExpression('infix_to_prefix')">INFIX TO PREFIX</button>
-      </div>
+      <form method="POST" action="/work2" class="input-section">
+          <input class="input-text" id="expression" name="expression" type="text" placeholder="KINDLY INPUT YOUR TEXT" autocomplete="off" required>
+          <!-- <input type="hidden" name="conversion_type" value="infix_to_postfix" class="conversion-type"> -->
+          <button name="conversion_type" value="infix_to_postfix" type="submit" class="infix-postfix">INFIX TO POSTFIX</button>
+          <!-- <button name="conversion_type" value="postfix_to_infix" type="submit" class="postfix-infix">POSTFIX TO INFIX</button> -->
+          <button name="conversion_type" value="infix_to_prefix" type="submit" class="infix-prefix">INFIX TO PREFIX</button>
+      </form>
     </div>
   </main>
 
-  <script>
-    function convertExpression(conversionType) {
-        let expression = document.getElementById("expression").value;
-        
-        if (!expression.trim()) {
-            alert("Please enter an expression!");
-            return;
-        }
-
-        fetch("/work2", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ expression: expression, conversion_type: conversionType })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.json();
-        })
-        .then(data => {
-            let stepsContainer = document.getElementById("steps");
-            stepsContainer.innerHTML = "";  // Clear previous steps
-
-            if (data.steps && Array.isArray(data.steps)) {
-                if (data.steps.length > 0) {
-                    // Populate the steps
-                    data.steps.forEach(step => {
-                        let stepDiv = document.createElement("div");
-                        stepDiv.className = "steps-container";
-                        stepDiv.textContent = step;
-                        stepsContainer.appendChild(stepDiv);
-                    });
-                } else {
-                    // If there are no steps, show this message
-                    stepsContainer.innerHTML = "No steps available for this expression or invalid expression.";
-                }
-            } else {
-                // If 'steps' is not an array or is missing
-                stepsContainer.innerHTML = "Unexpected response format or invalid expression.";
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            let stepsContainer = document.getElementById("steps");
-            stepsContainer.innerHTML = "An error occurred: " + error.message;  // Show error message to user
-        });
-    }
-</script>
-
+  
 
 </body>
 </html>
