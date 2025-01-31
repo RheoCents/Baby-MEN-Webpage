@@ -557,7 +557,6 @@
             bars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted
             enableButtons(); // Re-enable buttons
         }
-
         async function startInsertionSort() {
             disableButtons(); // Disable buttons
             const n = array.length;
@@ -583,10 +582,7 @@
 
                     await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
 
-                    // Reset the color of the compared bar
-                    bars[j].style.backgroundColor = 'teal'; // Reset color after comparison
-                    bars[j + 1].style.backgroundColor = 'teal'; // Reset color after comparison
-                    j--;
+                    j--; // Move to the next element
                 }
 
                 // Place the key in its correct position
@@ -600,8 +596,10 @@
                 // Pause for visualization
                 await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
 
-                // Reset the color of the key bar
-                bars[j + 1].style.backgroundColor = 'teal'; // Reset color after insertion
+                // Reset colors for the bars that were compared in this iteration
+                for (let k = 0; k <= i; k++) {
+                    bars[k].style.backgroundColor = 'teal'; // Reset color after insertion
+                }
 
                 // Display the current state of the array after each outer loop iteration
                 iterationDisplay.innerText = `Iteration ${i}: [${array.join(', ')}]`;
@@ -621,7 +619,6 @@
             });
             enableButtons(); // Re-enable buttons
         }
-
         async function quickSort(arr, low, high) {
             if (low < high) {
                 const pi = await partition(arr, low, high);
