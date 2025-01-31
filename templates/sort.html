@@ -279,16 +279,6 @@
             max-height: 400px;
             max-width: 250px;
         }
-
-        .sorted {
-            background-color: green;
-        }
-        .comparing {
-            background-color: red;
-        }
-        .merging {
-            background-color: blue;
-        }
     </style>
 </head>
 <body>
@@ -482,15 +472,6 @@
             }
         }
 
-        async function mergeSort(arr, left, right) {
-            if (left < right) {
-                const mid = Math.floor((left + right) / 2);
-                await mergeSort(arr, left, mid);
-                await mergeSort(arr, mid + 1, right);
-                await merge(arr, left, mid, right);
-            }
-        }
-
         async function merge(arr, left, mid, right) {
             const n1 = mid - left + 1;
             const n2 = right - mid;
@@ -498,15 +479,11 @@
             const R = new Array(n2);
 
             for (let i = 0; i < n1; i++) L[i] = arr[left + i];
-            for (let j = 0; j < n2; j++) 
-                R[j] = arr[mid + 1 + j];
+            for (let j = 0; j < n2; j++) R[j] = arr[mid + 1 + j];
 
             let i = 0, j = 0, k = left;
 
             while (i < n1 && j < n2) {
-<<<<<<< Updated upstream
-                highlightElements(left + i, mid + 1 + j);
-=======
                 const bars = document.querySelectorAll('.bar');
                 
                 // Highlight the bars being compared
@@ -515,81 +492,52 @@
 
                 // Pause for visualization
                 await new Promise(resolve => setTimeout(resolve, 500));
->>>>>>> Stashed changes
 
                 if (L[i] <= R[j]) {
                     arr[k] = L[i];
-                    highlightMove(k, left + i);
                     i++;
                 } else {
                     arr[k] = R[j];
-                    highlightMove(k, mid + 1 + j);
                     j++;
                 }
                 k++;
-<<<<<<< Updated upstream
-                createBars(); // Update the bars after each merge
-                await sleep(500); // Pause for visualization
-=======
 
                 createBars(); // Update the visual representation
 
                 // Reset the color of the bars after placing
                 bars[left + i - 1].style.backgroundColor = 'teal'; // Reset left array bar
                 bars[mid + 1 + j - 1].style.backgroundColor = 'teal'; // Reset right array bar
->>>>>>> Stashed changes
             }
 
             while (i < n1) {
                 arr[k] = L[i];
-                highlightMove(k, left + i);
                 i++;
                 k++;
-                createBars();
-                await sleep(500);
+                createBars(); // Update the visual representation
+                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
             }
 
             while (j < n2) {
                 arr[k] = R[j];
-                highlightMove(k, mid + 1 + j);
                 j++;
                 k++;
-                createBars();
-                await sleep(500);
+                createBars(); // Update the visual representation
+                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
             }
-        }
 
-        function highlightElements(index1, index2) {
-            const bars = document.querySelectorAll('.bar');
-            bars[index1].classList.add('comparing');
-            bars[index2].classList.add('comparing');
-
-            setTimeout(() => {
-                bars[index1].classList.remove('comparing');
-                bars[index2].classList.remove('comparing');
-            }, 500);
-        }
-
-        function highlightMove(targetIndex, sourceIndex) {
-            const bars = document.querySelectorAll('.bar');
-            bars[targetIndex].classList.add('merging');
-            bars[sourceIndex].classList.add('merging');
-
-            setTimeout(() => {
-                bars[targetIndex].classList.remove('merging');
-                bars[sourceIndex].classList.remove('merging');
-            }, 500);
-        }
-
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
+            // Display the current state of the array after merging
+            iterationDisplay.innerText = `Merging: [${arr.join(', ')}]`;
+            const historyItem = document.createElement('div');
+            historyItem.innerText = `Merging: [${arr.join(', ')}]`;
+            historyDisplay.appendChild(historyItem);
         }
         
         async function startMergeSort() {
-            disableButtons();
+            disableButtons(); // Disable buttons
             await mergeSort(array, 0, array.length - 1);
-            createBars(); // Final update to show sorted array
-            enableButtons();
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted
+            enableButtons(); // Re-enable buttons
         }
 
         async function startInsertionSort() {
