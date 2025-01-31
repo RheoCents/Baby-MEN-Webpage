@@ -483,11 +483,10 @@
             for (let j = 0; j < n2; j++) R[j] = arr[mid + 1 + j];
 
             let i = 0, j = 0, k = left;
+            const bars = document.querySelectorAll('.bar');
 
             // Merge the left and right subarrays
             while (i < n1 && j < n2) {
-                const bars = document.querySelectorAll('.bar');
-
                 // Highlight the bars being compared
                 bars[left + i].style.backgroundColor = 'red'; // Highlight left array bar
                 bars[mid + 1 + j].style.backgroundColor = 'red'; // Highlight right array bar
@@ -505,28 +504,31 @@
                 k++;
 
                 createBars(); // Update the visual representation
-
-                // Reset the color of the bars after placing
-                bars[left + i - 1].style.backgroundColor = 'teal'; // Reset left array bar
-                bars[mid + 1 + j - 1].style.backgroundColor = 'teal'; // Reset right array bar
             }
 
             // Copy remaining elements of L[] if any
             while (i < n1) {
                 arr[k] = L[i];
+                createBars(); // Update the visual representation
+                bars[left + i].style.backgroundColor = 'red'; // Highlight the remaining left bar
+                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
                 i++;
                 k++;
-                createBars(); // Update the visual representation
-                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
             }
 
             // Copy remaining elements of R[] if any
             while (j < n2) {
                 arr[k] = R[j];
+                createBars(); // Update the visual representation
+                bars[mid + 1 + j].style.backgroundColor = 'red'; // Highlight the remaining right bar
+                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
                 j++;
                 k++;
-                createBars(); // Update the visual representation
-                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
+            }
+
+            // Reset colors for all bars in the current range
+            for (let m = left; m <= right; m++) {
+                bars[m].style.backgroundColor = 'teal'; // Reset color
             }
 
             // Display the current state of the array after merging
