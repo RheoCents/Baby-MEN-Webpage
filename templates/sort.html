@@ -298,12 +298,12 @@
     <div class="hero">
         <div class="left-content">
             <h1 style = "margin-bottom: 50px; font-size: 60px;">SORTING</h1>
-            <button onclick="randomizeArray()" class = "button-random">Randomize</button>
-            <button onclick="startBubbleSort()">Bubble Sort</button>
-            <button onclick="startSelectionSort()">Selection Sort</button>
-            <button onclick="startMergeSort()">Merge Sort</button>
-            <button onclick="startInsertionSort()">Insertion Sort</button>
-            <button onclick="startQuickSort()">Quick Sort</button>
+            <button id="randomizeBtn" onclick="randomizeArray()" class = "button-random">Randomize</button>
+            <button id="bubbleSortBtn" onclick="startBubbleSort()">Bubble Sort</button>
+            <button id="selectionSortBtn" onclick="startSelectionSort()">Selection Sort</button>
+            <button id="mergeSortBtn" onclick="startMergeSort()">Merge Sort</button>
+            <button id="insertionSortBtn" onclick="startInsertionSort()">Insertion Sort</button>
+            <button id="quickSortBtn" onclick="startQuickSort()">Quick Sort</button>
         </div>
         <div class="graph-content">
             <div id="array"></div>
@@ -333,6 +333,8 @@
             const numBars = Math.floor(Math.random() * 10) + 5; 
             array = Array.from({ length: numBars }, () => Math.floor(Math.random() * 10) + 1); 
             createBars();
+            iterationDisplay.innerText = ''; // Clear iteration display
+            historyDisplay.innerHTML = ''; // Clear history display
         }
 
         function createBars() {
@@ -352,7 +354,26 @@
             });
         }
 
+        function disableButtons() {
+            document.getElementById('randomizeBtn').disabled = true;
+            document.getElementById('bubbleSortBtn').disabled = true;
+            document.getElementById('selectionSortBtn').disabled = true;
+            document.getElementById('mergeSortBtn').disabled = true;
+            document.getElementById('insertionSortBtn').disabled = true;
+            document.getElementById('quickSortBtn').disabled = true;
+        }
+
+        function enableButtons() {
+            document.getElementById('randomizeBtn').disabled = false;
+            document.getElementById('bubbleSortBtn').disabled = false;
+            document.getElementById('selectionSortBtn').disabled = false;
+            document.getElementById('mergeSortBtn').disabled = false;
+            document.getElementById('insertionSortBtn').disabled = false;
+            document.getElementById('quickSortBtn').disabled = false;
+        }
+
         async function startBubbleSort() {
+            disableButtons(); // Disable buttons
             const n = array.length;
             const bars = document.querySelectorAll('.bar');
 
@@ -367,7 +388,7 @@
                     // Swap if the current element is greater than the next
                     if (array[j] > array[j + 1]) {
                         [array[j], array[j + 1]] = [array[j + 1], array[j]];
-                        bars[j].style.height = `${array[j] * 30}px`;
+                        bars[j].style.height = `${array [j] * 30}px`;
                         bars[j + 1].style.height = `${array[j + 1] * 30}px`;
 
                         // Update the displayed values
@@ -390,9 +411,11 @@
                 historyDisplay.appendChild(historyItem);
             }
             bars[0].classList.add('sorted'); // Mark the first element as sorted
+            enableButtons(); // Re-enable buttons
         }
 
         async function startSelectionSort() {
+            disableButtons(); // Disable buttons
             const n = array.length;
             const bars = document.querySelectorAll('.bar');
 
@@ -437,6 +460,7 @@
                 historyDisplay.appendChild(historyItem);
             }
             bars[n - 1].style.backgroundColor = 'green'; // Mark the last element as sorted
+            enableButtons(); // Re-enable buttons
         }
 
         async function mergeSort(arr, left, right) {
@@ -496,11 +520,15 @@
         }
 
         async function startMergeSort() {
+            disableButtons(); // Disable buttons
             await mergeSort(array, 0, array.length - 1);
             const bars = document.querySelectorAll('.bar');
             bars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted
+            enableButtons(); // Re-enable buttons
         }
+
         async function startInsertionSort() {
+            disableButtons(); // Disable buttons
             const n = array.length;
             const bars = document.querySelectorAll('.bar');
 
@@ -529,6 +557,7 @@
             }
             const finalBars = document.querySelectorAll('.bar');
             finalBars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted
+            enableButtons(); // Re-enable buttons
         }
 
         async function quickSort(arr, low, high) {
@@ -572,9 +601,10 @@
         }
 
         async function startQuickSort() {
+            disableButtons(); // Disable buttons
             await quickSort(array, 0, array.length - 1);
             const bars = document.querySelectorAll('.bar');
-            bars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted
+            bars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted enableButtons(); // Re-enable buttons
         }
 
         randomizeArray();
