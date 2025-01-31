@@ -15,6 +15,42 @@
       padding-top: 100px;
       overflow: hidden; 
     }
+    .history-section {
+      background-color: white;
+      position: relative;
+      width: 200px;
+      height: 255px;
+      margin: 20px 70px;
+      padding-top: 10px;
+      border-radius: 20px;
+      font-family: 'Work Sans';
+      overflow: hidden;
+      overflow-y: auto;
+    }
+    .p-history {
+      border-radius: 30px;
+      align-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      width: 120px;
+      color: #ffffff;
+      background-color: #00bf63;
+      font-family: 'Work Sans';
+      font-weight: bold;
+    }
+    .history-section::-webkit-scrollbar {
+      width: 8px; 
+    }
+    .history-section::-webkit-scrollbar-thumb {
+      background-color: #28bf68; 
+      border-radius: 4px; 
+    }
+    .history-section::-webkit-scrollbar-track {
+      background-color: solid transparent; 
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -37,7 +73,12 @@
     <div class="left-main">
       <p class="title">WORD <br>EATER</p>
       <div class="history-section">
-        <div class="history-text"><p class="p-history">HISTORY</p></div>
+        <p class="p-history">HISTORY</p>
+        <ul class="submittedInputs">
+          {% for input_item in submitted_inputs %}
+            <li>{{ input_item }}</li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
 
