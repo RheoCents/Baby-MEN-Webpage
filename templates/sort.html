@@ -252,6 +252,7 @@
             <button onclick="startSelectionSort()">Start Selection Sort</button>
             <button onclick="startMergeSort()">Start Merge Sort</button>
             <button onclick="startInsertionSort()">Start Insertion Sort</button>
+            <button onclick="startQuickSort()">Start Quick Sort</button>
         </div>
         <div class="graph-content">
             <h1>Sorting Visualization</h1>
@@ -478,6 +479,52 @@
             }
             const finalBars = document.querySelectorAll('.bar');
             finalBars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted
+        }
+
+        async function quickSort(arr, low, high) {
+            if (low < high) {
+                const pi = await partition(arr, low, high);
+                await quickSort(arr, low, pi - 1);
+                await quickSort(arr, pi + 1, high);
+            }
+        }
+
+        async function partition(arr, low, high) {
+            const pivot = arr[high];
+            let i = low - 1;
+            const bars = document.querySelectorAll('.bar');
+
+            for (let j = low; j < high; j++) {
+                bars[j].style.backgroundColor = 'red'; // Highlight the current bar
+                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
+
+                if (arr[j] < pivot) {
+                    i++;
+                    [arr[i], arr[j]] = [arr[j], arr[i]];
+                    bars[i].style.height = `${arr[i] * 30}px`;
+                    bars[j].style.height = `${arr[j] * 30}px`;
+
+                    // Update the displayed values
+                    bars[i].querySelector('.bar-value').innerText = arr[i];
+                    bars[j].querySelector('.bar-value').innerText = arr[j];
+                }
+                bars[j].style.backgroundColor = 'teal'; // Reset the color
+            }
+            [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
+            bars[i + 1].style.height = `${arr[i + 1] * 30}px`;
+            bars[high].style.height = `${arr[high] * 30}px`;
+
+            // Update the displayed values
+            bars[i + 1].querySelector('.bar-value').innerText = arr[i + 1];
+            bars[high].querySelector('.bar-value').innerText = arr[high];
+
+            return i + 1; // Return the partition index
+        }
+
+        async function startQuickSort() {
+            await quickSort(array, 0, array.length - 1);
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted
         }
 
         randomizeArray();
