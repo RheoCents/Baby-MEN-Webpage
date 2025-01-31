@@ -612,6 +612,11 @@
                 const pi = await partition(arr, low, high);
                 await quickSort(arr, low, pi - 1);
                 await quickSort(arr, pi + 1, high);
+
+                 // Display the current state of the array after each recursive call
+                iterationDisplay.innerText = `Current state: [${arr.join(', ')}]`;
+                const historyItem = document.createElement('div');
+                historyDisplay.appendChild(historyItem);
             }
         }
 
@@ -644,6 +649,11 @@
             bars[i + 1].querySelector('.bar-value').innerText = arr[i + 1];
             bars[high].querySelector('.bar-value').innerText = arr[high];
 
+            iterationDisplay.innerText = `Partitioning: [${arr.join(', ')}]`;
+            const historyItem = document.createElement('div');
+            historyItem.innerText = `Partitioning: [${arr.join(', ')}]`;
+            historyDisplay.appendChild(historyItem);
+            
             return i + 1; // Return the partition index
         }
 
@@ -651,7 +661,8 @@
             disableButtons(); // Disable buttons
             await quickSort(array, 0, array.length - 1);
             const bars = document.querySelectorAll('.bar');
-            bars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted enableButtons(); // Re-enable buttons
+            bars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted 
+            enableButtons(); // Re-enable buttons
         }
 
         randomizeArray();
