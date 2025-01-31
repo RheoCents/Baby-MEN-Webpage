@@ -236,7 +236,7 @@
         <nav>
             <ul>
                 <li><a href="/">HOME</a></li>
-                <li><a href="/works">LIBRARY</a></li>
+                <li><a href="/works" class = "hlght">LIBRARY</a></li>
                 <li><a href="/contactus">CONTACT US</a></li>
             </ul>
             <div>
@@ -249,6 +249,9 @@
         <div class="left-content">
             <button onclick="randomizeArray()">Randomize Array</button>
             <button onclick="startBubbleSort()">Start Bubble Sort</button>
+            <button onclick="startSelectionSort()">Start Selection Sort</button>
+            <button onclick="startMergeSort()">Start Merge Sort</button>
+            <button onclick="startInsertionSort()">Start Insertion Sort</button>
         </div>
         <div class="graph-content">
             <h1>Sorting Visualization</h1>
@@ -337,7 +340,146 @@
             }
             bars[0].classList.add('sorted'); // Mark the first element as sorted
         }
-        
+
+        async function startSelectionSort() {
+            const n = array.length;
+            const bars = document.querySelectorAll('.bar');
+
+            for (let i = 0; i < n - 1; i++) {
+                let minIndex = i;
+                bars[minIndex].style.backgroundColor = 'red'; // Highlight the current minimum
+
+                for (let j = i + 1; j < n; j++) {
+                    bars[j].style.backgroundColor = 'red'; // Highlight the current bar being compared
+
+                    await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
+
+                    if (array[j] < array[minIndex]) {
+                        if (minIndex !== i) {
+                            bars[minIndex].style.backgroundColor = 'teal'; // Reset previous minimum
+                        }
+                        minIndex = j; // Update the minimum index
+                    } else {
+                        bars[j].style.backgroundColor = 'teal'; // Reset the current bar
+                    }
+                }
+
+                // Swap the found minimum element with the first element
+                if (minIndex !== i) {
+                    [array[i], array[minIndex]] = [array[minIndex], array[i]];
+                    bars[i].style.height = `${array[i] * 30}px`;
+                    bars[minIndex].style.height = `${array[minIndex] * 30}px`;
+
+                    // Update the displayed values
+                    bars[i].querySelector('.bar-value').innerText = array[i];
+                    bars[minIndex].querySelector('.bar-value').innerText = array[minIndex];
+                }
+
+                bars[i].style.backgroundColor = 'green'; // Mark the sorted element
+
+                // Display the current state of the array after each outer loop iteration
+                iterationDisplay.innerText = `Iteration ${i + 1}: [${array.join(', ')}]`;
+                
+                // Append the current state to the history
+                const historyItem = document.createElement('div');
+                historyItem.innerText = `Iteration ${i + 1}: [${array.join(', ')}]`;
+                historyDisplay.appendChild(historyItem);
+            }
+            bars[n - 1].style.backgroundColor = 'green'; // Mark the last element as sorted
+        }
+
+        async function mergeSort(arr, left, right) {
+            if (left < right) {
+                const mid = Math.floor((left + right) / 2);
+                await mergeSort(arr, left, mid);
+                await mergeSort(arr, mid + 1, right);
+                await merge(arr, left, mid, right);
+            }
+        }
+
+        async function merge(arr, left, mid, right) {
+            const n1 = mid - left + 1;
+            const n2 = right - mid;
+            const L = new Array(n1);
+            const R = new Array(n2);
+
+            for (let i = 0; i < n1; i++) L[i] = arr[left + i];
+            for (let j = 0; j < n2; j++) R[j] = arr[mid + 1 + j];
+
+            let i = 0, j = 0, k = left;
+
+            while (i < n1 && j < n2) {
+                if (L[i] <= R[j]) {
+                    arr[k] = L[i];
+                    i++;
+                } else {
+                    arr[k] = R[j];
+                    j++;
+                }
+                k++;
+                createBars(); // Update the visual representation
+                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
+            }
+
+            while (i < n1) {
+                arr[k] = L[i];
+                i++;
+                k++;
+                createBars(); // Update the visual representation
+                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
+            }
+
+            while (j < n2) {
+                arr[k] = R[j];
+                j++;
+                k++;
+                createBars(); // Update the visual representation
+                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
+            }
+
+            // Display the current state of the array after merging
+            iterationDisplay.innerText = `Merging: [${arr.join(', ')}]`;
+            const historyItem = document.createElement('div');
+            historyItem.innerText = `Merging: [${arr.join(', ')}]`;
+            historyDisplay.appendChild(historyItem);
+        }
+
+        async function startMergeSort() {
+            await mergeSort(array, 0, array.length - 1);
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted
+        }
+        async function startInsertionSort() {
+            const n = array.length;
+            const bars = document.querySelectorAll('.bar');
+
+            for (let i = 1; i < n; i++) {
+                let key = array[i];
+                let j = i - 1;
+
+                while (j >= 0 && array[j] > key) {
+                    array[j + 1] = array[j];
+                    bars[j + 1].style.height = `${array[j] * 30}px`;
+                    bars[j + 1].querySelector('.bar-value').innerText = array[j];
+                    j--;
+
+                    createBars(); // Update the visual representation
+                    await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
+                }
+                array[j + 1] = key;
+                bars[j + 1].style.height = `${key * 30}px`;
+                bars[j + 1].querySelector('.bar-value').innerText = key;
+
+                // Display the current state of the array after each outer loop iteration
+                iterationDisplay.innerText = `Iteration ${i}: [${array.join(', ')}]`;
+                const historyItem = document.createElement('div');
+                historyItem.innerText = `Iteration ${i}: [${array.join(', ')}]`;
+                historyDisplay.appendChild(historyItem);
+            }
+            const finalBars = document.querySelectorAll('.bar');
+            finalBars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted
+        }
+
         randomizeArray();
     </script>
 </body>
