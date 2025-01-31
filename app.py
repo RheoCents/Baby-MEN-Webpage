@@ -11,6 +11,8 @@ app = Flask(__name__)
 linked_list = linklist.LinkedList()
 submitted_inputs_eater = []
 submitted_inputs_linklist = []
+submitted_inputs_queue = []
+
 g = Graph()
 queue = Queue()
 
@@ -170,15 +172,16 @@ def enqueue():
     item = request.form.get('data')
     if item:
         queue.enqueue(item)
-    return render_template('queue.html', queue=queue.queue)
+        submitted_inputs_queue.append(item) 
+    return render_template('queue.html', queue=queue.queue, submitted_inputs=submitted_inputs_queue)
 
 @app.route('/dequeue', methods=['POST'])
 def dequeue():
     try:
         queue.dequeue()
     except Exception as e:
-        print(str(e))  # Log the error if needed
-    return render_template('queue.html', queue=queue.queue)
+        print(str(e))  
+    return render_template('queue.html', queue=queue.queue, submitted_inputs=submitted_inputs_queue)  
 
 @app.route('/sort', methods=['POST'])
 def sort_array():
