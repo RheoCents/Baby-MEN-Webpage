@@ -473,19 +473,25 @@
         }
 
         async function merge(arr, left, mid, right) {
-            const n1 = mid - left + 1;
-            const n2 = right - mid;
+            const n1 = mid - left + 1; // Size of left subarray
+            const n2 = right - mid; // Size of right subarray
             const L = new Array(n1);
             const R = new Array(n2);
 
+            // Fill the left and right subarrays
             for (let i = 0; i < n1; i++) L[i] = arr[left + i];
             for (let j = 0; j < n2; j++) R[j] = arr[mid + 1 + j];
 
             let i = 0, j = 0, k = left;
+            const bars = document.querySelectorAll('.bar');
 
+            // Merge the left and right subarrays
             while (i < n1 && j < n2) {
+<<<<<<< Updated upstream
+=======
                 const bars = document.querySelectorAll('.bar');
                 
+>>>>>>> Stashed changes
                 // Highlight the bars being compared
                 bars[left + i].style.backgroundColor = 'red'; // Highlight left array bar
                 bars[mid + 1 + j].style.backgroundColor = 'red'; // Highlight right array bar
@@ -503,26 +509,38 @@
                 k++;
 
                 createBars(); // Update the visual representation
+<<<<<<< Updated upstream
+=======
 
                 // Reset the color of the bars after placing
                 bars[left + i - 1].style.backgroundColor = 'teal'; // Reset left array bar
                 bars[mid + 1 + j - 1].style.backgroundColor = 'teal'; // Reset right array bar
+>>>>>>> Stashed changes
             }
 
+            // Copy remaining elements of L[] if any
             while (i < n1) {
                 arr[k] = L[i];
+                createBars(); // Update the visual representation
+                bars[left + i].style.backgroundColor = 'red'; // Highlight the remaining left bar
+                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
                 i++;
                 k++;
-                createBars(); // Update the visual representation
-                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
             }
 
+            // Copy remaining elements of R[] if any
             while (j < n2) {
                 arr[k] = R[j];
+                createBars(); // Update the visual representation
+                bars[mid + 1 + j].style.backgroundColor = 'red'; // Highlight the remaining right bar
+                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
                 j++;
                 k++;
-                createBars(); // Update the visual representation
-                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
+            }
+
+            // Reset colors for all bars in the current range
+            for (let m = left; m <= right; m++) {
+                bars[m].style.backgroundColor = 'teal'; // Reset color
             }
 
             // Display the current state of the array after merging
@@ -531,7 +549,7 @@
             historyItem.innerText = `Merging: [${arr.join(', ')}]`;
             historyDisplay.appendChild(historyItem);
         }
-        
+
         async function startMergeSort() {
             disableButtons(); // Disable buttons
             await mergeSort(array, 0, array.length - 1);
@@ -549,27 +567,58 @@
                 let key = array[i];
                 let j = i - 1;
 
-                while (j >= 0 && array[j] > key) {
-                    array[j + 1] = array[j];
-                    bars[j + 1].style.height = `${array[j] * 30}px`;
-                    bars[j + 1].querySelector('.bar-value').innerText = array[j];
-                    j--;
+                // Highlight the key being inserted
+                bars[i].style.backgroundColor = 'green'; // Highlight the current key
+                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
 
-                    createBars(); // Update the visual representation
+                while (j >= 0 && array[j] > key) {
+                    // Highlight the bars being compared
+                    bars[j].style.backgroundColor = 'red'; // Highlight the bar being compared
+                    bars[j + 1].style.backgroundColor = 'red'; // Highlight the next bar
+
+                    // Shift the larger element to the right
+                    array[j + 1] = array[j]; // Shift the larger element to the right
+                    bars[j + 1].style.height = `${array[j] * 30}px`; // Update the height of the bar
+                    bars[j + 1].querySelector('.bar-value').innerText = array[j]; // Update the displayed value
+
                     await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
+
+                    // Reset the color of the compared bar
+                    bars[j].style.backgroundColor = 'teal'; // Reset color after comparison
+                    bars[j + 1].style.backgroundColor = 'teal'; // Reset color after comparison
+                    j--;
                 }
+
+                // Place the key in its correct position
                 array[j + 1] = key;
-                bars[j + 1].style.height = `${key * 30}px`;
-                bars[j + 1].querySelector('.bar-value').innerText = key;
+                bars[j + 1].style.height = `${key * 30}px`; // Update the height of the bar
+                bars[j + 1].querySelector('.bar-value').innerText = key; // Update the displayed value
+
+                // Highlight the key bar after insertion
+                bars[j + 1].style.backgroundColor = 'blue'; // Highlight the inserted key
+
+                // Pause for visualization
+                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
+
+                // Reset the color of the key bar
+                bars[j + 1].style.backgroundColor = 'teal'; // Reset color after insertion
 
                 // Display the current state of the array after each outer loop iteration
                 iterationDisplay.innerText = `Iteration ${i}: [${array.join(', ')}]`;
                 const historyItem = document.createElement('div');
                 historyItem.innerText = `Iteration ${i}: [${array.join(', ')}]`;
                 historyDisplay.appendChild(historyItem);
+
+                // Update the visual representation after the inner loop
+                createBars(); // Update the visual representation
             }
+
+            // Mark all elements as sorted
             const finalBars = document.querySelectorAll('.bar');
-            finalBars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted
+            finalBars.forEach(bar => {
+                bar.classList.add('sorted'); // Mark all elements as sorted
+                bar.style.backgroundColor = 'green'; // Change color to indicate sorted state
+            });
             enableButtons(); // Re-enable buttons
         }
 
