@@ -12,7 +12,7 @@
       background-size: cover; 
       background-position: center; 
       background-repeat: no-repeat; 
-      padding-top: 100px;
+      padding-top: 50px;
     }
   </style>
 </head>
@@ -36,42 +36,62 @@
     <div class="left-main">
 
       <p class="title">STACK</p>
-      
-      <div class="book">
-        <p style="color: white;">
-            <span style="color: #28bf68;">Step 1:</span>
-            Insert your chosen station at the upmost dropdown(Starting) as your starting point. 
-            <br> 
-            <br>
-            <span style="color: #28bf68;">Step 2:</span>
-            Insert your chosen station at the 2nd dropdown(Ending) for your end point.
-            <br>
-            <br>
-            <span style="color: #28bf68;">Step 3:</span>
-            Click the "Find Path" button if you're done and look at the box to the right for the shortest distance.
-        </p>
-      </div>
+
+      <form method="POST" action="/work2" class="input-section">
+        <input class="input-text" id="expression" name="expression" type="text" placeholder="KINDLY INPUT YOUR TEXT" autocomplete="off" required>
+        <button name="conversion_type" value="infix_to_postfix" type="submit" class="infix-postfix">INFIX TO POSTFIX</button>
+        <button name="conversion_type" value="infix_to_prefix" type="submit" class="infix-prefix">INFIX TO PREFIX</button>
+      </form>
 
     </div>
 
     <div class="right-main">
       <div class="steps-section" id="steps">
         {% if steps %}
-            <!-- <p><strong>Steps:</strong></p> -->
+            <p><strong>Steps:</strong></p>
             {% for step in steps %}
                 <div class="steps-container">{{ step }}</div>
             {% endfor %}
         {% endif %}
-    </div>
-    
+      </div>
+      
+      <div class="right-right-main">
+      
+        <div class="book">
+          <p style="color: white;">
+              <span style="color: #28bf68;">Step 1:</span>
+              Insert your chosen station at the upmost dropdown(Starting) as your starting point. 
+              <br> 
+              <br>
+              <span style="color: #28bf68;">Step 2:</span>
+              Insert your chosen station at the 2nd dropdown(Ending) for your end point.
+              <br>
+              <br>
+              <span style="color: #28bf68;">Step 3:</span>
+              Click the "Find Path" button if you're done and look at the box to the right for the shortest distance.
+          </p>
+        </div>
 
-      <form method="POST" action="/work2" class="input-section">
-          <input class="input-text" id="expression" name="expression" type="text" placeholder="KINDLY INPUT YOUR TEXT" autocomplete="off" required>
-          <!-- <input type="hidden" name="conversion_type" value="infix_to_postfix" class="conversion-type"> -->
-          <button name="conversion_type" value="infix_to_postfix" type="submit" class="infix-postfix">INFIX TO POSTFIX</button>
-          <!-- <button name="conversion_type" value="postfix_to_infix" type="submit" class="postfix-infix">POSTFIX TO INFIX</button> -->
-          <button name="conversion_type" value="infix_to_prefix" type="submit" class="infix-prefix">INFIX TO PREFIX</button>
-      </form>
+        <div class="card">
+          <div class="bg" style="font-family: 'Work Sans';">
+            <h1>Stack Steps:</h1>
+            <div id="result" style="line-height: 3">
+                {% if steps %}
+                    {% for step in steps %}
+                        <p>{{ step }}</p>
+                    {% endfor %}
+                {% else %}
+                    <p>No conversion steps available.</p>
+                {% endif %}
+            </div>
+          </div>
+        
+          <div class="blob"></div>
+        </div>
+  
+      </div>
+      
+      
     </div>
   </main>
 
