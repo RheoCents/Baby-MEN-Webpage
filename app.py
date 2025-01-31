@@ -2,14 +2,17 @@ from flask import Flask, request, jsonify, render_template
 from labexercise.remove_first_n_characters_from_a_string import *
 from labexercise import linklist
 from labexercise.Sorthing import *
+from labexercise.queue import *
 from labexercise.GraphFunctions import Graph
 from labexercise.stack import *
 from templates import *
 
 app = Flask(__name__)
 linked_list = linklist.LinkedList()
-submitted_inputs_list = []
+submitted_inputs_eater = []
+submitted_inputs_linklist = []
 g = Graph()
+queue = Queue()
 
 g.add_edge("Taft Avenue", "Magallanes")
 g.add_edge("Magallanes", "Ayala")
@@ -159,6 +162,25 @@ def mem5():
 def mem6():    
     return render_template('babyboy_6.html')
 
+@app.route('/queue', methods=['GET'])
+def queue_page():
+    return render_template('queue.html', queue=queue.queue)
+
+@app.route('/enqueue', methods=['POST'])
+def enqueue():
+    item = request.form.get('data')
+    if item:
+        queue.enqueue(item)
+    return render_template('queue.html', queue=queue.queue)
+
+@app.route('/dequeue', methods=['POST'])
+def dequeue():
+    try:
+        queue.dequeue()
+    except Exception as e:
+        print(str(e))  # Log the error if needed
+    return render_template('queue.html', queue=queue.queue)
+
 @app.route('/sort', methods=['POST'])
 def sort_array():
     data = request.json.get('array', [])
@@ -172,20 +194,21 @@ def sort_array():
 def word_eater():
     result_word = ""
     original_word = ""  # Variable to hold the original word
+
     if request.method == 'POST':
         original_word = request.form.get('input_word', '')
         if original_word:
             random_amount_to_be_eaten = random.randint(1, len(original_word))
             result_word = original_word[random_amount_to_be_eaten:]
-    
-    return render_template('word_eater.html', result_word=result_word, original_word=original_word)
+            submitted_inputs_eater.append(original_word)
+    return render_template('word_eater.html', result_word=result_word, original_word=original_word, submitted_inputs=submitted_inputs_eater)
 
 @app.route('/linkedlist')
 def linkedlist_page():
     return render_template(
         'linkedlist.html',
         linked_list_items=linked_list.list_LinkedList(),
-        submitted_inputs=submitted_inputs_list
+        submitted_inputs=submitted_inputs_linklist
     )
 
 @app.route('/add_remove', methods=['POST'])
@@ -197,10 +220,10 @@ def add_remove():
     if data:
       if action == 'add_start':
         linked_list.insert_at_beginning(data)
-        submitted_inputs_list.append(data)
+        submitted_inputs_linklist.append(data)
       elif action == 'add_end':
         linked_list.insert_at_end(data)
-        submitted_inputs_list.append(data)
+        submitted_inputs_linklist.append(data)
       elif action == 'remove_start':
         linked_list.remove_at_beginning()
       elif action == 'remove_end':
@@ -214,7 +237,7 @@ def add_remove():
     return render_template(
         'linkedlist.html',
         linked_list_items=linked_list.list_LinkedList(),
-        submitted_inputs=submitted_inputs_list
+        submitted_inputs=submitted_inputs_linklist
     )
 
 @app.route('/add1', methods=['POST'])
@@ -222,11 +245,11 @@ def insert_end():
     data = request.form.get('data', '')
     if data:
         linked_list.insert_at_end(data) 
-        submitted_inputs_list.append(data) 
+        submitted_inputs_linklist.append(data) 
     return render_template(
         'linkedlist.html',
         linked_list_items=linked_list.list_LinkedList(),
-        submitted_inputs=submitted_inputs_list
+        submitted_inputs=submitted_inputs_linklist
     )
 
 @app.route('/add2', methods=['POST'])
@@ -234,11 +257,11 @@ def insert_beginning():
     data = request.form.get('data', '')
     if data:
         linked_list.insert_at_beginning(data) 
-        submitted_inputs_list.append(data) 
+        submitted_inputs_linklist.append(data) 
     return render_template(
         'linkedlist.html',
         linked_list_items=linked_list.list_LinkedList(),
-        submitted_inputs=submitted_inputs_list
+        submitted_inputs=submitted_inputs_linklist
     )
 
 @app.route('/remove_at_beginning', methods=['POST'])
@@ -247,7 +270,7 @@ def remove_at_beginning():
     return render_template(
         'linkedlist.html',
         linked_list_items=linked_list.list_LinkedList(),
-        submitted_inputs=submitted_inputs_list
+        submitted_inputs=submitted_inputs_linklist
     )
 
 @app.route('/remove_at_end', methods=['POST'])
@@ -256,7 +279,7 @@ def remove_at_end():
     return render_template(
         'linkedlist.html',
         linked_list_items=linked_list.list_LinkedList(),
-        submitted_inputs=submitted_inputs_list
+        submitted_inputs=submitted_inputs_linklist
     )
 
 

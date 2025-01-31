@@ -4,12 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Profile</title>
+    <link rel="stylesheet" href="../static/CSS/genaboutus.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Beaufort:wght@400;700&display=swap');
-        @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap");
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-        @import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
-        @import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
         body {
             font-family: 'Poppins';
             color: #ffffff; 
@@ -22,220 +18,6 @@
             padding: 0;
             height: 100%;
         }
-        nav {
-            padding: 0 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between; 
-            font-family: 'Work Sans';
-            font-weight: bold;
-            background-color: #545454;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-        }
-
-        nav ul li {
-            display: inline-block;
-            list-style: none;
-            margin: 10px;
-                
-        }
-
-        nav ul li a {
-            color: #ffffff; 
-        }
-        a {
-            text-decoration: none;
-            color: #fdfdfd; 
-            border: 2px solid transparent; 
-            border-radius: 20px;
-            padding: 5px 15px;
-            transition: all 0.3s ease;
-            display: inline-block; 
-        }
-        a:hover {
-            background-color: white; 
-            color:  #00bf63; 
-        }
-
-        a.hlght{
-            background-color: #00bf63; 
-            color: white;
-        }
-        .about-us-container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 50px;
-            column-gap: 10px;
-        }
-        .logo{
-            height: 22px;
-        }
-        header {
-            font-family: 'Poppins';
-            font-size: 30px;
-            color: #00bf63;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        main {
-            margin: 20px;
-            padding: 20px;
-            font-family: 'Poppins';
-        }
-        
-        .link-div {
-            display: flex;
-            justify-content: space-around; 
-            margin: 20px 0; 
-        }
-        .link-div a {
-            display: inline-block;
-            text-decoration: none;
-            color: #E94E77; 
-            border: 2px solid #E94E77; 
-            border-radius: 10px;
-            padding: 10px 15px;
-            transition: all 0.3s ease; 
-            display: flex; 
-            align-items: center; 
-        }
-        .link-div a:hover {
-            background-color: #E94E77; 
-            color: white; 
-            text-decoration: underline; 
-        }
-
-        .link-div img {
-            width: 20px; 
-            height: 20px;
-            margin-right: 10px; 
-        }
-
-        
-        .facebook a {
-            color: #1877F2;
-            border-color: #1877F2;
-        }
-        .facebook a:hover {
-            background-color: #1877F2;
-            color: white;
-        }
-
-        .discord a {
-            color: #5865F2;
-            border-color: #5865F2;
-        }
-        .discord a:hover {
-            background-color: #5865F2;
-            color: white;
-        }
-
-        .github a {
-            color: #000000;
-            border-color: #000000;
-        }
-        .github a:hover {
-            background-color: #000000;
-            color: white;
-        }
-
-        .linkedin a {
-            color: #0077B5;
-            border-color: #0077B5;
-        }
-        .linkedin a:hover {
-            background-color: #0077B5;
-            color: white;
-        }
-
-        .spotify a {
-            color: #1ED760;
-            border-color: #1ED760;
-        }
-        .spotify a:hover {
-            background-color: #1ED760;
-            color: white;
-        }
-
-        footer {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .back-link a {
-            font-size: 1.5em; 
-            padding: 15px 25px; 
-            display: inline-block;
-            color: #00bf63;
-            border: 2px solid #00bf63;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .back-link a:hover {
-            background-color: #00bf63;
-            color: white;
-            text-decoration: underline;
-        }
-        .team-member img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            border: 10px solid #00bf63;
-
-        }
-        
-        .profile-container {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-            margin: 30px;
-            margin-top: 30px;
-            margin-left: 90px;
-        }
-
-        .profile-container img {
-            width: 250px;
-            height: auto;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            border: 10px solid #00bf63;
-        }
-
-        .text-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        .text-container h2 {
-            margin: 0;
-            font-size: 65px;
-            color: #00bf63;
-        }
-
-        .profile-info {
-            margin-top: 10px;
-            font-size: 19px;
-            color: #ffffff;
-        }
-
-        .profile-info div {
-            margin-bottom: 5px;
-        }
-        a {
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: none;
-        }
-        
     </style>
 </head>
 <body>
@@ -249,9 +31,9 @@
                 <li><a href="/works" >LIBRARY</a></li>
                 <li><a href="/contactus">CONTACT US</a></li>
             </ul>
-            <div class="about-us-container">
+            <div>
                 <a href="/aboutus" class="hlght">ABOUT US</a>
-                <img class="logo" src="{{ url_for('static', filename='background/Logo1.png') }}">
+                <img class="logo-img" src="{{ url_for('static', filename='images/Logo1.png') }}">
             </div>
         </nav>
         <div class="profile-container">

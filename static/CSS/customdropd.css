@@ -1,20 +1,14 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     list-style-type: none;
-    font-family: 'Poppins'
 }
 
 .container {
-    margin-top: 10px;
     list-style-type: none;
     width: 200px;
+    font-family: 'Poppins';
 }
 
 h1 {
-    margin: 1rem;
-    margin-left: 0;
     font-family: 'Poppins';
     color: white;
 }
@@ -42,6 +36,7 @@ h1 {
     width: 220px;
     align-items: flex-start;
     justify-content: flex-start;
+    font-family: 'Poppins';
 
 }
 
@@ -52,6 +47,7 @@ h1 {
     align-items: flex-end;
     justify-content: flex-end;
     padding-right: 40px;
+    font-family: 'Poppins';
 }
 
 .selected1 {
@@ -63,6 +59,7 @@ h1 {
     color: #f6f6ff;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     padding: 12px 24px;
+    font-family: 'Poppins';
 }
 
 .selected1::placeholder {

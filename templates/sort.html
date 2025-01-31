@@ -34,6 +34,34 @@
             flex-direction: column;
             margin-left: 20px;
             margin-right: 20px;
+            column-gap: 20px;
+            justify-content: center;
+        }
+
+        button {
+            margin-bottom: 35px;
+            margin-left: 35px;
+            background-color: #00bf63;
+            color: white;
+            border-radius: 8px;
+            font-size: 25px;
+            max-width:200px;
+            font-family: 'Work Sans';
+        }
+
+        button:hover {
+            background-color: white;
+            color: #00bf63;
+        }
+
+        .button-random {
+            color: white;
+            background-color: #ff6600;   
+        }
+
+        .button-random:hover {
+            background-color: white;
+            color: #ff6600;   
         }
 
         .right-content {
@@ -176,6 +204,28 @@
             filter: blur(12px);
             animation: blob-bounce 5s infinite ease;
         }
+
+        @keyframes blob-bounce {
+        0% {
+            transform: translate(-100%, -100%) translate3d(0, 0, 0);
+        }
+
+        25% {
+            transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+        }
+
+        50% {
+            transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+        }
+
+        75% {
+            transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+        }
+
+        100% {
+            transform: translate(-100%, -100%) translate3d(0, 0, 0);
+        }
+        }
         
         .graph-content {
             width: 700px;
@@ -226,8 +276,8 @@
             color: white;
             margin-top: 20px;
             font-size: 16px;
-            max-height: 200px;
-            overflow-y: auto;
+            max-height: 400px;
+            max-width: 250px;
         }
     </style>
 </head>
@@ -247,21 +297,21 @@
     </div>
     <div class="hero">
         <div class="left-content">
-            <button onclick="randomizeArray()">Randomize Array</button>
-            <button onclick="startBubbleSort()">Start Bubble Sort</button>
-            <button onclick="startSelectionSort()">Start Selection Sort</button>
-            <button onclick="startMergeSort()">Start Merge Sort</button>
-            <button onclick="startInsertionSort()">Start Insertion Sort</button>
-            <button onclick="startQuickSort()">Start Quick Sort</button>
+            <h1 style = "margin-bottom: 50px; font-size: 60px;">SORTING</h1>
+            <button id="randomizeBtn" onclick="randomizeArray()" class = "button-random">Randomize</button>
+            <button id="bubbleSortBtn" onclick="startBubbleSort()">Bubble Sort</button>
+            <button id="selectionSortBtn" onclick="startSelectionSort()">Selection Sort</button>
+            <button id="mergeSortBtn" onclick="startMergeSort()">Merge Sort</button>
+            <button id="insertionSortBtn" onclick="startInsertionSort()">Insertion Sort</button>
+            <button id="quickSortBtn" onclick="startQuickSort()">Quick Sort</button>
         </div>
         <div class="graph-content">
-            <h1>Sorting Visualization</h1>
             <div id="array"></div>
             <div id="iterationDisplay"></div> <!-- Display for current iteration -->
         </div>
         <div class="right-content">
             <h2>
-                <a href="/works"; style="margin-bottom: 60px;">Library</a>
+                <a href="/works"; style="margin-bottom: 60px; font-family: 'Poppins';">Library</a>
             </h2>
             <div class="card">
                 <div class="bg">
@@ -283,6 +333,8 @@
             const numBars = Math.floor(Math.random() * 10) + 5; 
             array = Array.from({ length: numBars }, () => Math.floor(Math.random() * 10) + 1); 
             createBars();
+            iterationDisplay.innerText = ''; // Clear iteration display
+            historyDisplay.innerHTML = ''; // Clear history display
         }
 
         function createBars() {
@@ -302,7 +354,26 @@
             });
         }
 
+        function disableButtons() {
+            document.getElementById('randomizeBtn').disabled = true;
+            document.getElementById('bubbleSortBtn').disabled = true;
+            document.getElementById('selectionSortBtn').disabled = true;
+            document.getElementById('mergeSortBtn').disabled = true;
+            document.getElementById('insertionSortBtn').disabled = true;
+            document.getElementById('quickSortBtn').disabled = true;
+        }
+
+        function enableButtons() {
+            document.getElementById('randomizeBtn').disabled = false;
+            document.getElementById('bubbleSortBtn').disabled = false;
+            document.getElementById('selectionSortBtn').disabled = false;
+            document.getElementById('mergeSortBtn').disabled = false;
+            document.getElementById('insertionSortBtn').disabled = false;
+            document.getElementById('quickSortBtn').disabled = false;
+        }
+
         async function startBubbleSort() {
+            disableButtons(); // Disable buttons
             const n = array.length;
             const bars = document.querySelectorAll('.bar');
 
@@ -317,7 +388,7 @@
                     // Swap if the current element is greater than the next
                     if (array[j] > array[j + 1]) {
                         [array[j], array[j + 1]] = [array[j + 1], array[j]];
-                        bars[j].style.height = `${array[j] * 30}px`;
+                        bars[j].style.height = `${array [j] * 30}px`;
                         bars[j + 1].style.height = `${array[j + 1] * 30}px`;
 
                         // Update the displayed values
@@ -340,9 +411,11 @@
                 historyDisplay.appendChild(historyItem);
             }
             bars[0].classList.add('sorted'); // Mark the first element as sorted
+            enableButtons(); // Re-enable buttons
         }
 
         async function startSelectionSort() {
+            disableButtons(); // Disable buttons
             const n = array.length;
             const bars = document.querySelectorAll('.bar');
 
@@ -387,6 +460,7 @@
                 historyDisplay.appendChild(historyItem);
             }
             bars[n - 1].style.backgroundColor = 'green'; // Mark the last element as sorted
+            enableButtons(); // Re-enable buttons
         }
 
         async function mergeSort(arr, left, right) {
@@ -410,6 +484,15 @@
             let i = 0, j = 0, k = left;
 
             while (i < n1 && j < n2) {
+                const bars = document.querySelectorAll('.bar');
+                
+                // Highlight the bars being compared
+                bars[left + i].style.backgroundColor = 'red'; // Highlight left array bar
+                bars[mid + 1 + j].style.backgroundColor = 'red'; // Highlight right array bar
+
+                // Pause for visualization
+                await new Promise(resolve => setTimeout(resolve, 500));
+
                 if (L[i] <= R[j]) {
                     arr[k] = L[i];
                     i++;
@@ -418,8 +501,12 @@
                     j++;
                 }
                 k++;
+
                 createBars(); // Update the visual representation
-                await new Promise(resolve => setTimeout(resolve, 500)); // Pause for visualization
+
+                // Reset the color of the bars after placing
+                bars[left + i - 1].style.backgroundColor = 'teal'; // Reset left array bar
+                bars[mid + 1 + j - 1].style.backgroundColor = 'teal'; // Reset right array bar
             }
 
             while (i < n1) {
@@ -444,13 +531,17 @@
             historyItem.innerText = `Merging: [${arr.join(', ')}]`;
             historyDisplay.appendChild(historyItem);
         }
-
+        
         async function startMergeSort() {
+            disableButtons(); // Disable buttons
             await mergeSort(array, 0, array.length - 1);
             const bars = document.querySelectorAll('.bar');
             bars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted
+            enableButtons(); // Re-enable buttons
         }
+
         async function startInsertionSort() {
+            disableButtons(); // Disable buttons
             const n = array.length;
             const bars = document.querySelectorAll('.bar');
 
@@ -479,6 +570,7 @@
             }
             const finalBars = document.querySelectorAll('.bar');
             finalBars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted
+            enableButtons(); // Re-enable buttons
         }
 
         async function quickSort(arr, low, high) {
@@ -522,9 +614,10 @@
         }
 
         async function startQuickSort() {
+            disableButtons(); // Disable buttons
             await quickSort(array, 0, array.length - 1);
             const bars = document.querySelectorAll('.bar');
-            bars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted
+            bars.forEach(bar => bar.classList.add('sorted')); // Mark all elements as sorted enableButtons(); // Re-enable buttons
         }
 
         randomizeArray();
