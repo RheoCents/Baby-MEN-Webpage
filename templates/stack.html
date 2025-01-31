@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/stack.css') }}">
+  <title>Queue</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/queue.css') }}">
   <style>
     body {
       height: 100vh;
@@ -13,6 +13,43 @@
       background-position: center; 
       background-repeat: no-repeat; 
       padding-top: 100px;
+    }
+    .left-main {
+      float: left;
+      width: 30%;
+      padding: 20px;
+    }
+    .right-main {
+      float: right;
+      width: 65%;
+      padding: 20px;
+    }
+    .queue-item {
+      background-color: rgba(255, 255, 255, 0.8);
+      margin: 5px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .input-section {
+      margin-top: 20px;
+    }
+    .input-text {
+      width: 70%;
+      padding: 10px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
@@ -29,79 +66,31 @@
           <a href="/aboutus">ABOUT US</a>
           <img class="logo-img" src="{{ url_for('static', filename='images/Logo1.png') }}">
       </div>
-  </nav>
     </nav>
   </div>
 
   <main>
     <div class="left-main">
-      <p class="title">STACK</p>
+      <p class="title">QUEUE</p>
+      <div class="queue-containers">
+        {% for item in queue %}
+          <div class="queue-item">{{ item }}</div>
+        {% endfor %}
+      </div>
     </div>
 
     <div class="right-main">
-      <div class="steps-section" id="steps">
-        <!-- Steps will be dynamically inserted here -->
-      </div>
-
       <div class="input-section">
-        <input class="input-text" id="expression" type="text" placeholder="KINDLY INPUT YOUR TEXT" autocomplete="off" required>
-        <button class="infix-postfix" onclick="convertExpression('infix_to_postfix')">INFIX TO POSTFIX</button>
-        <button class="postfix-infix" onclick="convertExpression('postfix_to_infix')">POSTFIX TO INFIX</button>
-        <button class="infix-prefix" onclick="convertExpression('infix_to_prefix')">INFIX TO PREFIX</button>
+        <input class="input-text" name="data" type="text" placeholder="KINDLY INPUT YOUR TEXT" autocomplete="off" required>
+        <form method="POST" action="/enqueue" style="display:inline;">
+          <button type="submit" class="button">ENQUEUE</button>
+        </form>
+        <form method="POST" action="/dequeue" style="display:inline;">
+          <button type="submit" class="button">DEQUEUE</button>
+        </form>
       </div>
     </div>
   </main>
-
-  <script>
-    function convertExpression(conversionType) {
-        let expression = document.getElementById("expression").value;
-        
-        if (!expression.trim()) {
-            alert("Please enter an expression!");
-            return;
-        }
-
-        fetch("/work2", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ expression: expression, conversion_type: conversionType })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.json();
-        })
-        .then(data => {
-            let stepsContainer = document.getElementById("steps");
-            stepsContainer.innerHTML = "";  // Clear previous steps
-
-            if (data.steps && Array.isArray(data.steps)) {
-                if (data.steps.length > 0) {
-                    // Populate the steps
-                    data.steps.forEach(step => {
-                        let stepDiv = document.createElement("div");
-                        stepDiv.className = "steps-container";
-                        stepDiv.textContent = step;
-                        stepsContainer.appendChild(stepDiv);
-                    });
-                } else {
-                    // If there are no steps, show this message
-                    stepsContainer.innerHTML = "No steps available for this expression or invalid expression.";
-                }
-            } else {
-                // If 'steps' is not an array or is missing
-                stepsContainer.innerHTML = "Unexpected response format or invalid expression.";
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            let stepsContainer = document.getElementById("steps");
-            stepsContainer.innerHTML = "An error occurred: " + error.message;  // Show error message to user
-        });
-    }
-</script>
-
 
 </body>
 </html>

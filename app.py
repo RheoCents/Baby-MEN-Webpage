@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template
 from labexercise.remove_first_n_characters_from_a_string import *
 from labexercise import linklist
 from labexercise.Sorthing import *
+from labexercise.queue import *
 from labexercise.GraphFunctions import Graph
 from labexercise.stack import *
 from templates import *
@@ -11,6 +12,7 @@ linked_list = linklist.LinkedList()
 submitted_inputs_eater = []
 submitted_inputs_linklist = []
 g = Graph()
+queue = Queue()
 
 g.add_edge("Taft Avenue", "Magallanes")
 g.add_edge("Magallanes", "Ayala")
@@ -159,6 +161,25 @@ def mem5():
 @app.route('/babyboy6')
 def mem6():    
     return render_template('babyboy_6.html')
+
+@app.route('/queue', methods=['GET'])
+def queue_page():
+    return render_template('queue.html', queue=queue.queue)
+
+@app.route('/enqueue', methods=['POST'])
+def enqueue():
+    item = request.form.get('data')
+    if item:
+        queue.enqueue(item)
+    return render_template('queue.html', queue=queue.queue)
+
+@app.route('/dequeue', methods=['POST'])
+def dequeue():
+    try:
+        queue.dequeue()
+    except Exception as e:
+        print(str(e))  # Log the error if needed
+    return render_template('queue.html', queue=queue.queue)
 
 @app.route('/sort', methods=['POST'])
 def sort_array():
